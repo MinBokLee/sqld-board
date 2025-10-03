@@ -1,0 +1,26 @@
+# server port setting
+server:
+  port: 8881
+
+spring:
+
+# application name setting
+  application:
+    name: sqld
+
+# H2 Database Setting
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password: 1234
+
+# H2 Console Setting
+  h2:
+    console:
+      enabled: true
+
+# Mybaties Setting
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
