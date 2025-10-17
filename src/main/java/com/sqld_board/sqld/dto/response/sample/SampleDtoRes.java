@@ -3,11 +3,10 @@ package com.sqld_board.sqld.dto.response.sample;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class SampleDtoRes {
 
-    private String USERS_ID;
-
-    private String NAME;
+    private int sampleId;
+    private String sampleName;
 }

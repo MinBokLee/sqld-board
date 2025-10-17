@@ -9,21 +9,32 @@ spring:
   application:
     name: sqld
 
-# H2 Database Setting
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password: 1234
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:oracle:thin:@175.197.69.42:1521:orcl
+    username: study
+    password: knou2016
+
+# H2 Database Setting
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://localhost/~/test
+#    username: sa
+#    password: 1234
 
 # H2 Console Setting
-  h2:
-    console:
-      enabled: true
+#  h2:
+#    console:
+#      enabled: true
 
 # Mybaties Setting
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+
+# mybatis Setting
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: "classpath:mapper/*.xml"
 
 # Swagger springdoc-ui Configuration
 springdoc:
@@ -42,4 +53,7 @@ springdoc:
     tags-sorter: alpha       # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
     operations-sorter: alpha # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
 
-
+  # log 설정
+  logging:
+    level:
+      org.hibernate.type: info

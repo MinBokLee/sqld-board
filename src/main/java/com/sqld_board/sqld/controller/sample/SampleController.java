@@ -1,7 +1,7 @@
 package com.sqld_board.sqld.controller.sample;
 
 import com.sqld_board.sqld.constants.MessageConstants;
-import com.sqld_board.sqld.dto.request.SampleDtoReq;
+import com.sqld_board.sqld.dto.request.sample.SampleDtoReq;
 import com.sqld_board.sqld.dto.response.Response;
 import com.sqld_board.sqld.dto.response.sample.SampleDtoRes;
 import com.sqld_board.sqld.service.SampleService;

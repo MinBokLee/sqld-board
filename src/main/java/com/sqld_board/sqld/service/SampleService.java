@@ -1,6 +1,6 @@
 package com.sqld_board.sqld.service;
 
-import com.sqld_board.sqld.dto.request.SampleDtoReq;
+import com.sqld_board.sqld.dto.request.sample.SampleDtoReq;
 import com.sqld_board.sqld.dto.response.sample.SampleDtoRes;
 import com.sqld_board.sqld.mapper.SampleMapper;
 import lombok.RequiredArgsConstructor;

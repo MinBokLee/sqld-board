@@ -9,20 +9,31 @@
     <!-- SELECT -->
 
     <!-- MEMBER 정보 조회 -->
-    <select id="searchMemberInfo" resultType="com.sqld_board.sqld.dto.response.sample.SampleDtoRes">
-        SELECT USERS_ID   /* SampleMapper.searchMemberInfo*/
-             , NAME
-          FROM MEMBER
+    <select id="searchMemberInfo" resultType="sampleDtoRes">
+        SELECT SAMPLE_ID   /* SampleMapper.searchMemberInfo*/
+             , SAMPLE_NAME
+          FROM SAMPLE
     </select>
 
     <!-- INSERT -->
     <!-- INSERT -->
     <!-- INSERT -->
 
-    <insert id="saveSample" parameterType="com.sqld_board.sqld.dto.request.SampleDtoReq">
-        INSERT INTO MEMBER
-                    (USERS_ID, NAME)
-        VALUES      (#{USERS_ID}, #{NAME})
+    <insert id="saveSample" parameterType="sampleDtoReq">
+        INSERT INTO SAMPLE /* SampleMapper.saveSample*/
+                    (SAMPLE_ID, SAMPLE_NAME)
+        VALUES      (#{sampleId}, #{sampleName})
     </insert>
+
+    <!-- UPDATE -->
+    <!-- UPDATE -->
+    <!-- UPDATE -->
+
+    <!-- DELETE -->
+    <!-- DELETE -->
+    <!-- DELETE -->
+
+
+
 
 </mapper>
