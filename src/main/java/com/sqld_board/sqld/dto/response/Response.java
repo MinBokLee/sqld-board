@@ -2,6 +2,7 @@ package com.sqld_board.sqld.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sqld_board.sqld.constants.MessageConstants;
+import com.sqld_board.sqld.exception.ExceptionType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,7 +44,8 @@ public class Response {
         return new Response(false, msg.getStatusCode(), msg.getMessage(), null,null);
     }
 
-
-
+    public static Response failure(int code, String msg){
+        return new Response(false, code, msg, null, null);
+    }
 
 }

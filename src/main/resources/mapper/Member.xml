@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqld_board.sqld.mapper.MemberMapper">
+
+    <!-- SELECT -->
+    <!-- SELECT -->
+    <!-- SELECT -->
+
+    <select id="readMemberByUsersId" parameterType="signInMemberReq" resultType="java.lang.Integer">
+        SELECT 1
+          FROM MEMBER_INFO
+         WHERE USER_ID = #{userId}
+          AND RowNum = 1
+    </select>
+
+    <!-- MEMBER 정보 조회 -->
+<!--    <select id="searchMemberInfo" resultType="sampleDtoRes">-->
+<!--        SELECT SAMPLE_ID   /* SampleMapper.searchMemberInfo*/-->
+<!--             , SAMPLE_NAME-->
+<!--        FROM SAMPLE-->
+<!--    </select>-->
+
+    <!-- INSERT -->
+    <!-- INSERT -->
+    <!-- INSERT -->
+
+    <!-- 회원 가입 -->
+    <insert id="signUpMember" parameterType="signUpMemberReq">
+        <selectKey resultType="java.lang.String" keyProperty="memberId" order="BEFORE">
+            SELECT FUNC_COM_SITE_SEQ('MEMBER') FROM DUAL
+        </selectKey>
+        INSERT INTO MEMBER_INFO( MEMBER_ID /* MemberMapper.signUpMember*/
+                                , USER_ID
+                                , USER_PASS
+                                , USER_NAME
+                                , USER_EMAIL
+                                , EMAIL_VERIFIED
+                                , USER_ROLE
+                                , USER_STATUS
+                                , CREATE_AT
+                                , UPDATE_AT
+                                )
+            VALUES              ( #{memberId}
+                                , #{userId}
+                                , #{userPass}
+                                , #{userName}
+                                , #{userEmail}
+                                , #{emailVerified}
+                                , #{userRole}
+                                , #{userStatus}
+                                , SYSDATE
+                                , SYSDATE
+        )
+
+    </insert>
+
+
+    <!-- UPDATE -->
+    <!-- UPDATE -->
+    <!-- UPDATE -->
+
+    <!-- DELETE -->
+    <!-- DELETE -->
+    <!-- DELETE -->
+
+
+
+
+</mapper>

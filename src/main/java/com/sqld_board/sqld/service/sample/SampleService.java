@@ -1,4 +1,4 @@
-package com.sqld_board.sqld.service;
+package com.sqld_board.sqld.service.sample;
 
 import com.sqld_board.sqld.dto.request.sample.SampleDtoReq;
 import com.sqld_board.sqld.dto.response.sample.SampleDtoRes;
@@ -16,10 +16,19 @@ public class SampleService {
 
     private final SampleMapper sampleMapper;
 
+    /**
+     * 샘플 조회
+     * @return
+     */
     public List<SampleDtoRes> searchMemberInfo(){
-       return sampleMapper.searchMemberInfo();
+        return sampleMapper.searchMemberInfo();
     }
 
+    /**
+     * 샘플 데이터 저장
+     * @param req
+     * @return
+     */
     public boolean saveSample(SampleDtoReq req) {
 
         try {
@@ -30,7 +39,7 @@ public class SampleService {
         }
         return false;
 
-        }
+    }
 
 
 

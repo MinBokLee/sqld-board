@@ -4,8 +4,7 @@ server:
 
 spring:
 
-
-# application name setting
+  # application name setting
   application:
     name: sqld
 
@@ -14,6 +13,9 @@ spring:
     url: jdbc:log4jdbc:oracle:thin:@175.197.69.42:1521:orcl
     username: study
     password: knou2016
+
+  messages:
+    basename: i18n/exception
 
 # H2 Database Setting
 #  datasource:
@@ -57,3 +59,7 @@ springdoc:
   logging:
     level:
       org.hibernate.type: info
+
+aes:
+  algorithm: AES
+  secret: "kL1uOM+G3pRxJbdXtZz2HuTmbg9CMLMgZAvn9QK9xZI="

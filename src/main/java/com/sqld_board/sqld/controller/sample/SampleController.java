@@ -4,7 +4,7 @@ import com.sqld_board.sqld.constants.MessageConstants;
 import com.sqld_board.sqld.dto.request.sample.SampleDtoReq;
 import com.sqld_board.sqld.dto.response.Response;
 import com.sqld_board.sqld.dto.response.sample.SampleDtoRes;
-import com.sqld_board.sqld.service.SampleService;
+import com.sqld_board.sqld.service.sample.SampleService;
 import io.swagger.v3.oas.annotations.Operation;
 
 import lombok.RequiredArgsConstructor;

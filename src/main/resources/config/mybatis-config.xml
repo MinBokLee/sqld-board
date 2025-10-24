@@ -25,6 +25,8 @@
         <!-- sample -->
         <typeAlias alias="sampleDtoRes" 				type="com.sqld_board.sqld.dto.response.sample.SampleDtoRes"/>
         <typeAlias alias="sampleDtoReq" 				type="com.sqld_board.sqld.dto.request.sample.SampleDtoReq"/>
+        <typeAlias alias="signUpMemberReq" 				type="com.sqld_board.sqld.dto.request.sign.SignUpMemberReq"/>
+        <typeAlias alias="signInMemberReq" 				type="com.sqld_board.sqld.dto.request.sign.SignInMemberReq"/>
 
 
     </typeAliases>
