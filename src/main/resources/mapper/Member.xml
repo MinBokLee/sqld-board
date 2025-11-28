@@ -14,9 +14,8 @@
          WHERE USER_ID = #{userId}
           AND RowNum = 1
     </select>
-    
 
-    <!-- MEMBER 정보 조회 -->
+<!-- MEMBER 정보 조회 -->
 <!--    <select id="searchMemberInfo" resultType="sampleDtoRes">-->
 <!--        SELECT SAMPLE_ID   /* SampleMapper.searchMemberInfo*/-->
 <!--             , SAMPLE_NAME-->
