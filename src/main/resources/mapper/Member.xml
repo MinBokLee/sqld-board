@@ -8,11 +8,20 @@
     <!-- SELECT -->
     <!-- SELECT -->
 
-    <select id="readMemberByUsersId" parameterType="signInMemberReq" resultType="java.lang.Integer">
-        SELECT 1
+    <select id="readMemberByUsersId" parameterType="java.lang.String" resultType="com.sqld_board.sqld.model.member.MemberInfo">
+        SELECT MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , CREATE_AT
+             , UPDATE_AT
           FROM MEMBER_INFO
          WHERE USER_ID = #{userId}
-          AND RowNum = 1
+           AND ROWNUM = 1
     </select>
 
 <!-- MEMBER 정보 조회 -->

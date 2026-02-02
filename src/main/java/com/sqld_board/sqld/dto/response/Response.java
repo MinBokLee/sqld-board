@@ -37,6 +37,14 @@ public class Response {
     }
 
     /**
+     * 성공 응답 (데이터만 포함)
+     * 예: {"success": true, "code": 200, "result": { "data": ... }}
+     */
+    public static <T> Response success(T data) {
+        return new Response(true, 200, "Success", null, new Success<>(data));
+    }
+
+    /**
      * 실패 응답 "MessageConstants 를 사용"
      * 예: {"success": false, "code": 400, "result": { "message": "에러 메시지" }}
      */

@@ -1,90 +1,51 @@
-[2025-10-24 17:04:02.770] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
-[2025-10-24 17:04:02.830] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 97378 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
-[2025-10-24 17:04:02.831] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - No active profile set, falling back to 1 default profile: "default"
-[2025-10-24 17:04:02.870] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
-[2025-10-24 17:04:02.870] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-[2025-10-24 17:04:02.870] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-[2025-10-24 17:04:03.629] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
-[2025-10-24 17:04:03.640] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
-[2025-10-24 17:04:03.641] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
-[2025-10-24 17:04:03.642] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
-[2025-10-24 17:04:03.672] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-[2025-10-24 17:04:03.673] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 802 ms
-[2025-10-24 17:04:04.197] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-[2025-10-24 17:04:04.701] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@196cfeb4
-[2025-10-24 17:04:04.702] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-[2025-10-24 17:04:04.705] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@175.197.69.42:1521:orcl'
-[2025-10-24 17:04:04.738] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-[2025-10-24 17:04:04.752] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
-[2025-10-24 17:04:04.764] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
-[2025-10-24 17:04:04.770] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 2.243 seconds (process running for 2.669)
-[2025-10-24 17:04:11.373] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-10-24 17:04:11.390] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-[2025-10-24 17:04:11.400] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-[2025-10-24 17:04:11.535] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-[2025-11-28 13:11:07.188] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.9 with PID 10376 (C:\Users\컴포인\Documents\sqld-board\bin\main started by 컴포인 in C:\Users\컴포인\Documents\sqld-board)
-[2025-11-28 13:11:07.189] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - No active profile set, falling back to 1 default profile: "default"
-[2025-11-28 13:11:07.488] [WARN ] [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
-[2025-11-28 13:11:07.494] [INFO ] [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger - 
+[2026-01-31 15:40:53.706] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-01-31 15:40:53.755] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 24972 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-01-31 15:40:53.756] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - No active profile set, falling back to 1 default profile: "default"
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-01-31 15:40:55.363] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-01-31 15:40:55.380] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-01-31 15:40:55.383] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-01-31 15:40:55.385] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-01-31 15:40:55.428] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-01-31 15:40:55.428] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1639 ms
+[2026-01-31 15:40:55.719] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-01-31 15:40:55.744] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config
+[2026-01-31 15:40:55.946] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-01-31 15:40:56.546] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@65585b1b
+[2026-01-31 15:40:56.548] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-01-31 15:40:56.553] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@175.197.69.42:1521:orcl'
+[2026-01-31 15:40:56.711] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-01-31 15:40:56.743] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
+[2026-01-31 15:40:56.767] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-01-31 15:40:56.783] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 3.563 seconds (process running for 4.275)
+[2026-01-31 15:45:45.322] [INFO ] [http-nio-8881-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2026-01-31 15:45:45.324] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2026-01-31 15:45:45.339] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 15 ms
+[2026-01-31 15:45:46.000] [INFO ] [http-nio-8881-exec-9] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 231 ms
+[2026-01-31 15:46:03.261] [INFO ] [http-nio-8881-exec-4] jdbc.sqlonly - SELECT MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , CREATE_AT
+             , UPDATE_AT
+          FROM MEMBER_INFO
+         WHERE USER_ID = 'test7'
+           AND ROWNUM = 1
 
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-[2025-11-28 13:11:07.535] [ERROR] [restartedMain] o.s.boot.SpringApplication - Application run failed
-java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60)
-	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:99)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:183)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:144)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
-	at com.sqld_board.sqld.SqldApplication.main(SqldApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.sqld_board.sqld.config.swagger.OpenApiConfig] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1ed2ee4a]
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
-	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360)
-	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:757)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:756)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:689)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:660)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1715)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:640)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:612)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:597)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanDefinitionsForType(OnBeanCondition.java:322)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanDefinitionsForType(OnBeanCondition.java:314)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:214)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.evaluateConditionalOnMissingBean(OnBeanCondition.java:197)
-	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:144)
-	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47)
-	... 22 common frames omitted
-Caused by: java.lang.NoClassDefFoundError: OpenAPI
-	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
-	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504)
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
-	... 39 common frames omitted
-Caused by: java.lang.ClassNotFoundException: OpenAPI
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:467)
-	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
-	... 43 common frames omitted
+[2026-01-31 15:46:03.371] [INFO ] [http-nio-8881-exec-4] jdbc.resultsettable - 
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+|member_id          |user_id |user_pass                                                    |user_name |user_email  |email_verified |user_role |user_status |create_at             |update_at             |
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+|MEMBER_20260126001 |test7   |$2a$10$EqaCHXWWgWnp/PwtrgeB3eFa6oeJqR8Wc2qmnvHhh6/t0rUAKF4Ou |테스트7      |e@email.com |null           |USER      |null        |2026-01-26 17:58:49.0 |2026-01-26 17:58:49.0 |
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+
+[2026-01-31 15:47:37.390] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-01-31 15:47:37.399] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-01-31 15:47:37.408] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-01-31 15:47:37.518] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

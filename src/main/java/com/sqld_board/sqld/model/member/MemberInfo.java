@@ -1,4 +1,4 @@
-package com.sqld_board.sqld.model.memberInfo;
+package com.sqld_board.sqld.model.member;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

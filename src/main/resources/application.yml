@@ -63,3 +63,6 @@ springdoc:
 aes:
   algorithm: AES
   secret: "kL1uOM+G3pRxJbdXtZz2HuTmbg9CMLMgZAvn9QK9xZI="
+
+jwt:
+  secret: ".NQe9LT]Jxsdi8<;/):PdF<-IZ{l3AVJsE,A/U*;^h?" # Replace with a real secret
