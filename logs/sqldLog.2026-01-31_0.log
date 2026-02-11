@@ -1,0 +1,51 @@
+[2026-01-31 15:40:53.706] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-01-31 15:40:53.755] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 24972 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-01-31 15:40:53.756] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - No active profile set, falling back to 1 default profile: "default"
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-01-31 15:40:53.789] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-01-31 15:40:55.363] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-01-31 15:40:55.380] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-01-31 15:40:55.383] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-01-31 15:40:55.385] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-01-31 15:40:55.428] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-01-31 15:40:55.428] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1639 ms
+[2026-01-31 15:40:55.719] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-01-31 15:40:55.744] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config
+[2026-01-31 15:40:55.946] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-01-31 15:40:56.546] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@65585b1b
+[2026-01-31 15:40:56.548] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-01-31 15:40:56.553] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@175.197.69.42:1521:orcl'
+[2026-01-31 15:40:56.711] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-01-31 15:40:56.743] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
+[2026-01-31 15:40:56.767] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-01-31 15:40:56.783] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 3.563 seconds (process running for 4.275)
+[2026-01-31 15:45:45.322] [INFO ] [http-nio-8881-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2026-01-31 15:45:45.324] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2026-01-31 15:45:45.339] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 15 ms
+[2026-01-31 15:45:46.000] [INFO ] [http-nio-8881-exec-9] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 231 ms
+[2026-01-31 15:46:03.261] [INFO ] [http-nio-8881-exec-4] jdbc.sqlonly - SELECT MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , CREATE_AT
+             , UPDATE_AT
+          FROM MEMBER_INFO
+         WHERE USER_ID = 'test7'
+           AND ROWNUM = 1
+
+[2026-01-31 15:46:03.371] [INFO ] [http-nio-8881-exec-4] jdbc.resultsettable - 
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+|member_id          |user_id |user_pass                                                    |user_name |user_email  |email_verified |user_role |user_status |create_at             |update_at             |
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+|MEMBER_20260126001 |test7   |$2a$10$EqaCHXWWgWnp/PwtrgeB3eFa6oeJqR8Wc2qmnvHhh6/t0rUAKF4Ou |테스트7      |e@email.com |null           |USER      |null        |2026-01-26 17:58:49.0 |2026-01-26 17:58:49.0 |
+|-------------------|--------|-------------------------------------------------------------|----------|------------|---------------|----------|------------|----------------------|----------------------|
+
+[2026-01-31 15:47:37.390] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-01-31 15:47:37.399] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-01-31 15:47:37.408] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-01-31 15:47:37.518] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

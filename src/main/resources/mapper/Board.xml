@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqld_board.sqld.mapper.BoardMapper">
+    <select id="getBoardList" resultType="com.sqld_board.sqld.model.Board">
+        SELECT
+            BOARD_ID,
+            TITLE,
+            CONTENT,
+            MEMBER_ID,
+            BOARD_TYPE,
+            VIEW_COUNT,
+            CREATE_AT,
+            UPDATE_AT
+        FROM
+            BOARD
+        ORDER BY
+            CREATE_AT DESC
+    </select>
+
+</mapper>

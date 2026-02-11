@@ -46,9 +46,10 @@ public class CustomSecurityConfig {
                         "/api-docs/json/**",
                         "/swagger-ui/**",
                         "/api/common/signIn",
-                        "/api/common/**"
+                        "/api/common/**",
+                        "/api/board/**"
                 ).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
         );
 
         return http.build();
@@ -58,7 +59,7 @@ public class CustomSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("https://sqld-front.pages.dev", "http://localhost:5173"));
         configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
