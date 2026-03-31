@@ -1,0 +1,49 @@
+# MYSQL 8.0 (운영)
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://175.197.69.42:3306/sqld_db_prod?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: sqld_prod
+    password: ENC(CZEAyQw+ZZvw8KwCXP+4Ob6bCUNbi0/k)
+    hikari:
+      maximum-pool-size: 20       # 최대 커넥션 수 조설 (기본값 10에서 20정도로 증설)
+      max-lifetime: 580000        # 커넥션 최대 유지 시간 약 9.6분 (DB wait_timeout이 10분인 경우 대응)
+      connection-timeout: 30000   # 커넥션을 얻기 위해 기다리는 최대 시간 40초
+      idle-timeout: 300000        # 유휴 ㅋ넥션이 풀에서 제거되기 전 대기 시간 5분
+      keepalive-time: 30000       # 커넥션 생존 신호 주기 "30초마다 생존 확인" (HikariCP 3.4.1 이상)
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mintest707@gmail.com
+    password: ENC(8HkGWnCXFmL7Z9uIO58Nv2giUmDOReNiNtunXaIcK2o=)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+# Jasypt가 ENC()를 인식하게 하는 기본 설정( 생략 가능하나 명시하는게 좋음)
+#Jasypt 스타터는 기본적으로 ENC(...)형식을 인식하며, 빈 이름을 지정하지 않으면 자동으로 내부 기본 빈을 사용
+jasypt:
+  encryptor:
+    #1. 암호화 테스트 코드에서 사용한 알고리즘 명시 (MD5/DES)
+    algorithm: PBEWithMD5AndDES
+    #2. IV 생성기 비활설화 (MD5/DEX 사용 시 필수)
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    property:
+      prefix: "ENC("
+      suffix: ")"
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+
+file:
+#  upload-path: /Users/minboklee/Documents/upload #{mac}
+  upload-path: C:\web\sqld\upload #{window}
+
+

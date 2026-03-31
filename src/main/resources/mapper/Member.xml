@@ -8,7 +8,54 @@
     <!-- SELECT -->
     <!-- SELECT -->
 
-    <select id="readMemberByUsersId" parameterType="java.lang.String" resultType="com.sqld_board.sqld.model.member.MemberInfo">
+    <!-- 가입인사 게시판의 글 작성 여부를 조회 하는 쿼리 -->
+<!--    <select id="checkGreetingBoardWrite" resultType= "java.lang.Integer">-->
+<!--        SELECT count(*)-->
+<!--          FROM board-->
+<!--         WHERE USER_ID = #{userId}-->
+<!--           AND BOARD_TYPE = 'G'-->
+<!--    </select>-->
+
+    <!-- 로그인 후, 회원 간편 정보 조회-->
+    <select id="readMemberSimpleInfo" resultType="MemberSimpleInfoRes">
+        SELECT USER_ID                                  /* 사용자 아이디  */
+             , USER_NAME                                /* 사용자 명    */
+             , USER_EMAIL                               /* 사용자 이메일 */
+             , USER_ROLE                                /* 사용자 권한  */
+             , PROFILE_IMAGE                            /* 사용자 프로필 */
+             , (SELECT COUNT(*)
+                  FROM BOARD B
+                 WHERE B.MEMBER_ID = M.MEMBER_ID
+                   AND DELETE_YN='N') AS postCount      /* 게시글 수 */
+             , (SELECT COUNT(*)
+                  FROM COMMENT_MANAGEMENT CM
+                 WHERE CM.MEMBER_ID = M.MEMBER_ID
+                   AND DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , LAST_LOG_AT  /* 최근 접속 시간 */
+        FROM MEMBER_INFO M
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <select id="readMemberByMemberId" parameterType="java.lang.String" resultType="MemberInfo">
+        SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!-- 사용자 ID로 회원 정보를 조회하는 쿼리 -->
+    <select id="readMemberByUsersId" parameterType="java.lang.String" resultType="MemberInfo">
         SELECT MEMBER_ID
              , USER_ID
              , USER_PASS
@@ -17,12 +64,22 @@
              , EMAIL_VERIFIED
              , USER_ROLE
              , USER_STATUS
+             , PROFILE_IMAGE
              , CREATE_AT
              , UPDATE_AT
+             , LAST_LOG_AT
           FROM MEMBER_INFO
          WHERE USER_ID = #{userId}
-           AND ROWNUM = 1
+         LIMIT 1
     </select>
+
+    <!-- 프로필 이미지 업데이트 -->
+    <update id="updateProfileImage">
+        UPDATE MEMBER_INFO
+           SET PROFILE_IMAGE = #{profileImage},
+               UPDATE_AT = NOW()
+         WHERE MEMBER_ID = #{memberId}
+    </update>
 
 <!-- MEMBER 정보 조회 -->
 <!--    <select id="searchMemberInfo" resultType="sampleDtoRes">-->
@@ -35,11 +92,61 @@
     <!-- INSERT -->
     <!-- INSERT -->
 
-    <!-- 회원 가입 -->
-    <insert id="signUpMember" parameterType="signUpMemberReq">
-        <selectKey resultType="java.lang.String" keyProperty="memberId" order="BEFORE">
-            SELECT FUNC_COM_SITE_SEQ('MEMBER') FROM DUAL
-        </selectKey>
+    <!-- 중복된 회원 이메일이 있는지 체크 -->
+    <select id="existsByUserEmail" resultType="boolean">
+        SELECT EXISTS
+                (
+                SELECT 1
+                  FROM MEMBER_INFO
+                 WHERE USER_EMAIL = #{email}
+                )
+    </select>
+
+    <!-- 사용자의 총 게시글 수 조회 -->
+    <select id="getPostCount" resultType="int">
+        SELECT COUNT(*) FROM BOARD WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!-- 사용자의 총 댓글 수 조회 -->
+    <select id="getCommentCount" resultType="int">
+        SELECT COUNT(*) FROM comment_management WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!-- 사용자 ID 중복 확인 -->
+    <select id="existsByUserId" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1 FROM MEMBER_INFO WHERE USER_ID = #{userId}
+        )
+    </select>
+
+    <!-- 사용자 이름 중복 확인 -->
+    <select id="existsByUserName" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1 FROM MEMBER_INFO WHERE USER_NAME = #{userName}
+        )
+    </select>
+
+    <!-- 사용자 ID와 이메일이 일치하는지 확인 -->
+    <select id="existsByUserIdAndEmail" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1 FROM MEMBER_INFO 
+             WHERE USER_ID = #{userId} 
+               AND USER_EMAIL = #{email}
+        )
+    </select>
+
+    <!-- MySQL member 테이블을 활용하여 시퀀스 번호 생성 -->
+    <insert id="insertMemberSequence" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO member (name) VALUES (#{name})
+    </insert>
+
+    <!-- 마지막 생성 ID 조회 -->
+    <select id="getLastInsertId" resultType="long">
+        SELECT LAST_INSERT_ID()
+    </select>
+
+    <!-- 회원가입 (MEMBER_INFO 저장) -->
+    <insert id="signUpMember" parameterType="MemberInfo">
         INSERT INTO MEMBER_INFO( MEMBER_ID /* MemberMapper.signUpMember*/
                                 , USER_ID
                                 , USER_PASS
@@ -59,8 +166,8 @@
                                 , #{emailVerified}
                                 , #{userRole}
                                 , #{userStatus}
-                                , SYSDATE
-                                , SYSDATE
+                                , NOW()
+                                , NOW()
         )
 
     </insert>
@@ -70,11 +177,37 @@
     <!-- UPDATE -->
     <!-- UPDATE -->
 
+    <update id="updateUserStatus">
+        UPDATE MEMBER_INFO
+           SET USER_STATUS = #{userStatus},
+               UPDATE_AT = NOW()
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- 사용자의 최근 접속시간을 저장 -->
+    <update id = "updateLastLogin">
+        UPDATE MEMBER_INFO
+        SET LAST_LOG_AT = NOW()
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- 비밀번호 업데이트 -->
+    <update id="updatePassword">
+        UPDATE MEMBER_INFO
+           SET USER_PASS = #{userPass},
+               UPDATE_AT = NOW()
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
     <!-- DELETE -->
     <!-- DELETE -->
     <!-- DELETE -->
 
-
-
+    <!-- 회원 삭제(단건) -->
+    <delete id="deleteMember">
+        DELETE /* member.deleteMember */
+          FROM MEMBER_INFO
+         WHERE MEMBER_ID = #{memberId}
+    </delete>
 
 </mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqld_board.sqld.mapper.EmailVerificationMapper">
+
+    <!-- insert -->
+    <!-- insert -->
+    <!-- insert -->
+
+    <!-- 인증 정보 저장 또는 갱신 (MariaDB/MySQL ON DUPLICATE KEY UPDATE 활용) -->
+    <insert id="upsertVerification" parameterType="EmailVerification">
+        INSERT INTO email_verification (
+            EMAIL_CHECK,
+            IS_VERIFIED,
+            VERIFICATION_CODE,
+            EXPIRED_AT
+        ) VALUES (
+            #{emailCheck},
+            'N',
+            #{verificationCode},
+            #{expiredAt}
+        )
+        ON DUPLICATE KEY UPDATE
+            VERIFICATION_CODE = #{verificationCode},
+            EXPIRED_AT = #{expiredAt},
+            IS_VERIFIED = 'N'
+    </insert>
+
+
+    <!-- select -->
+    <!-- select -->
+    <!-- select -->
+
+    <!-- 이미 인증이 완료된 메일인지 확인한다 -->
+    <select id="checkAlreadyVerified" resultType="int">
+        SELECT count(*)
+         FROM email_verification
+        WHERE EMAIL_CHECK = #{email}
+          AND IS_VERIFIED = 'Y'
+    </select>
+
+
+    <select id="findByEmail" resultType="EmailVerification">
+        SELECT 
+            VERIFICATION_ID,
+            EMAIL_CHECK,
+            IS_VERIFIED,
+            VERIFICATION_CODE,
+            EXPIRED_AT
+        FROM email_verification
+        WHERE EMAIL_CHECK = #{email}
+        ORDER BY VERIFICATION_ID DESC
+        LIMIT 1
+    </select>
+
+    <update id="updateIsVerified">
+        UPDATE email_verification
+        SET IS_VERIFIED = #{status}
+        WHERE EMAIL_CHECK = #{email}
+    </update>
+
+
+    <!-- delete -->
+    <!-- delete -->
+    <!-- delete -->
+
+    <delete id="deleteVerification">
+        DELETE
+          FROM EMAIL_VERIFICATION
+         WHERE EMAIL_CHECK = #{email}
+    </delete>
+
+</mapper>

@@ -22,12 +22,22 @@
         <typeAlias alias="arraylist" 					type="java.util.ArrayList" />
         <typeAlias alias="camelHashMap" 				type="com.sqld_board.sqld.common.util.CamelHashMap" />
 
-        <!-- sample -->
+        <!-- DTOs -->
         <typeAlias alias="sampleDtoRes" 				type="com.sqld_board.sqld.dto.response.sample.SampleDtoRes"/>
         <typeAlias alias="sampleDtoReq" 				type="com.sqld_board.sqld.dto.request.sample.SampleDtoReq"/>
         <typeAlias alias="signUpMemberReq" 				type="com.sqld_board.sqld.dto.request.sign.SignUpMemberReq"/>
         <typeAlias alias="signInMemberReq" 				type="com.sqld_board.sqld.dto.request.sign.SignInMemberReq"/>
+        <typeAlias alias="BoardResponse"                type="com.sqld_board.sqld.dto.response.board.BoardResponse"/>
+        <typeAlias alias="MemberSimpleInfoRes"                type="com.sqld_board.sqld.dto.response.member.MemberSimpleInfoRes"/>
 
+        <!-- Models -->
+        <typeAlias alias="Board"                        type="com.sqld_board.sqld.model.board.Board"/>
+        <typeAlias alias="BoardFile"                    type="com.sqld_board.sqld.model.board.BoardFile"/>
+        <typeAlias alias="BoardLike"                    type="com.sqld_board.sqld.model.board.BoardLike"/>
+        <typeAlias alias="Comment"                      type="com.sqld_board.sqld.model.board.Comment"/>
+        <typeAlias alias="EmailVerification"            type="com.sqld_board.sqld.model.member.EmailVerification"/>
+        <typeAlias alias="MemberInfo"                   type="com.sqld_board.sqld.model.member.MemberInfo"/>
+        <typeAlias alias="Board_Scrap"                  type="com.sqld_board.sqld.model.board.BoardScrap"></typeAlias>
 
     </typeAliases>
 

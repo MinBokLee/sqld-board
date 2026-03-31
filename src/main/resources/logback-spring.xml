@@ -3,7 +3,7 @@
 
     <!-- 로그 파일 경로 및 이름 설정 -->
     <property name="LOG_PATH" value="logs"/>
-    <property name="LOG_FILE_NAME" value="sqldLog"/>
+    <property name="LOG_FILE_NAME" value="logs/sqld"/>
 <!--    <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n" />-->
     <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{36} - %msg%n" />
     <property name="LOG_LEVEL" value="info"/>
@@ -12,7 +12,8 @@
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n</pattern>
+            <pattern>[%d{HH:mm:ss.SSS}] [%-5level] %msg%n</pattern>
+<!--            <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n</pattern>-->
         </encoder>
     </appender>
 
@@ -42,10 +43,16 @@
     <!--  JDBC 관련 로그 설정 -->
     <logger name="jdbc" level="INFO" />
     <logger name="jdbc.connection" level="OFF" />
-    <logger name="jdbc.sqlonly" level="INFO" />
-    <logger name="jdbc.sqltiming" level="OFF" />
+    <logger name="jdbc.sqlonly" level="OFF" />B.BOARD_ID = temp.BOARD_ID
+    LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+    ORDER BY B.CREATE_AT DESC
+    {executed in 11 msec}
+    [18:09:44.847] [INFO ] SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+    WHERE  BOARD_TYPE = 'S'
+    {executed in 10 msec}
+    <logger name="jdbc.sqltiming" level="INFO" />
     <logger name="jdbc.audit" level="OFF" />
     <logger name="jdbc.resultset" level="OFF" />
-    <logger name="jdbc.resultsettable" level="INFO" />
+    <logger name="jdbc.resultsettable" level="OFF" />
 
 </configuration>

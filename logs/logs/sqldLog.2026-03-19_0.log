@@ -1,0 +1,726 @@
+[2026-03-19 10:25:46.078] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-03-19 10:25:46.097] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 15554 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-03-19 10:25:46.097] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - The following 1 profile is active: "dev"
+[2026-03-19 10:25:46.115] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-03-19 10:25:46.115] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-03-19 10:25:46.115] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-03-19 10:25:46.662] [INFO ] [restartedMain] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2026-03-19 10:25:46.662] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 10:25:46.663] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 10:25:46.663] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 10:25:46.663] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 10:25:46.664] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 10:25:46.679] [INFO ] [restartedMain] c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2026-03-19 10:25:46.685] [INFO ] [restartedMain] c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2026-03-19 10:25:46.686] [INFO ] [restartedMain] c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2026-03-19 10:25:46.851] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-03-19 10:25:46.857] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-03-19 10:25:46.858] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-03-19 10:25:46.858] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-03-19 10:25:46.886] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-03-19 10:25:46.886] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 771 ms
+[2026-03-19 10:25:46.900] [INFO ] [restartedMain] c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+[2026-03-19 10:25:46.905] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+[2026-03-19 10:25:46.905] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+[2026-03-19 10:25:46.905] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+[2026-03-19 10:25:46.905] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+[2026-03-19 10:25:46.905] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+[2026-03-19 10:25:46.906] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+[2026-03-19 10:25:47.327] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-03-19 10:25:47.347] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config loading
+[2026-03-19 10:25:47.370] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/demo-ui.html'], Ant [pattern='/demo-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 10:25:47.370] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 10:25:47.370] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api-docs/**'], Ant [pattern='/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 10:25:47.370] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 10:25:47.370] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 10:25:47.469] [WARN ] [restartedMain] com.zaxxer.hikari.HikariConfig - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+[2026-03-19 10:25:47.469] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-03-19 10:25:47.687] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@20ecc946
+[2026-03-19 10:25:47.689] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-03-19 10:25:47.694] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://175.197.69.42:3306/sqld_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8'
+[2026-03-19 10:25:47.731] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-03-19 10:25:47.743] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
+[2026-03-19 10:25:47.753] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source applicationInfo refreshed
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 10:25:47.754] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[2026-03-19 10:25:47.760] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 1.904 seconds (process running for 2.331)
+[2026-03-19 10:33:08.837] [INFO ] [http-nio-8881-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2026-03-19 10:33:08.884] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2026-03-19 10:33:09.050] [INFO ] [http-nio-8881-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 165 ms
+[2026-03-19 10:33:09.517] [ERROR] [http-nio-8881-exec-5] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168515 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.517] [ERROR] [http-nio-8881-exec-6] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168515 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.517] [ERROR] [http-nio-8881-exec-4] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168515 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.518] [ERROR] [http-nio-8881-exec-3] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168515 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.518] [ERROR] [http-nio-8881-exec-2] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168515 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.534] [INFO ] [http-nio-8881-exec-2] c.s.s.service.board.BoardServiceImpl - 인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)
+[2026-03-19 10:33:09.567] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - UPDATE
+            BOARD
+        SET
+            VIEW_COUNT = VIEW_COUNT + 1
+        WHERE
+            BOARD_ID = 60
+ {executed in 16 msec}
+[2026-03-19 10:33:09.567] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT
+            C.COMMENT_ID,
+            C.BOARD_ID,
+            C.MEMBER_ID,
+            C.USER_ID,
+            M.USER_NAME,
+            C.CONTENT,
+            C.PARENT_COMMENT_ID,
+            C.LIKE_COUNT,
+            C.CREATE_AT,
+            C.UPDATE_AT,
+            C.DELETE_YN
+        FROM comment_management C
+        LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
+        WHERE C.BOARD_ID = 60
+        AND C.DELETE_YN = 'N'
+        ORDER BY C.CREATE_AT ASC
+ {executed in 11 msec}
+[2026-03-19 10:33:09.567] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT B.*, M.USER_NAME, M.PROFILE_IMAGE
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+        ORDER BY B.LIKE_COUNT DESC, B.VIEW_COUNT DESC
+        LIMIT 5
+ {executed in 24 msec}
+[2026-03-19 10:33:09.576] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
+            B.BOARD_ID,
+            B.TITLE,
+            B.CONTENT,
+            M.USER_ID,
+            M.USER_NAME,
+            B.MEMBER_ID,
+            B.BOARD_TYPE,
+            B.CATEGORY,
+            B.VIEW_COUNT,
+            B.LIKE_COUNT,
+            M.PROFILE_IMAGE,
+            B.CREATE_AT,
+            B.UPDATE_AT,
+            B.TAG_NAME
+        FROM
+            BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY
+            B.CREATE_AT DESC
+ {executed in 90 msec}
+[2026-03-19 10:33:09.579] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT
+            B.BOARD_ID,
+            B.TITLE,
+            B.CONTENT,
+            M.USER_ID,
+            M.USER_NAME,
+            B.MEMBER_ID,
+            B.BOARD_TYPE,
+            B.CATEGORY,
+            B.VIEW_COUNT,
+            B.LIKE_COUNT,
+            M.PROFILE_IMAGE,
+            B.CREATE_AT,
+            B.UPDATE_AT,
+            B.TAG_NAME
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.BOARD_ID = 60
+ {executed in 8 msec}
+[2026-03-19 10:33:09.592] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT
+            FILE_ID,
+            BOARD_ID,
+            ORIGIN_NAME,
+            SAVE_NAME,
+            FILE_PATH,
+            FILE_SIZE,
+            CREATE_AT
+        FROM BOARD_FILE
+        WHERE BOARD_ID = 60
+ {executed in 9 msec}
+[2026-03-19 10:33:09.597] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_TYPE
+             , B.CATEGORY
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE  BOARD_TYPE = 'S' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 30 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 12 msec}
+[2026-03-19 10:33:09.674] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+         WHERE  BOARD_TYPE = 'S'
+ {executed in 70 msec}
+[2026-03-19 10:33:09.688] [ERROR] [http-nio-8881-exec-8] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168686 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.687] [ERROR] [http-nio-8881-exec-7] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168687 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.694] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT COUNT(*)
+        FROM board_like
+        WHERE BOARD_ID = 60 AND MEMBER_ID = 'MEMBER_20260317_009'
+ {executed in 101 msec}
+[2026-03-19 10:33:09.717] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT
+            C.COMMENT_ID,
+            C.BOARD_ID,
+            C.MEMBER_ID,
+            C.USER_ID,
+            M.USER_NAME,
+            C.CONTENT,
+            C.PARENT_COMMENT_ID,
+            C.LIKE_COUNT,
+            C.CREATE_AT,
+            C.UPDATE_AT,
+            C.DELETE_YN
+        FROM comment_management C
+        LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
+        WHERE C.BOARD_ID = 60
+        AND C.DELETE_YN = 'N'
+        ORDER BY C.CREATE_AT ASC
+ {executed in 9 msec}
+[2026-03-19 10:33:09.728] [ERROR] [http-nio-8881-exec-9] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168727 milliseconds.  Allowed clock skew: 0 milliseconds.
+[2026-03-19 10:33:09.730] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - UPDATE
+            BOARD
+        SET
+            VIEW_COUNT = VIEW_COUNT + 1
+        WHERE
+            BOARD_ID = 60
+ {executed in 179 msec}
+[2026-03-19 10:33:09.744] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
+            B.BOARD_ID,
+            B.TITLE,
+            B.CONTENT,
+            M.USER_ID,
+            M.USER_NAME,
+            B.MEMBER_ID,
+            B.BOARD_TYPE,
+            B.CATEGORY,
+            B.VIEW_COUNT,
+            B.LIKE_COUNT,
+            M.PROFILE_IMAGE,
+            B.CREATE_AT,
+            B.UPDATE_AT,
+            B.TAG_NAME
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.BOARD_ID = 60
+ {executed in 13 msec}
+[2026-03-19 10:33:09.765] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
+            FILE_ID,
+            BOARD_ID,
+            ORIGIN_NAME,
+            SAVE_NAME,
+            FILE_PATH,
+            FILE_SIZE,
+            CREATE_AT
+        FROM BOARD_FILE
+        WHERE BOARD_ID = 60
+ {executed in 18 msec}
+[2026-03-19 10:33:09.793] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_TYPE
+             , B.CATEGORY
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE  BOARD_TYPE = 'S' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 30 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 39 msec}
+[2026-03-19 10:33:09.802] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+         WHERE  BOARD_TYPE = 'S'
+ {executed in 7 msec}
+[2026-03-19 10:33:21.931] [INFO ] [http-nio-8881-exec-3] c.s.s.controller.sign.SignController - >>>>>> Incoming SignIn Request: SignInMemberReq(userId=admin, userPass=Knou200634!!@)
+[2026-03-19 10:33:21.975] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+         WHERE USER_ID = 'admin'
+         LIMIT 1
+ {executed in 11 msec}
+[2026-03-19 10:33:22.138] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - UPDATE MEMBER_INFO
+        SET LAST_LOG_AT = NOW()
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 53 msec}
+[2026-03-19 10:33:22.240] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - DELETE FROM refresh_token WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 87 msec}
+[2026-03-19 10:33:22.301] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - INSERT INTO refresh_token (MEMBER_ID, R_TOKEN, EXPIRY_DATE)
+        VALUES ('MEMBER_20260212_005', '5c2515e3-0f37-4231-aa2b-ec154e484c83', '03/26/2026 10:33:22.241')
+ {executed in 57 msec}
+[2026-03-19 10:33:31.914] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 50 msec}
+[2026-03-19 10:33:31.914] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 50 msec}
+[2026-03-19 10:33:31.908] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 49 msec}
+[2026-03-19 10:33:31.909] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 50 msec}
+[2026-03-19 10:33:31.996] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT
+            C.COMMENT_ID,
+            C.BOARD_ID,
+            C.MEMBER_ID,
+            C.USER_ID,
+            M.USER_NAME,
+            C.CONTENT,
+            C.PARENT_COMMENT_ID,
+            C.LIKE_COUNT,
+            C.CREATE_AT,
+            C.UPDATE_AT,
+            C.DELETE_YN
+        FROM comment_management C
+        LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
+        WHERE C.BOARD_ID = 83
+        AND C.DELETE_YN = 'N'
+        ORDER BY C.CREATE_AT ASC
+ {executed in 9 msec}
+[2026-03-19 10:33:31.996] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - UPDATE
+            BOARD
+        SET
+            VIEW_COUNT = VIEW_COUNT + 1
+        WHERE
+            BOARD_ID = 83
+ {executed in 18 msec}
+[2026-03-19 10:33:32.002] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_TYPE
+             , B.CATEGORY
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE  BOARD_TYPE = 'S' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 30 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 13 msec}
+[2026-03-19 10:33:32.007] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
+            B.BOARD_ID,
+            B.TITLE,
+            B.CONTENT,
+            M.USER_ID,
+            M.USER_NAME,
+            B.MEMBER_ID,
+            B.BOARD_TYPE,
+            B.CATEGORY,
+            B.VIEW_COUNT,
+            B.LIKE_COUNT,
+            M.PROFILE_IMAGE,
+            B.CREATE_AT,
+            B.UPDATE_AT,
+            B.TAG_NAME
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.BOARD_ID = 83
+ {executed in 9 msec}
+[2026-03-19 10:33:32.013] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+         WHERE  BOARD_TYPE = 'S'
+ {executed in 7 msec}
+[2026-03-19 10:33:32.022] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
+            FILE_ID,
+            BOARD_ID,
+            ORIGIN_NAME,
+            SAVE_NAME,
+            FILE_PATH,
+            FILE_SIZE,
+            CREATE_AT
+        FROM BOARD_FILE
+        WHERE BOARD_ID = 83
+ {executed in 13 msec}
+[2026-03-19 10:33:32.032] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT COUNT(*)
+        FROM board_like
+        WHERE BOARD_ID = 83 AND MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 8 msec}
+[2026-03-19 10:33:39.182] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 24 msec}
+[2026-03-19 10:33:39.247] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT
+            B.BOARD_ID,
+            B.TITLE,
+            B.CONTENT,
+            M.USER_ID,
+            M.USER_NAME,
+            B.MEMBER_ID,
+            B.BOARD_TYPE,
+            B.CATEGORY,
+            B.VIEW_COUNT,
+            B.LIKE_COUNT,
+            M.PROFILE_IMAGE,
+            B.CREATE_AT,
+            B.UPDATE_AT,
+            B.TAG_NAME
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.BOARD_ID = 83
+ {executed in 27 msec}
+[2026-03-19 10:33:39.314] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - DELETE FROM BOARD
+        WHERE BOARD_ID = 83
+ {executed in 65 msec}
+[2026-03-19 10:33:39.573] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 17 msec}
+[2026-03-19 10:33:39.602] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 29 msec}
+[2026-03-19 10:33:39.614] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT
+               MEMBER_ID
+             , USER_ID
+             , USER_PASS
+             , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+        WHERE MEMBER_ID = 'MEMBER_20260212_005'
+ {executed in 29 msec}
+[2026-03-19 10:33:39.696] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_TYPE
+             , B.CATEGORY
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE  BOARD_TYPE = 'N' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 10 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 66 msec}
+[2026-03-19 10:33:39.787] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+         WHERE  BOARD_TYPE = 'N'
+ {executed in 22 msec}
+[2026-03-19 10:33:39.788] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_TYPE
+             , B.CATEGORY
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE  BOARD_TYPE = 'S' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 30 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 26 msec}
+[2026-03-19 10:33:39.801] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
+         WHERE  BOARD_TYPE = 'S'
+ {executed in 12 msec}
+[2026-03-19 11:38:07.630] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-03-19 11:38:07.727] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-03-19 11:38:07.816] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-03-19 11:38:07.838] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2026-03-19 18:03:21.893] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-03-19 18:03:21.914] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 84842 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-03-19 18:03:21.915] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - The following 1 profile is active: "dev"
+[2026-03-19 18:03:21.933] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-03-19 18:03:21.933] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-03-19 18:03:21.934] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-03-19 18:03:22.519] [INFO ] [restartedMain] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2026-03-19 18:03:22.519] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 18:03:22.519] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:03:22.520] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:03:22.532] [INFO ] [restartedMain] c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2026-03-19 18:03:22.535] [INFO ] [restartedMain] c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2026-03-19 18:03:22.536] [INFO ] [restartedMain] c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2026-03-19 18:03:22.691] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-03-19 18:03:22.698] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-03-19 18:03:22.698] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-03-19 18:03:22.699] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-03-19 18:03:22.732] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-03-19 18:03:22.732] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 798 ms
+[2026-03-19 18:03:22.744] [INFO ] [restartedMain] c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+[2026-03-19 18:03:22.749] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+[2026-03-19 18:03:22.749] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+[2026-03-19 18:03:22.749] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+[2026-03-19 18:03:22.749] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+[2026-03-19 18:03:22.749] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+[2026-03-19 18:03:22.750] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+[2026-03-19 18:03:23.152] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-03-19 18:03:23.171] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config loading
+[2026-03-19 18:03:23.195] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/demo-ui.html'], Ant [pattern='/demo-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:03:23.195] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:03:23.195] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api-docs/**'], Ant [pattern='/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:03:23.195] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:03:23.195] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:03:23.295] [WARN ] [restartedMain] com.zaxxer.hikari.HikariConfig - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+[2026-03-19 18:03:23.296] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-03-19 18:03:23.482] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7da3c029
+[2026-03-19 18:03:23.483] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-03-19 18:03:23.488] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://175.197.69.42:3306/sqld_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8'
+[2026-03-19 18:03:23.526] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-03-19 18:03:23.538] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+[2026-03-19 18:03:23.548] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source applicationInfo refreshed
+[2026-03-19 18:03:23.549] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 18:03:23.549] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:03:23.549] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[2026-03-19 18:03:23.555] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 1.906 seconds (process running for 2.343)
+[2026-03-19 18:39:28.137] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-03-19 18:39:28.307] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-03-19 18:39:28.376] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-03-19 18:39:28.395] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2026-03-19 18:39:34.514] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-03-19 18:39:34.532] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 89737 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-03-19 18:39:34.532] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - The following 1 profile is active: "dev"
+[2026-03-19 18:39:34.550] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-03-19 18:39:34.550] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-03-19 18:39:34.550] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-03-19 18:39:35.203] [INFO ] [restartedMain] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2026-03-19 18:39:35.204] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:39:35.205] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:39:35.205] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:39:35.205] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-03-19 18:39:35.219] [INFO ] [restartedMain] c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2026-03-19 18:39:35.225] [INFO ] [restartedMain] c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2026-03-19 18:39:35.226] [INFO ] [restartedMain] c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2026-03-19 18:39:35.402] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-03-19 18:39:35.410] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-03-19 18:39:35.411] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-03-19 18:39:35.411] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-03-19 18:39:35.445] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-03-19 18:39:35.446] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 895 ms
+[2026-03-19 18:39:35.457] [INFO ] [restartedMain] c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+[2026-03-19 18:39:35.462] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+[2026-03-19 18:39:35.462] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+[2026-03-19 18:39:35.462] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+[2026-03-19 18:39:35.462] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+[2026-03-19 18:39:35.462] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+[2026-03-19 18:39:35.463] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+[2026-03-19 18:39:35.882] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-03-19 18:39:35.902] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config loading
+[2026-03-19 18:39:35.927] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/demo-ui.html'], Ant [pattern='/demo-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:39:35.927] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:39:35.927] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api-docs/**'], Ant [pattern='/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:39:35.927] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:39:35.927] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-03-19 18:39:36.027] [WARN ] [restartedMain] com.zaxxer.hikari.HikariConfig - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+[2026-03-19 18:39:36.028] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-03-19 18:39:36.250] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@21116822
+[2026-03-19 18:39:36.252] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-03-19 18:39:36.258] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://175.197.69.42:3306/sqld_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8'
+[2026-03-19 18:39:36.297] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-03-19 18:39:36.309] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8881"]
+[2026-03-19 18:39:36.326] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source applicationInfo refreshed
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-03-19 18:39:36.327] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[2026-03-19 18:39:36.333] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 2.058 seconds (process running for 2.488)
+[2026-03-19 18:39:39.166] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-03-19 18:39:39.187] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-03-19 18:39:39.199] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-03-19 18:39:39.216] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

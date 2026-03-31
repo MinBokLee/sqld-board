@@ -1,17 +1,39 @@
 package com.sqld_board.sqld.config.security;
 
 import com.sqld_board.sqld.util.formatter.LocalDateFormatter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Spring MVC의 서블릿 관련 설정을 커스터마이징하는 구성 클래스입니다.
+ * WebMvcConfigurer 인터페이스를 구현하여 포맷터(Formatter) 등을 등록합니다.
+ */
 @Configuration
 public class CustomServletConfig implements WebMvcConfigurer {
 
+    @Value("${file.upload-path}")
+    private String uploadPath;
+
+    /**
+     * 애플리케이션에서 사용할 커스텀 포맷터를 등록합니다.
+     * @param registry 포맷터 레지스트리
+     */
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new LocalDateFormatter());
+    }
+
+    /**
+     * 업로드된 파일에 접근할 수 있도록 정적 자원 핸들러를 등록합니다.
+     * @param registry 리소스 핸들러 레지스트리
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:" + uploadPath + "/");
     }
 
 //    @Override

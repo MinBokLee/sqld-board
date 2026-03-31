@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqld_board.sqld.mapper.AdminMapper">
+
+    <!-- select -->
+    <!-- select -->
+    <!-- select -->
+
+    <!-- 전체 회원 정보 조회 (Admin)-->
+    <select id="getMemberList" resultType="MemberInfo">
+        SELECT /* AdminMapper.getMemberList (전체 회원 정보 조회 (Admin)) */
+              MEMBER_ID
+            , USER_ID
+            , USER_NAME
+            , USER_ROLE
+            , USER_EMAIL
+            , USER_STATUS
+            , LAST_LOG_AT
+        FROM  MEMBER_INFO
+    </select>
+
+    <!-- update -->
+    <!-- update -->
+    <!-- update -->
+
+    <!-- 운영자에서 사용자로 변경 -->
+    <update id= "changeRoleUser">
+        UPDATE MEMBER_INFO /* adminMapper.changeRoleUser (운영자에서 사용자로 변경)*/
+           SET USER_ROLE = 'USER';
+         WHERE MEMBER_Id = #{memberId}
+    </update>
+
+    <!-- 사용자에서 운영자로 변경 -->
+    <update id = "changeRoleAdmin">
+        UPDATE MEMBER_INFO /* adminMapper.changeRoleAdmin (사용자에서 운영자로 변경) */
+           SET USER_ROLE = 'ADMIN'
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- USER_STATUS 값을 N으로 변경 글 작성 불가 -->
+    <update id="writeNotUser">
+        UPDATE MEMBER_INFO /*AdminMapper.writeNotUser (USER_STATUS 값을 N으로 변경 글 작성 불가)  */
+           SET USER_STATUS ='N'
+         where MEMBER_ID  = #{memberId}
+    </update>
+
+    <!-- USER_STATUS값을 Y로 변경 글 작성 가능-->
+    <update id="writeUser">
+        UPDATE member_info /*(AdminMapper.writeUser.USER_STATUS (값을 Y로 변경 글 작성 가능) */
+           SET USER_STATUS = 'Y'
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- delete -->
+    <!-- delete -->
+    <!-- delete -->
+
+    <!-- 회원 일괄 삭제 -->
+    <delete id="deleteMembersByAdmin">
+        DELETE /* member.deleteMembers (회원 일괄 삭제) */
+          FROM MEMBER_INFO
+         WHERE USER_ID IN
+        <foreach item="id" collection="userIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

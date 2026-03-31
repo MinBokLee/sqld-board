@@ -3,19 +3,37 @@ server:
   port: 8881
 
 spring:
-
   # application name setting
   application:
     name: sqld
-
-  datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:oracle:thin:@175.197.69.42:1521:orcl
-    username: study
-    password: knou2016
-
+  # profile 설정
+  # Default dev db
+  profiles:
+    active: dev
   messages:
-    basename: i18n/exception
+    basename: i18n/exception,i18n/message
+    encoding: UTF-8
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: mintest707@gmail.com
+#    password: ENC(2Co4AGwdRkpl/nMvyFaOqdR7MsiMCLJCwWRoGi4eA6w=)
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#          connectiontimeout: 5000
+#          timeout: 5000
+#          writetimeout: 5000
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
 
 # H2 Database Setting
 #  datasource:
@@ -66,3 +84,13 @@ aes:
 
 jwt:
   secret: ".NQe9LT]Jxsdi8<;/):PdF<-IZ{l3AVJsE,A/U*;^h?" # Replace with a real secret
+  access-token:
+    expiration-seconds: 1800 # 30분
+  refresh-token:
+    expiration-seconds: 604800 # 7일
+
+file:
+#  upload-path: /Users/minboklee/Documents/upload #{mac}
+#  upload-path: C:\web\upload #{window}
+  #upload-path: c:/sqld/upload #{windows}
+

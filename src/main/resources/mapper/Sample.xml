@@ -8,7 +8,7 @@
     <!-- SELECT -->
     <!-- SELECT -->
 
-    <!-- MEMBER 정보 조회 -->
+    <!-- 샘플 데이터를 조회하는 쿼리 -->
     <select id="searchMemberInfo" resultType="sampleDtoRes">
         SELECT SAMPLE_ID   /* SampleMapper.searchMemberInfo*/
              , SAMPLE_NAME
@@ -19,6 +19,7 @@
     <!-- INSERT -->
     <!-- INSERT -->
 
+    <!-- 새로운 샘플 데이터를 등록하는 쿼리 -->
     <insert id="saveSample" parameterType="sampleDtoReq">
         INSERT INTO SAMPLE /* SampleMapper.saveSample*/
                     (SAMPLE_ID, SAMPLE_NAME)

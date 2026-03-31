@@ -7,13 +7,31 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * {@link java.time.LocalDate} 타입을 위한 커스텀 포맷터(Formatter) 클래스입니다.
+ * Spring의 {@link Formatter} 인터페이스를 구현하여, 문자열('yyyy-MM-dd')과 LocalDate 객체 간의 변환을 처리합니다.
+ * 이 포맷터는 {@link com.sqld_board.sqld.config.security.CustomServletConfig}에 등록되어 사용됩니다.
+ */
 public class LocalDateFormatter implements Formatter<LocalDate> {
 
+    /**
+     * "yyyy-MM-dd" 형식의 문자열을 LocalDate 객체로 변환(파싱)합니다.
+     * @param text 파싱할 날짜 문자열
+     * @param locale 현재 사용자의 로케일
+     * @return 변환된 LocalDate 객체
+     * @throws ParseException 파싱 실패 시 발생
+     */
     @Override
     public LocalDate parse(String text, Locale locale) throws ParseException {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    /**
+     * LocalDate 객체를 "yyyy-MM-dd" 형식의 문자열로 변환합니다.
+     * @param object 포맷팅할 LocalDate 객체
+     * @param locale 현재 사용자의 로케일
+     * @return 변환된 날짜 문자열
+     */
     @Override
     public String print(LocalDate object, Locale locale) {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(object);

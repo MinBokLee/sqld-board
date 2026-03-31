@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqld_board.sqld.mapper.CommentMapper">
+
+    <!-- select -->
+    <!-- select -->
+    <!-- select -->
+
+    <!-- 자식 대댓글 유무 확인 -->
+    <select id="getChildCommentCount" resultType="int">
+        SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인) */
+              count(*)
+          FROM COMMENT_MANAGEMENT
+         WHERE PARENT_COMMENT_ID = #{commentId} /* 나의 ID를 부모로 모시는 자식들을 찾음 */
+           AND DELETE_YN ='N'                   /* 아직 삭제되지 않은 자식들만 카운트 */
+    </select>
+
+    <!-- 댓글 목록 조회 (사용자 정보 JOIN) -->
+    <select id="getCommentList" resultType="Comment">
+        SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
+               C.COMMENT_ID
+             , C.BOARD_ID
+             , C.MEMBER_ID
+             , C.USER_ID
+             , M.USER_NAME
+             , C.CONTENT
+             , C.PARENT_COMMENT_ID
+             , C.LIKE_COUNT
+             , C.CREATE_AT
+             , C.UPDATE_AT
+             , C.DELETE_YN
+        FROM comment_management C
+                 LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
+        WHERE C.BOARD_ID = #{boardId}
+          AND C.DELETE_YN = 'N'
+        ORDER BY C.CREATE_AT ASC
+    </select>
+
+    <!-- 특정 댓글 조회 -->
+    <select id="getComment" resultType="Comment">
+        SELECT
+               COMMENT_ID
+             , BOARD_ID
+             , MEMBER_ID
+             , CONTENT
+             , PARENT_COMMENT_ID
+          FROM comment_management WHERE COMMENT_ID = #{commentId}
+    </select>
+
+
+
+    <!-- insert -->
+    <!-- insert -->
+    <!-- insert -->
+
+    <!-- 댓글 등록 -->
+    <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
+        INSERT INTO comment_management ( /* commentMapper.insertComment (댓글 등록)*/
+                    BOARD_ID
+                  , MEMBER_ID
+                  , USER_ID
+                  , CONTENT
+                  , PARENT_COMMENT_ID
+                  , LIKE_COUNT
+                  , CREATE_AT
+                  , UPDATE_AT
+                  , DELETE_YN
+        )    VALUES (
+                    #{boardId}
+                  , #{memberId}
+                  , #{userId}
+                  , #{content}
+                  , #{parentCommentId}
+                  , 0
+                  , NOW()
+                  , NOW()
+                  , 'N'
+        )
+    </insert>
+
+    <!-- update -->
+    <!-- update -->
+    <!-- update -->
+
+    <!--  -->
+    <update id="deleteCommentsByBoardIds">
+        UPDATE COMMENT_MANAGEMENT
+           SET DELETE_YN = 'Y'
+             , UPDATE_AT = NOW()
+         WHERE BOARD_ID IN
+         <foreach item="id" collection="boardIds" open="(" separator="," close=")">
+             #{id}
+         </foreach>
+    </update>
+
+    <!-- 댓글 내용 수정 -->
+    <update id="updateComment">
+        UPDATE comment_management /* CommentMapper.updateComment (댓글 내용 수정) */
+           SET CONTENT = #{content}
+             , UPDATE_AT = NOW()
+         WHERE COMMENT_ID = #{commentId}
+    </update>
+
+    <!-- 자식이 없는 경우, 댓글삭제 (Soft Delete) -->
+    <update id="deleteComment">
+        UPDATE comment_management /* CommentMapper.deleteComment (자식이 없는 경우, 댓글삭제, 댓글삭제 (Soft Delete) */
+           SET DELETE_YN = 'Y'
+             , UPDATE_AT = NOW()
+         WHERE COMMENT_ID = #{commentId}
+    </update>
+
+    <!-- 댓글 의 댓글이 있는 경우, '삭제된 댓글입니다' 로 문구 수정 DELETE_YN은 N유지 -->
+    <update id="maskCommentAsDeleted">
+        UPDATE COMMENT_MANAGEMENT /* CommentMapper.deleteComment (자식이 있는 경우, 댓글삭제, '삭제된 댓글입니다' 로 마스킹 진행) */
+           SET CONTENT = '삭제된 댓글입니다.'
+         WHERE COMMENT_ID = #{commentId}
+    </update>
+
+</mapper>

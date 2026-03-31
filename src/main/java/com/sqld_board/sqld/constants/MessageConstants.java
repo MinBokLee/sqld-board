@@ -3,6 +3,10 @@ package com.sqld_board.sqld.constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * API 응답에 사용될 표준 메시지와 상태 코드를 정의한 열거형(Enum) 클래스입니다.
+ * 애플리케이션 전체에서 일관된 응답 메시지를 관리하기 위해 사용됩니다.
+ */
 @AllArgsConstructor
 @Getter
 public enum MessageConstants {
@@ -18,6 +22,9 @@ public enum MessageConstants {
     CREATE_OK(201,"추가 완료되었습니다."),
     UPDATE_OK(201,"수정 완료되었습니다."),
     DELETE_OK(201,"삭제 완료되었습니다."),
+    LIKE_OK(200, "추천이 완료되었습니다."),
+    LIKE_CANCEL_OK(200, "추천이 취소되었습니다."),
+    LOGOUT_OK(200, "성공적으로 로그아웃되었습니다."),
 
     //204 NO CONTENT
     CONTENT_NO(204, "조회된 정보가 없습니다."),

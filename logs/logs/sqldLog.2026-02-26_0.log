@@ -1,0 +1,25 @@
+[2026-02-26 13:02:33.174] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-02-26 13:02:33.198] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 92319 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-02-26 13:02:33.198] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - No active profile set, falling back to 1 default profile: "default"
+[2026-02-26 13:02:33.226] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-02-26 13:02:33.227] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-02-26 13:02:33.227] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-02-26 13:02:35.335] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8881 (http)
+[2026-02-26 13:02:35.348] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8881"]
+[2026-02-26 13:02:35.349] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-02-26 13:02:35.349] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-02-26 13:02:35.395] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-02-26 13:02:35.395] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2167 ms
+[2026-02-26 13:02:35.890] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-02-26 13:02:35.914] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* security config loading
+[2026-02-26 13:02:35.939] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/demo-ui.html'], Ant [pattern='/demo-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-02-26 13:02:35.939] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-02-26 13:02:35.939] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api-docs/**'], Ant [pattern='/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-02-26 13:02:35.939] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-02-26 13:02:35.939] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-02-26 13:02:36.054] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-02-26 13:03:07.270] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-02-26 13:03:07.325] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8881 (http) with context path '/'
+[2026-02-26 13:03:07.334] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 34.541 seconds (process running for 35.651)
+[2026-02-26 13:03:07.335] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-02-26 13:03:07.341] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
