@@ -30,7 +30,14 @@ public enum ExceptionType {
     SCRAP_FAILED_EXCEPTION("scrapFailedException.code", "scrapFailedException.msg"),
     MISSING_DELETE_TARGET_EXCEPTION("missingDeleteTargetException.code", "missingDeleteTargetException.msg"),
     ALREADY_SCRAPPED_EXCEPTION("alreadyScrappedException.code", "alreadyScrappedException.msg"),
-    NO_RESOURCE_FOUND_EXCEPTION("noResourceFoundException.code", "noResourceFoundException.msg");
+    NO_RESOURCE_FOUND_EXCEPTION("noResourceFoundException.code", "noResourceFoundException.msg"),
+    SELF_AUTHORITY_CHANGE_EXCEPTION("selfAuthorityChangeException.code", "selfAuthorityChangeException.msg"),
+    SUPER_ADMIN_PROTECTED_EXCEPTION("superAdminProtectedException.code", "superAdminProtectedException.msg"),
+   INSUFFICIENT_ADMIN_PRIVILEGES_EXCEPTION("insufficientAdminPrivilegesException.code", "insufficientAdminPrivilegesException.msg");
+
+
+
+
 
 
     private final String code;

@@ -23,6 +23,28 @@ public class Response {
     private String error;
     private Result result;   // 응답 결과 객체 (성공 시, 데이터 실패 시, 에러 메시지 포함)
 
+
+    /**
+     * 데이터 (포함)
+     * @param code
+     * @param msg
+     * @param data
+     * @return
+     * @param <T>
+     */
+    public static <T> Response success(int code, String msg, T data) {
+        return new Response(true, code, msg, null, new Success<>(data));
+    }
+
+    /**
+     * 테이터 (미포함)
+     * @param code
+     * @param msg
+     * @return
+     */
+    public static Response success(int code, String msg){
+        return new Response(true, code, msg,null,null);
+    }
     /**
      * 데이터 없이 성공 응답을 생성합니다.
      * @param msg 성공 메시지와 코드를 담고 있는 {@link MessageConstants}
@@ -73,8 +95,6 @@ public class Response {
         return new Response(false, code, msg, null, null);
     }
 
-    public static Response success(int code, String msg){
-        return new Response(true, code, msg,null,null);
-    }
+
 
 }

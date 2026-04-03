@@ -37,7 +37,7 @@ public class ResponseHandler {
      */
 
     /**
-     * 메시지 전송 i18n적용
+     * 성공 시, 응답메세지만 보냄
      * @param msgType
      * @return
      */
@@ -49,8 +49,28 @@ public class ResponseHandler {
         String codeStr = messageSource.getMessage(msgType.getCode(), null, LocaleContextHolder.getLocale());
         int code = Integer.parseInt(codeStr);
 
+        //3. 메시지, 코드 , 데이터
         return Response.success(code, message);
     }
+
+    /**
+     * 성공 시, 메시지와 데이터를 함께 보냄
+     * @param msgType i18n 메세지
+     * @param data
+     * @return
+     */
+    public Response getSuccessResponse(MessageType msgType ,Object data) {
+        //1. properties에서 해당하는 문구를 가져옴.
+        String message = messageSource.getMessage(msgType.getMsg(), null, LocaleContextHolder.getLocale());
+
+        //2. properties에서 코드 가져오기
+        String codeStr = messageSource.getMessage(msgType.getCode(), null, LocaleContextHolder.getLocale());
+        int code = Integer.parseInt(codeStr);
+
+        //3. 메시지, 코드 , 데이터
+        return Response.success(code, message, data);
+    }
+
 
     public Response getFailureResponse(ExceptionType exceptionType, Object... args) {
         return Response.failure(getCode(exceptionType.getCode()), getMessage(exceptionType.getMessage(),args));

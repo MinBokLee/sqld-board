@@ -1,6 +1,9 @@
 package com.sqld_board.sqld.exception;
 
 import com.sqld_board.sqld.dto.response.Response;
+import com.sqld_board.sqld.exception.admin.InsufficientAdminPrivilegesException;
+import com.sqld_board.sqld.exception.admin.SelfAuthorityChangeException;
+import com.sqld_board.sqld.exception.admin.SuperAdminProtectedException;
 import com.sqld_board.sqld.exception.board.*;
 import com.sqld_board.sqld.exception.common.LoginRequiredException;
 import com.sqld_board.sqld.exception.common.MemberNotFoundException;
@@ -31,6 +34,28 @@ import static com.sqld_board.sqld.exception.ExceptionType.*;
 @RestControllerAdvice
 public class ExceptionAdvice {
     private final ResponseHandler responseHandler;
+
+    @ExceptionHandler(InsufficientAdminPrivilegesException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public Response InsufficientAdminPrivilegesException(InsufficientAdminPrivilegesException e){
+        log.error("InsufficientAdminPrivilegesException", e);
+        return responseHandler.getFailureResponse(INSUFFICIENT_ADMIN_PRIVILEGES_EXCEPTION);
+    }
+
+
+    @ExceptionHandler(SuperAdminProtectedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public Response SuperAdminProtectedException(SuperAdminProtectedException e){
+        log.error("SuperAdminProtectedException", e);
+        return responseHandler.getFailureResponse(SUPER_ADMIN_PROTECTED_EXCEPTION);
+    }
+
+    @ExceptionHandler(SelfAuthorityChangeException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public Response SelfAuthorityChangeException(SelfAuthorityChangeException e){
+        log.error("SelfAuthorityChangeException", e);
+        return responseHandler.getFailureResponse(SELF_AUTHORITY_CHANGE_EXCEPTION);
+    }
 
     @ExceptionHandler(NoResourceFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

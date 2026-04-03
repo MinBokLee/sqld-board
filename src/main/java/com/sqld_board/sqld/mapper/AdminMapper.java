@@ -6,12 +6,25 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 @Repository
 public interface AdminMapper {
 
+
+
+    /**
+     * 삭제된 게시글 복구
+     * @param boardId
+     */
     void restoreBoardContent(@Param("boardId")Long boardId);
+
+    /**
+     * 게시글 완전 삭제(배치) 30일 기준
+     * @return
+     */
+    int deleteOldSoftDeletedBoards();
 
     /**
      *
@@ -28,13 +41,27 @@ public interface AdminMapper {
 
     /**
      * 회원 일괄 삭제 By Admin
-     * @param userIds
+     * @param memberIds
      * @return
      */
-    int deleteMembersByAdmin(@Param("userIds")List<String> userIds);
+    int deleteMembersBySuperAdmin(@Param("memberIds")List<String> memberIds);
 
     /**
-     * 회원 리스트를 가져온다.
+     * userRole 조회
+     * @param memberId
+     * @return
+     */
+    MemberInfo getMemberRole(@Param("memberId") String memberId);
+
+    /**
+     * userRole 업데이트 후, 사용자 최신정보 조회
+     * @param memberId
+     * @return
+     */
+    MemberInfo getMemberDetail(@Param("memberId") String memberId);
+
+    /**
+     * 회원 리스트를 조회.
      * @return
      */
     List<MemberInfo> getMemberList();

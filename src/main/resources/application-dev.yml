@@ -51,3 +51,7 @@ jasypt:
 
 file:
   upload-path: /Users/minboklee/Documents/upload #{mac}
+
+  data:
+    redis:
+      host: localhost

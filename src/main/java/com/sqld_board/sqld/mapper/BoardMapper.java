@@ -20,17 +20,26 @@ import java.util.Optional;
 public interface BoardMapper {
 
     /**
-     * 게시글 완전 삭제(배치) 30일 기준
+     * Redis에서 집계된 조회수를 DB에 일괄 합산한다.
+     * @param boardId
+     * @param increaseCount
+     */
+    void updateViewCountBulk(@Param("boardId") Long boardId, @Param("increaseCount") int increaseCount);
+
+    /**
+     * 게시글 유무 확인(조회수 증가전 Resis)
+     * @param boardId
      * @return
      */
-    int deleteOldSoftDeletedBoards();
+    int existsBoardContent(@Param("boardId") Long boardId);
+
 
     /**
      *  스크랩 페이지 취소
      * @param boardId
      * @param memberId
      */
-    void deleteMyScrapSinglePage(@Param("boardId") long boardId, @Param("memberId") String memberId);
+    void deleteMyScrapSinglePage(@Param("boardId") Long boardId, @Param("memberId") String memberId);
 
     /**
      * 파일 소프트 삭제
@@ -62,12 +71,18 @@ public interface BoardMapper {
      */
     void deleteMyScrapPage(@Param("scrapIds") List<Long> scrapIds, @Param("memberId") String memberId);
 
+    int getSearchScrapTotalCount(@Param("keyword") String keyword
+                                ,@Param("memberId") String memberId);
+
     /**
      * 내 스크랩 페이지 조회
      * @param memberId
      * @return
      */
-    List<Board> searchScrapMyPage(@Param("keyword") String keyword, @Param("memberId") String memberId);
+    List<Board> searchScrapMyPage(@Param("offset") int offset
+                                 ,@Param("size") int size
+                                 ,@Param("keyword") String keyword
+                                 ,@Param("memberId") String memberId);
 
     /**
      * 내 스크랩  추가
@@ -75,7 +90,7 @@ public interface BoardMapper {
      * @param memberId
      * @return
      */
-    void insertBoardScrap(@Param("boardId")long boarId, @Param("memberId") String memberId);
+    void insertBoardScrap(@Param("boardId")Long boarId, @Param("memberId") String memberId);
 
     void deleteBoardFiles(@Param("fileIds") List<Long> fileIds);
 
@@ -123,6 +138,7 @@ public interface BoardMapper {
                                        @Param("boardType") String boardType,
                                        @Param("category") String category,
                                        @Param("memberId") String memberId,
+                                       @Param("keyword") String keyword,
                                        @Param("tagName")  String tagName);
 
     /**
@@ -132,10 +148,11 @@ public interface BoardMapper {
      * @param memberId 사용자 고유번호 (필터링용)
      * @return 전체 게시글 수
      */
-    int getBoardTotalCount(@Param("boardType") String boardType,
-                           @Param("category") String category,
-                           @Param("memberId") String memberId,
-                           @Param("tagName") String tagName);
+    int getBoardTotalCount(@Param("boardType") String boardType
+                          ,@Param("category") String category
+                          ,@Param("memberId") String memberId
+                          ,@Param("keyword") String keyword
+                          ,@Param("tagName") String tagName);
 
     /**
      * 11. 모든 게시글 목록을 데이터베이스에서 조회합니다.
@@ -165,12 +182,12 @@ public interface BoardMapper {
      */
     int updateBoard(Board board);
 
-    /**
+    /** 조회수 Redis 사용으로 수정됨 미사용.
      * 7. 특정 게시글의 조회수를 1 증가시킵니다.
      * @param boardId 조회수를 증가시킬 게시글의 ID
      * @return 영향을 받은 행의 수 (보통 1)
      */
-    int incrementViewCount(Long boardId);
+//    int incrementViewCount(Long boardId);
     
     /**
      * 6. 추천 기록을 추가합니다.

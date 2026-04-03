@@ -57,9 +57,16 @@ public class BoardController {
 
     @Operation(summary = "스크랩 페이지 조회")
     @GetMapping("/searchScrapMyPage")
-    public ResponseEntity<Response> searchScrapMyPage(@RequestParam String keyword, @AuthenticationPrincipal User user){
+    public ResponseEntity<Response> searchScrapMyPage(@RequestParam (defaultValue = "1") int page
+                                                     ,@RequestParam (defaultValue = "10") int size
+                                                     ,@RequestParam String keyword
+                                                     ,@AuthenticationPrincipal User user){
         if (user == null) throw new LoginRequiredException();
-        List<BoardResponse> resultData = boardService.searchScrapMyPage(keyword.trim(), user.getUsername());
+
+        if(size < 1) size = 10;
+        if(size > 100) size = 100;
+
+        Map<String, Object> resultData = boardService.searchScrapMyPage(page, size, keyword.trim(), user.getUsername());
         return ResponseEntity.ok(success(resultData));
     }
 
@@ -195,9 +202,21 @@ public class BoardController {
 
     @Operation(summary = "내가 쓴 글의 리스트 조회")
     @GetMapping("/my-list")
-    public ResponseEntity<Response> getBoardMyList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String boardType, @RequestParam(required = false) String category, @RequestParam(required = false) String tagName, @AuthenticationPrincipal User user){
+    public ResponseEntity<Response> getBoardMyList(@RequestParam(defaultValue = "1") int page
+                                                  ,@RequestParam(defaultValue = "10") int size
+                                                  ,@RequestParam(required = false) String boardType
+                                                  ,@RequestParam(required = false) String category
+                                                  ,@RequestParam(required = false) String tagName
+                                                   ,@RequestParam(required = false) String keyword
+                                                  , @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
-        Map<String, Object> result = boardService.getBoardMyList(page, size, boardType, category, tagName, user.getUsername());
+
+        // 페이지당 개수 제한 (서버 보호)
+        if(size < 1) size = 10;   // 1보다 작으면 기본 값을 10으로
+        if(size >100) size = 100; // 최대 100개까지만 허용
+
+        String memberId = (user != null) ? user.getUsername() : null;
+        Map<String, Object> result = boardService.getBoardMyList(page, size, boardType, category, tagName, keyword, memberId);
         return ResponseEntity.ok(Response.success(result));
     }
 
@@ -215,12 +234,14 @@ public class BoardController {
         return ResponseEntity.ok(success(result));
     }
 
+    // Redis 타입으로 수정 완료함 ( 이 API는 로그용으로 남겨둠)
+    /*
     @Operation(summary = "게시글 조회수 증가")
     @PutMapping("/countView")
     public ResponseEntity<Response> countView(@RequestParam Long boardId) {
         boardService.incrementViewCount(boardId);
         return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.View_Increment_Success));
-    }
+    } */
 
     @Operation(summary = "게시판 글 삭제(소프트)")
     @ResponseStatus(HttpStatus.OK)

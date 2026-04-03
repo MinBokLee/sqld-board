@@ -99,8 +99,7 @@ public class CustomSecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/api/members/**").authenticated()
 
                 // --- [3] ADMIN API (관리자 전용) ---
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-
+                .requestMatchers("/api/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
                 .anyRequest().authenticated()
         );
 

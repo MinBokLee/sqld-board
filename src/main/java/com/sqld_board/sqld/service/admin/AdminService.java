@@ -10,14 +10,16 @@ public interface AdminService {
 
     void restore(@Param("boardId") Long boardId);
 
-    void changeRoleAdmin(@Param("memberId") String memberId);
+    MemberResponse changeRoleByAdmin(@Param("currentAdminId") String currentAdminId
+                          ,@Param("isSuperAdmin") boolean isSuperAdmin
+                          ,@Param("memberId") String memberId);
 
     /**
      * 회원 일괄 삭제 By Admin
-     * @param userIds
+     * @param memberIds
      * @return
      */
-    MessageType deleteMembersByAdmin(@Param("userIds") List<String> userIds);
+    MessageType deleteMembersBySuperAdmin(@Param("memberIds") List<String> memberIds);
 
     /**
      * 회원 리스트를 보여준다.

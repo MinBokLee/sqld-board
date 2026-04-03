@@ -5,5 +5,7 @@ package com.sqld_board.sqld.model.member;
  * 예: 일반 사용자(USER), 관리자(ADMIN)
  */
 public enum Role {
-    USER, ADMIN;
+     SUPER_ADMIN
+    ,ADMIN
+    ,USER,;
 }

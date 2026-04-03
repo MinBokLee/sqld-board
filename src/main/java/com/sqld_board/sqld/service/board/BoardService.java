@@ -27,7 +27,8 @@ public interface BoardService {
    * @param memberId
    * @return
    */
-   List<BoardResponse> searchScrapMyPage(@Param("keyword") String keyword, @Param("memberId") String memberId);
+   Map<String, Object> searchScrapMyPage(@Param("page")int page, @Param("size")int size
+                                        ,@Param("keyword") String keyword, @Param("memberId") String memberId);
 
    /**
     *  스크랩 추가
@@ -67,7 +68,9 @@ public interface BoardService {
     * @param memberId
     * @return
     */
-   Map<String, Object> getBoardMyList(int page, int size, String boardType, String category, String tagName, String memberId);
+   Map<String, Object> getBoardMyList(int page, int size, String boardType
+                                     ,String category, String tagName
+                                     ,String keyword, String memberId);
 
    /**
     * 페이징된 게시판 목록 조회

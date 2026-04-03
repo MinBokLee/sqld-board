@@ -8,21 +8,14 @@
     <!-- SELECT -->
     <!-- SELECT -->
 
-    <!-- 가입인사 게시판의 글 작성 여부를 조회 하는 쿼리 -->
-<!--    <select id="checkGreetingBoardWrite" resultType= "java.lang.Integer">-->
-<!--        SELECT count(*)-->
-<!--          FROM board-->
-<!--         WHERE USER_ID = #{userId}-->
-<!--           AND BOARD_TYPE = 'G'-->
-<!--    </select>-->
-
     <!-- 로그인 후, 회원 간편 정보 조회-->
     <select id="readMemberSimpleInfo" resultType="MemberSimpleInfoRes">
-        SELECT USER_ID                                  /* 사용자 아이디  */
+        SELECT /* Member.readMemberSimpleInfo (로그인 후, 회원 간편 정보 조회) */
+               USER_ID                                  /* 사용자 아이디 */
              , USER_NAME                                /* 사용자 명    */
              , USER_EMAIL                               /* 사용자 이메일 */
              , USER_ROLE                                /* 사용자 권한  */
-             , PROFILE_IMAGE                            /* 사용자 프로필 */
+             , PROFILE_IMAGE                            /* 사용자 프로필  */
              , (SELECT COUNT(*)
                   FROM BOARD B
                  WHERE B.MEMBER_ID = M.MEMBER_ID
@@ -36,8 +29,9 @@
         WHERE MEMBER_ID = #{memberId}
     </select>
 
+    <!-- memberId를 통한 회원 정보 조회 -->
     <select id="readMemberByMemberId" parameterType="java.lang.String" resultType="MemberInfo">
-        SELECT
+        SELECT /* MemberMapper.readMemberByMemberId (memberId를 통한 회원 정보 조회) */
                MEMBER_ID
              , USER_ID
              , USER_PASS
@@ -80,17 +74,6 @@
                UPDATE_AT = NOW()
          WHERE MEMBER_ID = #{memberId}
     </update>
-
-<!-- MEMBER 정보 조회 -->
-<!--    <select id="searchMemberInfo" resultType="sampleDtoRes">-->
-<!--        SELECT SAMPLE_ID   /* SampleMapper.searchMemberInfo*/-->
-<!--             , SAMPLE_NAME-->
-<!--        FROM SAMPLE-->
-<!--    </select>-->
-
-    <!-- INSERT -->
-    <!-- INSERT -->
-    <!-- INSERT -->
 
     <!-- 중복된 회원 이메일이 있는지 체크 -->
     <select id="existsByUserEmail" resultType="boolean">
@@ -145,6 +128,11 @@
         SELECT LAST_INSERT_ID()
     </select>
 
+
+    <!-- INSERT -->
+    <!-- INSERT -->
+    <!-- INSERT -->
+
     <!-- 회원가입 (MEMBER_INFO 저장) -->
     <insert id="signUpMember" parameterType="MemberInfo">
         INSERT INTO MEMBER_INFO( MEMBER_ID /* MemberMapper.signUpMember*/
@@ -168,8 +156,7 @@
                                 , #{userStatus}
                                 , NOW()
                                 , NOW()
-        )
-
+                                )
     </insert>
 
 

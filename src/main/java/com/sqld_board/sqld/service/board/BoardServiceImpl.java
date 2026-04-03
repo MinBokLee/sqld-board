@@ -39,7 +39,9 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper boardMapper;
     private final CommentMapper commentMapper;
-    private final MemberMapper memberMapper; // 회원 정보 조회를 위해 추가
+    private final MemberMapper memberMapper;
+    private final ViewCountRedisService viewCountRedisService;
+
 
     @Value("${file.upload-path}")
     private String uploadPath;
@@ -56,13 +58,26 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<BoardResponse> searchScrapMyPage(String keyword, String memberId) {
+    public Map<String, Object> searchScrapMyPage(int page, int size, String keyword, String memberId) {
 
-        List<Board> result =  boardMapper.searchScrapMyPage(keyword, memberId);
+        // 1. 마이너스 페이지 방지
+        if(page < 1){
+            page = 1;
+        }
+        int offset = (page - 1) * size;
 
-        return result.stream()
-                .map(BoardResponse::new)
-                .collect(Collectors.toList());
+        //2. 검색 조건에 맞는 리스트와 총 개수 조회
+        List<Board> result =  boardMapper.searchScrapMyPage(offset, size, keyword, memberId);
+        int totalCount = boardMapper.getSearchScrapTotalCount(keyword, memberId);
+
+        //3. 응답 데이터 구성
+        Map<String, Object> response = new HashMap<>();
+        response.put("list", result.stream().map(BoardResponse::new).collect(Collectors.toList()));
+        response.put("totalCount", totalCount);
+        response.put("currentPage", page);
+        response.put("totalPages", (int) Math.ceil((double) totalCount / size));
+
+        return response;
     }
 
     @Override
@@ -144,7 +159,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Cacheable(value = "popularPosts", key = "'top5'")
+    @Cacheable(value = "popularPosts", key = "'top5'") // DB 조회 부담 감소를 위한, Caffeine 캐시 사용.
     public List<BoardResponse> getPopularBoards() {
         log.info("인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)");
 
@@ -450,8 +465,9 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public BoardResponse getSearchBoard(Long boardId, String memberId) {
-        // 1. 조회수 증가
-        boardMapper.incrementViewCount(boardId);
+        // 1. 조회수 증가 (Redis에 저장)
+        this.incrementViewCount(boardId);
+//        boardMapper.incrementViewCount(boardId);
 
         // 2. 게시글 정보 조회
         BoardResponse response = boardMapper.getSearchBoard(boardId,memberId);
@@ -460,6 +476,11 @@ public class BoardServiceImpl implements BoardService {
         if(response == null){
             throw new NotFoundContentBoardException(); // 파일을 찾을 수 업음.
         }
+
+        //실시간 합산: DB 숫자(예: 100) + Redis에 대기중인 숫자 (예: 5) =105
+        int redisViewCount = viewCountRedisService.getViewCount(boardId);
+        response.setViewCount(response.getViewCount() + redisViewCount);
+
 
         // 3. 첨부 파일 리스트 조회 및 세팅
         List<BoardFile> files = boardMapper.getBoardFileList(boardId);
@@ -502,7 +523,9 @@ public class BoardServiceImpl implements BoardService {
      */
     @Override
     @Transactional
-    public Map<String, Object> getBoardMyList(int page, int size, String boardType ,String category,String tagName, String memberId) {
+    public Map<String, Object> getBoardMyList(int page, int size, String boardType
+                                             ,String category, String tagName
+                                             ,String keyword, String memberId) {
        // 마이너스 페이지 방지
         if(page < 1){
             page = 1;
@@ -510,8 +533,19 @@ public class BoardServiceImpl implements BoardService {
 
         int offset = (page-1 ) * size; // offset는 최소 0이 보장
 
-        List<Board> boards =  boardMapper.getBoardListWithPaging(offset, size, boardType, category, memberId, tagName);
-        int totalCount =boardMapper.getBoardTotalCount(boardType, category, memberId, tagName);
+        List<Board> boards =  boardMapper.getBoardListWithPaging(offset, size, boardType, category, memberId, keyword, tagName);
+
+        //[추가] 리스트의 각 항목에 Redis 조회수를 합산
+        if(boards !=null && !boards.isEmpty()){
+            for(Board board : boards){
+                // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
+                int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+                // DB 조회수에 Redis 조회수를 더해준다.
+                board.setViewCount(board.getViewCount() + redisViewCount);
+            }
+        }
+
+        int totalCount =boardMapper.getBoardTotalCount(boardType, category, memberId, keyword,tagName);
 
         // 게시글이 없는 경우,
         if(boards == null || boards.isEmpty()){
@@ -534,7 +568,7 @@ public class BoardServiceImpl implements BoardService {
         Map<String, Object> result = new HashMap<>();
         result.put("list", list);
         result.put("totalCount", totalCount);
-        result.put("totalPage", Math.ceil((double) totalCount / boards.size()));
+        result.put("totalPage", Math.ceil((double) totalCount / size));
         result.put("currentPage", page);
         return result;
     }
@@ -555,8 +589,19 @@ public class BoardServiceImpl implements BoardService {
 
         int offset = (page -1 ) * size; // offset는 최소 0이 보장
 
-        List<Board> boards = boardMapper.getBoardListWithPaging(offset, size, boardType, category,null, tagName);
-        int totalCount =boardMapper.getBoardTotalCount(boardType, category, null, tagName);
+        List<Board> boards = boardMapper.getBoardListWithPaging(offset, size, boardType, category,null, null, tagName);
+
+        //[추가] 리스트의 각 항목에 Redis 조회수를 합산
+        if(boards !=null && !boards.isEmpty()){
+            for(Board board : boards){
+                // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
+                int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+                // DB 조회수에 Redis 조회수를 더해준다.
+                board.setViewCount(board.getViewCount() + redisViewCount);
+            }
+        }
+
+        int totalCount =boardMapper.getBoardTotalCount(boardType, category, null, null,tagName);
 
         // 게시글이 없는 경우,
         if(boards == null || boards.isEmpty()){
@@ -594,11 +639,16 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public void incrementViewCount(Long boardId) {
-        int result = boardMapper.incrementViewCount(boardId);
-
-        if(result ==0){ // 게시글이 없는 경우
+         int result = boardMapper.existsBoardContent(boardId);
+        if (result == 0) { // 게시글이 없는 경우
             throw new NotFoundContentBoardException();
         }
+
+        // 기존 db 증가
+        //int result = boardMapper.incrementViewCount(boardId);
+
+        viewCountRedisService.incrViewCount(boardId);
+
     }
 
     /**
@@ -656,6 +706,16 @@ public class BoardServiceImpl implements BoardService {
 
         //DB 조회
         List<Board> boards = boardMapper.searchBoardContent(formattedKeyword, boardType, offset,size);
+
+        //[추가] 리스트의 각 항목에 Redis 조회수를 합산
+        if(boards !=null && !boards.isEmpty()){
+            for(Board board : boards){
+                // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
+                int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+                // DB 조회수에 Redis 조회수를 더해준다.
+                board.setViewCount(board.getViewCount() + redisViewCount);
+            }
+        }
 
         int totalCount = boardMapper.getSearchBoardCount(formattedKeyword, boardType);
 

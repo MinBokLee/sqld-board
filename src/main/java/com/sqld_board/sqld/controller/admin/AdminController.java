@@ -11,14 +11,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-
 @Slf4j
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
@@ -41,11 +42,28 @@ public class AdminController {
      * @param memberId
      * @return
      */
-    @Operation(summary = "사용자 -> 운영자로 Role 변경")
+    @Operation(summary = "사용자 Role 변경")
     @PatchMapping("/changeRoleAdmin/{memberId}")
-    public ResponseEntity<Response> changeRoleAdmin(@PathVariable String memberId){
-        adminService.changeRoleAdmin(memberId);
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.ADMIN_CHANGE_ROLE));
+    public ResponseEntity<Response> changeRoleByAdmin(@PathVariable String memberId, @AuthenticationPrincipal User user){
+        // 1. 현재 관리자의 Id(로그인 아이디)
+        String currentAdminId = user.getUsername();
+
+        // 2. 현재 관리자의 실제 권한 여부(문자열 contains 활용)
+        boolean isSuperAdmin = user.getAuthorities().toString().contains("ROLE_SUPER_ADMIN");
+
+        String currentAdminRole = user.getAuthorities().toString();
+        log.info("currentAdminRole {} :" , currentAdminRole);
+
+        MemberResponse updateData = adminService.changeRoleByAdmin(currentAdminId, isSuperAdmin, memberId);
+
+        MessageType msgType;
+        if("ADMIN".equals(updateData.getUserRole())){
+            msgType  = MessageType.ADMIN_PROMOTED_SUCCESS;// 관리자로 승격
+        }else{
+            msgType =MessageType.ADMIN_DEMOTED__SUCCESS; // 사용자로 강등
+        }
+
+        return ResponseEntity.ok(responseHandler.getSuccessResponse(msgType, updateData));
     }
     /**
      * 2. 회원 일괄 삭제
@@ -55,10 +73,12 @@ public class AdminController {
      * @return
      */
     @Operation(summary = "회원 일괄 삭제")
-    @PostMapping("/deleteMembersByAdmin")
-    public ResponseEntity<Response> deleteMembersByAdmin(@RequestBody MemberBulkDeleteReq memberBulkDeleteReq){
-        List<String> userIds = memberBulkDeleteReq.getUserIds();
-        MessageType result = adminService.deleteMembersByAdmin(userIds);
+    @PostMapping("/deleteMembersBySuperAdmin")
+    public ResponseEntity<Response> deleteMembersBySuperAdmin(@RequestBody MemberBulkDeleteReq memberBulkDeleteReq){
+
+
+        List<String> memberIds = memberBulkDeleteReq.getMemberIds();
+        MessageType result = adminService.deleteMembersBySuperAdmin(memberIds);
         return ResponseEntity.ok(Response.success(result));
     }
 

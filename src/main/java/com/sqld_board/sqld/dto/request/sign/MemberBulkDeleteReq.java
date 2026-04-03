@@ -13,7 +13,7 @@ import java.util.List;
 @Schema(description = "회원 일괄 삭제 요청")
 public class MemberBulkDeleteReq {
 
-    @Schema(description = "삭제할 사용자 Id 리스트", example = "['user1', 'user2']")
-    private List<String> userIds;
+    @Schema(description = "삭제할 사용자 memberId 리스트", example = "['2001......', '2002.....']")
+    private List<String> memberIds;
 
 }
