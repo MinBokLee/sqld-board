@@ -93,9 +93,9 @@
          WHERE MEMBER_ID = #{memberId}
     </select>
 
-    <!-- 최근 7일 인기 게시글 조회 -->
+    <!-- 최근 15일간 인기 게시글 조회 -->
     <select id="getPopularBoards" resultType="Board">
-        SELECT /* BoardMapper.getPopularBoards (최근 7일 인기 게시글 조회) */
+        SELECT /* BoardMapper.getPopularBoards (최근 15일 인기 게시글 조회) */
                B.BOARD_ID
              , B.TITLE
              , B.VIEW_COUNT
@@ -105,7 +105,7 @@
              , M.PROFILE_IMAGE
         FROM BOARD B
         LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
-        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 15 DAY)
           AND B.DELETE_YN = 'N'
         ORDER BY B.LIKE_COUNT DESC, B.VIEW_COUNT DESC
         LIMIT 5

@@ -12,6 +12,7 @@ import com.sqld_board.sqld.exception.emailVerification.ExistMailException;
 import com.sqld_board.sqld.exception.member.CustomException;
 import com.sqld_board.sqld.exception.member.ExistMemberException;
 import com.sqld_board.sqld.exception.member.NotMatchUserException;
+import com.sqld_board.sqld.exception.websocket.TokenSignatureException;
 import com.sqld_board.sqld.handler.ResponseHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,13 @@ import static com.sqld_board.sqld.exception.ExceptionType.*;
 @RestControllerAdvice
 public class ExceptionAdvice {
     private final ResponseHandler responseHandler;
+
+    @ExceptionHandler(TokenSignatureException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Response TokenSignatureException(TokenSignatureException e){
+        log.error("TokenSignatureException", e);
+        return responseHandler.getFailureResponse(TOKEN_SIGNATURE_EXCEPTION);
+    }
 
     @ExceptionHandler(InsufficientAdminPrivilegesException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)

@@ -42,13 +42,19 @@ public class CustomSecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .requestMatchers("/demo-ui.html", "/swagger-ui/**", "/api-docs/**", "/swagger-resources/**", "/webjars/**");
+                .requestMatchers("/demo-ui.html"
+                                ,"/swagger-ui/**"
+                                ,"/api-docs/**"
+                                ,"/swagger-resources/**"
+                                ,"/webjars/**"
+                                ,"ws-stomp");
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        log.info("********* Security Config Loading: RESTful Pattern Applied");
+        log.info("********* Security Config Loading: WebSocket Support Added");
+
 
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         http.csrf(AbstractHttpConfigurer::disable);
@@ -62,6 +68,7 @@ public class CustomSecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/ws-stomp/**").permitAll() //WebSocket 엔드포인트 허용
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                 // --- [1] PUBLIC API (누구나 접근 가능) ---
@@ -75,6 +82,7 @@ public class CustomSecurityConfig {
                                 ,"/api/auth/token-refresh"
                                 ,"/api/auth/verify/**"
                                 ,"/api/common/check**"
+                                ,"/api/notification/**"
                                 ).permitAll()
 
                 // 회원 관련: 중복체크 및 비번 찾기
@@ -113,7 +121,8 @@ public class CustomSecurityConfig {
             "http://localhost:5173",
             "http://localhost:3000",
             "http://127.0.0.1:5173",
-            "https://charts-utilize-birmingham-election.trycloudflare.com"
+            "https://charts-utilize-birmingham-election.trycloudflare.com",
+            "http://localhost:63342/"
         ));
         configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

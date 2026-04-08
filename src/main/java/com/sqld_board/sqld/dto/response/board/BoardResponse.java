@@ -43,6 +43,7 @@ public class BoardResponse {
 
     public BoardResponse(Board board) {
         this.boardId = board.getBoardId();
+        this.memberId = board.getMemberId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.userId = board.getUserId();

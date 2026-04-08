@@ -2,6 +2,7 @@ package com.sqld_board.sqld.service.board;
 
 import com.sqld_board.sqld.dto.request.board.BoardRequest;
 import com.sqld_board.sqld.dto.request.board.CommentRequest;
+import com.sqld_board.sqld.dto.request.websocket.RealTimeMessage;
 import com.sqld_board.sqld.dto.response.board.BoardResponse;
 import com.sqld_board.sqld.exception.board.*;
 import com.sqld_board.sqld.exception.common.MemberNotFoundException;
@@ -12,6 +13,7 @@ import com.sqld_board.sqld.model.board.Board;
 import com.sqld_board.sqld.model.board.BoardFile;
 import com.sqld_board.sqld.model.board.Comment;
 import com.sqld_board.sqld.model.member.MemberInfo;
+import com.sqld_board.sqld.service.notificationStomp.NotificationStompService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -41,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
     private final CommentMapper commentMapper;
     private final MemberMapper memberMapper;
     private final ViewCountRedisService viewCountRedisService;
+    private final NotificationStompService notificationStompService;
 
 
     @Value("${file.upload-path}")
@@ -163,18 +169,24 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardResponse> getPopularBoards() {
         log.info("인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)");
 
-        //1. 최근 7일 인기 게시글 조회
+        //1. 최근 15일 인기 게시글 조회
         List<Board> boards = boardMapper.getPopularBoards();
 
         //2. 결과가 없는 경우,
         if(boards == null || boards.isEmpty()){
-            log.info("최근 7일간 인기 게시물이 없어 전체 최신글로 대체한다.");
+            log.info("최근 15일간 인기 게시물이 없어 전체 최신글로 대체한다.");
 
             // 기간 제한 없이 추천수.조회수 순으로 5개만 가져오는 별도 쿼리 호출 가능
             boards = boardMapper.getRecentFallbackBoards();
-            return boards.stream()
-                    .map(BoardResponse::new)
-                    .collect(Collectors.toList());
+        }
+        //[추가] 리스트의 각 항목에 Redis 조회수를 합산
+        if(boards !=null && !boards.isEmpty()){
+            for(Board board : boards){
+                // 각 게시글 ID에 해당하는 redis 조회수 가져오기
+                int redisViewCount= viewCountRedisService.getViewCount(board.getBoardId());
+                // DB 조회수에 Redis를 조회수를 더한다.
+                board.setViewCount(board.getViewCount() + redisViewCount);
+            }
         }
         return boards.stream()
                 .map(BoardResponse::new)
@@ -190,6 +202,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public Long writeComment(CommentRequest request, String memberId) {
+
+    // 1. 원글 정보 조회 (알림 대상 확인용)
+    BoardResponse boardInfo = boardMapper.getSearchBoard(request.getBoardId(), null);
+    if(boardInfo == null){
+        throw new NotFoundContentBoardException();
+    }
 
         // 전달받은 memberId를 통한 회원 정보 조회 (유효성 체크)
     MemberInfo memberInfo = memberMapper.readMemberByMemberId(memberId)
@@ -210,6 +228,37 @@ public class BoardServiceImpl implements BoardService {
 
         if(commentId == null){
             throw new FailureCreateCommentException(); // 댓글 저장 중 오류 발생
+        }
+
+        // 2. [알림 트리거] 원글 작성자와 댓글 작성자가 다를 때만 알림 발송
+        String targetId = null;
+        String alertMessage = "";
+
+        if(request.getParentCommentId() != null) {
+            // [대댓글인 경우]
+            Comment parentComment = commentMapper.getComment(request.getParentCommentId());
+            if(parentComment != null){
+                targetId = parentComment.getMemberId();
+                alertMessage = "내 댓글에 답글이 달렸습니다: ";
+            }
+        } else {
+            // [일반 댓글인 경우]
+            targetId = boardInfo.getMemberId();
+            alertMessage = "새로운 댓글이 달렸습니다: ";
+        }
+
+        //최종 발송 조건 (대상이 존재하고, 내가 쓴 글 / 댓글이 아닐때
+        if(targetId != null && !targetId.equals(memberId)){
+            RealTimeMessage notifMsg =RealTimeMessage.builder()
+                    .type(RealTimeMessage.MessageType.NOTIFY)                 // 알림 타입
+                    .senderId(memberId)                                       // 댓글 작성자
+                    .targetId(targetId)                                       // 원글 작성자 (알림 수신인)
+                    .content(alertMessage + request.getContent())
+                    .targetUrl("/board/view?boardId=" + request.getBoardId()) // 클릭 시 이동할 링크
+                    .timestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                    .build();
+
+            notificationStompService.sendNotification(notifMsg); //DB 저장 +  실시간 발송 한 번에 종료.
         }
         return commentId;
     }
@@ -506,6 +555,17 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public List<BoardResponse> getBoardList() {
         List<Board> boards = boardMapper.getBoardList();
+
+        // 리스트의 각 항목에 대해 Redis 조회수를 합산한다.
+        if(boards != null && !boards.isEmpty()){
+            for(Board board : boards){
+                // 각 게시글 IDdp goekdg ksms Redis  조회수를 가져온다.
+                int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+                //DB 조회수에 Redis 조회수를 더해준다.
+                board.setViewCount(board.getViewCount() + redisViewCount);
+            }
+        }
+
         return boards.stream()
                 .map(BoardResponse::new)
                 .collect(Collectors.toList());

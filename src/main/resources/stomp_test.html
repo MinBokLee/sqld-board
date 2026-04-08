@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>STOMP 통합 테스트 도구</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <style>
+        body { padding: 20px; font-family: 'Malgun Gothic', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+        .input-group { margin-bottom: 15px; border: 1px solid #eee; padding: 15px; border-radius: 8px; background: #fafafa; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 12px 24px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; width: 100%; }
+        button:hover { background: #0056b3; }
+        #log { margin-top: 20px; background: #333; color: #fff; border-radius: 8px; padding: 15px; min-height: 300px; white-space: pre-wrap; font-family: 'Consolas', monospace; font-size: 13px;
+            overflow-y: auto; max-height: 500px; }
+        .success { color: #2ecc71; font-weight: bold; }
+        .error { color: #e74c3c; font-weight: bold; }
+        .info { color: #3498db; }
+        h2 { border-bottom: 2px solid #007bff; padding-bottom: 10px; color: #333; }
+    </style>
+</head>
+<body>
+<h2>🚀 STOMP 실시간 알림 테스트 도구</h2>
+
+<div class="input-group">
+    <strong>1. 내 접속 정보 (수신자 설정)</strong><br>
+    <small style="color: #666;">알림을 받을 사람의 정보를 입력하세요.</small>
+    <input type="text" id="token" placeholder="Bearer {JWT_TOKEN} (필요 시)">
+    <input type="text" id="myId" placeholder="내 고유 ID (예: MEMBER_20260227_001)" value="MEMBER_20260227_001">
+    <button onclick="connect()" style="margin-top: 10px; background: #28a745;">🔌 서버 연결 및 알림 구독</button>
+</div>
+
+<hr>
+
+<div class="input-group" style="opacity: 0.7;">
+    <strong>2. 테스트 메시지 발송 (수동 발송용)</strong><br>
+    <label>메시지 타입:</label>
+    <select id="msgType">
+        <option value="NOTIFY">NOTIFY (알림)</option>
+        <option value="TALK">TALK (채팅)</option>
+    </select>
+    <input type="text" id="targetId" placeholder="알림 받을 사람 ID">
+    <textarea id="content" rows="2" placeholder="메시지 내용">댓글 알림 테스트입니다.</textarea>
+    <button onclick="send()" style="margin-top: 10px;">📤 수동 전송 테스트</button>
+</div>
+
+<h3>📜 실시간 수신 로그</h3>
+<div id="log"></div>
+
+<script>
+    var stompClient = null;
+    var logDiv = document.getElementById('log');
+
+    function log(msg, type) {
+        const time = new Date().toLocaleTimeString();
+        let colorClass = '';
+        if (type === 'error') colorClass = 'error';
+        else if (type === 'success') colorClass = 'success';
+        else if (type === 'info') colorClass = 'info';
+
+        logDiv.innerHTML += `<div class="${colorClass}">[${time}] ${msg}</div>`;
+        logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function connect() {
+        var myId = document.getElementById('myId').value;
+        var token = document.getElementById('token').value;
+
+        if(!myId) { alert("내 고유 ID를 입력해 주세요!"); return; }
+
+        var socket = new SockJS('http://localhost:8881/ws-stomp');
+        stompClient = Stomp.over(socket);
+
+        var headers = {};
+        if(token) headers['Authorization'] = token;
+
+        stompClient.connect(headers, function (frame) {
+            log("✅ 서버 연결 성공!", 'success');
+
+            var subPath = '/sub/user/' + myId;
+            stompClient.subscribe(subPath, function (res) {
+                log("🔔 [알림 수신]: " + res.body, 'info');
+                console.log("Full Message:", JSON.parse(res.body));
+            });
+            log("📡 채널 구독 완료: " + subPath, 'success');
+
+            stompClient.subscribe('/sub/all', function (res) {
+                log("📢 [전체 공지]: " + res.body);
+            });
+
+        }, function (err) {
+            log("❌ 연결 에러: " + err, 'error');
+        });
+    }
+
+    function send() {
+        if(!stompClient) { alert("먼저 서버에 연결해 주세요!"); return; }
+
+        var type = document.getElementById('msgType').value;
+        var targetId = document.getElementById('targetId').value;
+        var content = document.getElementById('content').value;
+
+        var payload = {
+            type: type,
+            content: content,
+            senderId: 'TEST_SENDER',
+            targetId: targetId,
+            targetUrl: '/board/view?boardId=1'
+        };
+
+        var destination = (type === 'TALK') ? "/pub/chat/message" : "/pub/notification";
+        stompClient.send(destination, {}, JSON.stringify(payload));
+        log("📤 테스트 발송 완료 -> " + destination);
+    }
+</script>
+</body>
+</html>

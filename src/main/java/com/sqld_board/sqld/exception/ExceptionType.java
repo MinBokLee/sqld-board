@@ -33,7 +33,8 @@ public enum ExceptionType {
     NO_RESOURCE_FOUND_EXCEPTION("noResourceFoundException.code", "noResourceFoundException.msg"),
     SELF_AUTHORITY_CHANGE_EXCEPTION("selfAuthorityChangeException.code", "selfAuthorityChangeException.msg"),
     SUPER_ADMIN_PROTECTED_EXCEPTION("superAdminProtectedException.code", "superAdminProtectedException.msg"),
-   INSUFFICIENT_ADMIN_PRIVILEGES_EXCEPTION("insufficientAdminPrivilegesException.code", "insufficientAdminPrivilegesException.msg");
+   INSUFFICIENT_ADMIN_PRIVILEGES_EXCEPTION("insufficientAdminPrivilegesException.code", "insufficientAdminPrivilegesException.msg"),
+    TOKEN_SIGNATURE_EXCEPTION("tokenSignatureException.code", "tokenSignatureException.msg");
 
 
 

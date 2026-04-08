@@ -13,36 +13,24 @@
 ---
 
 ## 📈 현재 진행 상태 (Current Status)
-- **최근 업데이트:** 2026-04-02 (Session_11 완료)
-- **주요 성과:** 관리자 휴지통 API, SUPER_ADMIN 기반 회원/권한 관리 시스템 구축, API 응답 표준화(데이터 포함 응답) 완료.
-- **상태:** 관리자용 데이터 라이프사이클 관리와 강력한 보안 위계 체계가 완성되었으며, 실시간 서비스로 나아갈 준비가 된 단계.
+- **최근 업데이트:** 2026-04-08 (Session_15 완료)
+- **주요 성과:** 실시간 댓글 및 대댓글(답글) 알림 시스템(Trigger) 완벽 연동. `scheduler` 패키지 신설을 통해 알림 삭제(30일), 게시물 물리 삭제, 조회수 동기화(5분) 등 스케줄러 삼총사 통합 관리 체계 구축 완료. 시스템 운영 자동화 및 성능 최적화 달성.
+- **상태:** 알림 엔진 및 자동화 배치 시스템 구축이 완료되어 실제 서비스 운영 준비 완료. 다음 단계인 채팅 영속화 및 관리 시스템 구축 준비 완료.
 
 ---
 
 ## 🗂️ 세션 로그 인덱스 (Session Logs)
-- [Session_01: 시스템 구축](./logs/gemini_history/session_20260325_01.md)
-- [Session_02: JSON 에러 수정](./logs/gemini_history/session_20260325_02.md)
-- [Session_03: 고급 댓글 삭제](./logs/gemini_history/session_20260325_03.md)
-- [Session_04: 다운로드 보안](./logs/gemini_history/session_20260325_04.md)
-- [Session_06: 시큐리티 최적화](./logs/gemini_history/session_20260325_06.md)
-- [Session_07: 소프트 딜리트 전면 도입 및 일괄 삭제](./logs/gemini_history/session_20260325_07.md)
-- [Session_08: API 정비 및 보안 고도화](./logs/gemini_history/session_20260330_01.md)
-- [Session_09: 복구/삭제 시스템 및 로드맵 수립](./logs/gemini_history/session_20260331_01.md)
-- [Session_10: 마이페이지(내가 쓴 글/스크랩) 페이징 및 검색 기능 고도화](./logs/gemini_history/session_20260401_01.md)
-- [Session_11: 관리자 기능 및 보안 위계 고도화(SUPER_ADMIN)](./logs/gemini_history/session_20260402_01.md)
+...
+- [Session_14: 도메인 중심 실시간 알림 DB 영속화 및 관리 API 구현](./logs/gemini_history/session_20260407_01.md)
+- [Session_15: 실시간 댓글 알림 서비스 연동 및 통합 테스트 성공](./logs/gemini_history/session_20260408_01.md)
 
 ---
 
 ## 🚀 다음 할 일 (Todo)
-- [x] 전사적 소프트 딜리트(Soft Delete) 시스템 구축
-- [x] 게시글 일괄 삭제(Bulk Delete) API 구현
-- [x] 상세 조회 시 실시간 스크랩 정보 연동
-- [x] Spring Scheduling을 이용한 일괄 물리 삭제(Batch Cleanup) 구현
-- [x] 게시글 복구(Restore) API 및 보안 고도화(Step 4)
-- [x] 마이페이지(내가 쓴 글/스크랩) 페이징 및 검색 기능 최적화
-- [x] [관리자] 휴지통(삭제된 게시글 목록) 조회 API 개발
-- [x] [관리자] 권한 위계(SUPER_ADMIN) 및 회원 관리 보안 강화
-- [ ] Redis 기반 조회수(View Count) 캐싱 및 지연 업데이트 로직 (환경 구축 포함)
-- [ ] WebSocket 기반 실시간 채팅 및 쪽지/알림 시스템 설계
+...
+- [x] WebSocket 기반 실시간 메시징 인프라 및 보안 체계 구축
+- [x] 실시간 알림 DB 영속화(저장) 및 이전 내역 조회/읽음 처리 API 구현
+- [x] 실시간 댓글 알림 서비스 연동 (Trigger 구현)
+- [ ] 채팅 메시지 DB 영속화 및 이전 대화 내역 조회 API 구현
 - [ ] 카테고리 동적 관리 시스템(DB 기반) 설계 및 구현
 --- End of Context from: GEMINI.md ---

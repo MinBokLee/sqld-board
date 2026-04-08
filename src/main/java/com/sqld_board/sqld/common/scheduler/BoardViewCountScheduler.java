@@ -1,4 +1,4 @@
-package com.sqld_board.sqld.common.util;
+package com.sqld_board.sqld.common.scheduler;
 
 import com.sqld_board.sqld.mapper.BoardMapper;
 import com.sqld_board.sqld.service.board.ViewCountRedisService;
@@ -10,10 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
+/**
+ * Redis에 저장된 조회수를 주기적으로 DB에 반영하는 Scheduler
+ */
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ViewCountScheduler {
+public class BoardViewCountScheduler {
 
     private final ViewCountRedisService redisService;
     private final BoardMapper boardMapper;
@@ -23,7 +26,7 @@ public class ViewCountScheduler {
      * cron 설정: 초 분 시 일 월 요일 (현재 설정은 10분마다 실행)
      */
     //@Scheduled(fixedDelay = 1000) 테스트 설정
-    @Scheduled(cron = "0 0/10 * * * *")
+    @Scheduled(cron = "0 0/5 * * * *")
     @Transactional
     public void updateViewCount() {
         log.info(">>> Redis 조회수 DB 동기화 시작");

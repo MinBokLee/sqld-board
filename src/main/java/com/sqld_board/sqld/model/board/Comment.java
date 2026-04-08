@@ -10,10 +10,11 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 public class Comment {
+
     private Long commentId;        // 댓글 아이디 (PK)
     private Long boardId;          // 게시글 아이디 (FK)
     private String memberId;       // 작성자 고유 아이디 (MEMBER_INFO의 PK)

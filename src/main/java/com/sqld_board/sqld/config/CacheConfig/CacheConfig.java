@@ -25,7 +25,8 @@ public class CacheConfig {
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("popularPosts");
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                                         .expireAfterWrite(10, TimeUnit.MINUTES)// 저장 후, 10분 뒤 만료
+                                        // .expireAfterWrite(10, TimeUnit.MINUTES)// 저장 후, 10분 뒤 만료 [수정전]
+                                         .expireAfterWrite(1, TimeUnit.MINUTES) //저장 후, 1분뒤 만료 [수정후]
                                          .maximumSize(100)); // 최대 100개 까지 생성
         return cacheManager;
     }

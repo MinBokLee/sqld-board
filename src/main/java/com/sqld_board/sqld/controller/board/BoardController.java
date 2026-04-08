@@ -133,7 +133,9 @@ public class BoardController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/list/{boardId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Response updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequest boardReq, @AuthenticationPrincipal User user) {
+
         String memberId = (user != null) ? user.getUsername() : null;
+
         boardService.updateBoard(boardId, boardReq, memberId);
         if(boardReq.getDeleteFileIds() != null && !boardReq.getDeleteFileIds().isEmpty()){
             boardService.deleteFiles(boardReq.getDeleteFileIds());

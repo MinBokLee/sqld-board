@@ -17,7 +17,8 @@ public enum MessageType {
     View_Increment_Success("board.view.increment.success.code", "board.view.increment.success.msg"),
     BOARD_SCRAP_INSERT_SUCCESS("board.scrap.insert.success.code", "board.scrap.insert.success.msg"),
     BOARD_SCRAP_DELETE_SUCCESS("board.scrap.delete.success.code", "board.scrap.delete.success.msg"),
-    BOARD_CONTENTS_RESTORE("board.contents.restore.success.code", "board.contents.restore.success.msg");
+    BOARD_CONTENTS_RESTORE("success.board.contents.restore.code", "success.board.contents.restore.msg"),
+    NOTIC_CONTENTS_CHECK_OK("success.notic.contents.check.code","success.notic.contents.check.msg");
 
 
 
