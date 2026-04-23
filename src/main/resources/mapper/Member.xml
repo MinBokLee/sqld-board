@@ -120,7 +120,7 @@
 
     <!-- MySQL member 테이블을 활용하여 시퀀스 번호 생성 -->
     <insert id="insertMemberSequence" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO member (name) VALUES (#{name})
+        INSERT INTO MEMBER_SEQUENCE (USER_ID) VALUES (#{userId})
     </insert>
 
     <!-- 마지막 생성 ID 조회 -->

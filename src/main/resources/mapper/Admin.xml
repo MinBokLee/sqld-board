@@ -25,8 +25,8 @@
                B.BOARD_ID
              , B.TITLE
              , B.CONTENT
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.TAG_NAME
@@ -75,14 +75,15 @@
     <!-- 전체 회원 정보 조회 (Admin)-->
     <select id="getMemberList" resultType="MemberInfo">
         SELECT /* AdminMapper.getMemberList (전체 회원 정보 조회 (Admin)) */
-              MEMBER_ID
-            , USER_ID
-            , USER_NAME
-            , USER_ROLE
-            , USER_EMAIL
-            , USER_STATUS
-            , LAST_LOG_AT
-        FROM  MEMBER_INFO
+               MEMBER_ID
+             , USER_ID
+             , USER_NAME
+             , USER_ROLE
+             , USER_EMAIL
+             , USER_STATUS
+             , LAST_LOG_AT
+             , PROFILE_IMAGE
+          FROM  MEMBER_INFO
     </select>
 
     <!-- update -->

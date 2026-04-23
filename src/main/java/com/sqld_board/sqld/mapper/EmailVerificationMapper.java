@@ -1,6 +1,6 @@
 package com.sqld_board.sqld.mapper;
 
-import com.sqld_board.sqld.model.member.EmailVerification;
+import com.sqld_board.sqld.model.emailVerification.EmailVerification;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ public interface EmailVerificationMapper {
     int checkAlreadyVerified(@Param("email") String email);
 
     // 인증 정보 저장 또는 갱신
-    int upsertVerification(EmailVerification verification);
+    int insertVerification(EmailVerification verification);
 
     // 이메일로 인증 정보 조회
     Optional<EmailVerification> findByEmail(@Param("email") String email);

@@ -2,6 +2,7 @@ package com.sqld_board.sqld.config.webSocketConfig;
 
 import com.sqld_board.sqld.exception.websocket.TokenSignatureException;
 import com.sqld_board.sqld.handler.JwtHandler;
+import com.sqld_board.sqld.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
@@ -11,11 +12,15 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 @RequiredArgsConstructor
 public class StompHandler implements ChannelInterceptor {
 
     private final JwtHandler jwtHandler;
+
+    private final MemberMapper memberMapper;
 
     @Value("${jwt.secret}")
     private String securityKey;
@@ -48,6 +53,16 @@ public class StompHandler implements ChannelInterceptor {
                 String memberId = claims.getSubject();
                 //
                 accessor.setUser(() -> memberId);
+
+                //[추가] 세션에 닉네임과 memberId 저장 (Disconnect 때 쓰기 위함)
+                Map<String, Object> sessionAttributes = accessor.getSessionAttributes();
+                if(sessionAttributes != null){
+                    // DB 조회를 한 후, 닉네임 setting
+                    memberMapper.readMemberByMemberId(memberId).ifPresent(member ->{
+                        sessionAttributes.put("senderName", member.getUserName());
+                        sessionAttributes.put("senderId", memberId);
+                    });
+                }
             });
         }
 

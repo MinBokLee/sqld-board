@@ -7,7 +7,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class MemberSimpleInfoRes {
 
     // 사용자 고유 식별자
@@ -37,15 +39,29 @@ public class MemberSimpleInfoRes {
     // 최근 접속 시간
     private String lastLogAt;
 
-    public MemberSimpleInfoRes(MemberInfo memberInfo) {
+    public MemberSimpleInfoRes (MemberInfo memberInfo) {
         this.memberId = memberInfo.getMemberId();
         this.userId = memberInfo.getUserId();
         this.userName = memberInfo.getUserName();
         this.userEmail = memberInfo.getUserEmail();
         this.userRole = memberInfo.getUserRole();
         this.profileImage = memberInfo.getProfileImage();
-        this.postCount = memberInfo.getPostCount();
-        this.commentCount = memberInfo.getCommentCount();
+        this.postCount = memberInfo.getPostCount();      //[임의 추가]
+        this.commentCount = memberInfo.getCommentCount();//[임의 추가]
         this.lastLogAt = DateTimeUtils.format(memberInfo.getLastLogAt());
+    }
+
+    public static MemberSimpleInfoRes of(MemberInfo memberInfo) {
+        return MemberSimpleInfoRes.builder()
+                .memberId(memberInfo.getMemberId())
+                .userId(memberInfo.getUserId())
+                .userName(memberInfo.getUserName())
+                .userEmail(memberInfo.getUserEmail())
+                .userRole(memberInfo.getUserRole())
+                .profileImage(memberInfo.getProfileImage())
+                .postCount(memberInfo.getPostCount())
+                .commentCount(memberInfo.getCommentCount())
+                .lastLogAt(DateTimeUtils.format(memberInfo.getLastLogAt()))
+                .build();
     }
 }

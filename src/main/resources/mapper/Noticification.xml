@@ -11,13 +11,13 @@
     <!-- 알림 조회 (프론트 전달) 알림 목록 전달 시 사용 -->
     <select id="searchNotification" resultType="Notification">
         SELECT /* WebSocketMapper.searchNotification */
-            NOTI_ID
+               NOTI_ID
              , RECEIVER_ID
              , SENDER_ID
              , NOTI_TYPE
              , MESSAGE
              , IS_READ
-             , REG_DATE
+             , CREATE_AT
              , TARGET_URL
         FROM NOTIFICATION
         WHERE RECEIVER_ID = #{receiverId}
@@ -48,7 +48,7 @@
         <![CDATA[
         DELETE FROM /* NotificationMapper.deleteOldNotification (30지난 알림 삭제) */
                     NOTIFICATION
-              WHERE REG_DATE < DATE_SUB(NOW(), INTERVAL 30 DAY)
+              WHERE CREATE_AT < DATE_SUB(NOW(), INTERVAL 30 DAY)
           ]]>
     </delete>
 

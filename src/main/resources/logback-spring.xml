@@ -48,7 +48,7 @@
     ORDER BY B.CREATE_AT DESC
     {executed in 11 msec}
     [18:09:44.847] [INFO ] SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-    WHERE  BOARD_TYPE = 'S'
+    WHERE  BOARD_CODE = 'S'
     {executed in 10 msec}
     <logger name="jdbc.sqltiming" level="INFO" />
     <logger name="jdbc.audit" level="OFF" />

@@ -551,7 +551,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
          LIMIT 1
  {executed in 13 msec}
 [2026-04-07 14:17:39.516] [INFO ] [http-nio-8881-exec-10] c.s.sqld.exception.ExceptionAdvice - SignInFailureException
-com.sqld_board.sqld.exception.common.SignInFailureException: null
+com.sqld_board.sqld.exception.common.InvalidCredentialsException: null
 	at com.sqld_board.sqld.service.sign.SignServiceImpl.signIn(SignServiceImpl.java:300)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -675,7 +675,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-[2026-04-07 14:17:39.522] [WARN ] [http-nio-8881-exec-10] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.SignInFailureException]
+[2026-04-07 14:17:39.522] [WARN ] [http-nio-8881-exec-10] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.InvalidCredentialsException]
 [2026-04-07 14:17:49.372] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
              , USER_PASS

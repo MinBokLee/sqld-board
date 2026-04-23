@@ -60,7 +60,7 @@ public class AdminController {
         if("ADMIN".equals(updateData.getUserRole())){
             msgType  = MessageType.ADMIN_PROMOTED_SUCCESS;// 관리자로 승격
         }else{
-            msgType =MessageType.ADMIN_DEMOTED__SUCCESS; // 사용자로 강등
+            msgType =MessageType.ADMIN_DEMOTED_SUCCESS; // 사용자로 강등
         }
 
         return ResponseEntity.ok(responseHandler.getSuccessResponse(msgType, updateData));
@@ -76,10 +76,10 @@ public class AdminController {
     @PostMapping("/deleteMembersBySuperAdmin")
     public ResponseEntity<Response> deleteMembersBySuperAdmin(@RequestBody MemberBulkDeleteReq memberBulkDeleteReq){
 
-
         List<String> memberIds = memberBulkDeleteReq.getMemberIds();
+
         MessageType result = adminService.deleteMembersBySuperAdmin(memberIds);
-        return ResponseEntity.ok(Response.success(result));
+         return ResponseEntity.ok(Response.success(result));
     }
 
     /**

@@ -4,14 +4,13 @@ import com.sqld_board.sqld.dto.request.board.BoardRequest;
 import com.sqld_board.sqld.dto.request.board.CommentRequest;
 import com.sqld_board.sqld.dto.request.websocket.RealTimeMessage;
 import com.sqld_board.sqld.dto.response.board.BoardResponse;
+import com.sqld_board.sqld.dto.response.code.CategoryResponse;
 import com.sqld_board.sqld.exception.board.*;
 import com.sqld_board.sqld.exception.common.MemberNotFoundException;
-import com.sqld_board.sqld.mapper.BoardMapper;
-import com.sqld_board.sqld.mapper.CommentMapper;
-import com.sqld_board.sqld.mapper.MemberMapper;
+import com.sqld_board.sqld.mapper.*;
 import com.sqld_board.sqld.model.board.Board;
 import com.sqld_board.sqld.model.board.BoardFile;
-import com.sqld_board.sqld.model.board.Comment;
+import com.sqld_board.sqld.model.commentManagement.CommentManagement;
 import com.sqld_board.sqld.model.member.MemberInfo;
 import com.sqld_board.sqld.service.notificationStomp.NotificationStompService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -40,12 +38,16 @@ import java.util.stream.IntStream;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
-    private final BoardMapper boardMapper;
+    private final BoardMapper   boardMapper;
     private final CommentMapper commentMapper;
-    private final MemberMapper memberMapper;
-    private final ViewCountRedisService viewCountRedisService;
+    private final MemberMapper   memberMapper;
+    private final BoardMasterMapper boardMasterMapper;
+    private final CommonCodeDetailMapper commonCodeDetailMapper;
+
+    private final ViewCountRedisService    viewCountRedisService;
     private final NotificationStompService notificationStompService;
 
 
@@ -53,7 +55,19 @@ public class BoardServiceImpl implements BoardService {
     private String uploadPath;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
+    public List<CategoryResponse> getCategoryListByBoardCode(String boardCode) {
+        // 1. boardCode 유무 확인
+        if(boardCode == null || boardCode.isEmpty()){
+            throw new NotFoundBoardCodeException();
+        }
+
+        // 2.카테고리 목록 조회.
+        return commonCodeDetailMapper.getCategoryListByBoardCode(boardCode);
+
+    }
+
+    @Override
     public void deleteMyScrapPage(List<Long> scrapIds, String memberId) {
 
         if(scrapIds == null || scrapIds.isEmpty()) {
@@ -87,7 +101,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional
     public Boolean insertBoardScrap(Long boardId, String memberId) {
         // 스크랩 여부 확인
         int count = boardMapper.checkBoardScrap(boardId, memberId);
@@ -107,7 +120,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional
     public void deleteFiles(List<Long> fileIds) {
         if(fileIds == null || fileIds.isEmpty()) {
             return;
@@ -184,8 +196,9 @@ public class BoardServiceImpl implements BoardService {
             for(Board board : boards){
                 // 각 게시글 ID에 해당하는 redis 조회수 가져오기
                 int redisViewCount= viewCountRedisService.getViewCount(board.getBoardId());
+
                 // DB 조회수에 Redis를 조회수를 더한다.
-                board.setViewCount(board.getViewCount() + redisViewCount);
+                board.combineRedisViewCount(redisViewCount);
             }
         }
         return boards.stream()
@@ -214,7 +227,7 @@ public class BoardServiceImpl implements BoardService {
                                         .orElseThrow(MemberNotFoundException::new);
 
     // 댓글 객체 생성 ( 빌더 패턴 사용 시)
-        Comment comment = Comment.builder()
+        CommentManagement commentManagement = CommentManagement.builder()
                 .boardId(request.getBoardId())
                 .memberId(memberInfo.getMemberId())    // 서버가 확인한 고유 Id 셋팅
                 .userId(memberInfo.getUserId())
@@ -222,9 +235,9 @@ public class BoardServiceImpl implements BoardService {
                 .parentCommentId(request.getParentCommentId())
                 .build();
     // DB 저장
-        commentMapper.insertComment(comment);
+        commentMapper.insertComment(commentManagement);
 
-        Long commentId = comment.getCommentId();
+        Long commentId = commentManagement.getCommentId();
 
         if(commentId == null){
             throw new FailureCreateCommentException(); // 댓글 저장 중 오류 발생
@@ -236,9 +249,9 @@ public class BoardServiceImpl implements BoardService {
 
         if(request.getParentCommentId() != null) {
             // [대댓글인 경우]
-            Comment parentComment = commentMapper.getComment(request.getParentCommentId());
-            if(parentComment != null){
-                targetId = parentComment.getMemberId();
+            CommentManagement parentCommentManagement = commentMapper.getComment(request.getParentCommentId());
+            if(parentCommentManagement != null){
+                targetId = parentCommentManagement.getMemberId();
                 alertMessage = "내 댓글에 답글이 달렸습니다: ";
             }
         } else {
@@ -270,7 +283,7 @@ public class BoardServiceImpl implements BoardService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Comment> getCommentList(Long boardId) {
+    public List<CommentManagement> getCommentList(Long boardId) {
         if(boardId == null) {
             throw new NotBoardContentException();
         }
@@ -287,11 +300,11 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public void updateComment(Long commentId, String content, String memberId) {
 
-        Comment foundComment = commentMapper.getComment(commentId);
-        if (foundComment == null) throw new RuntimeException("댓글을 찾을 수 없습니다.");
+        CommentManagement foundCommentManagement = commentMapper.getComment(commentId);
+        if (foundCommentManagement == null) throw new RuntimeException("댓글을 찾을 수 없습니다.");
         
         // 작성자 본인인지 확인 (기존 DB의 USER_ID 컬럼 대신 MEMBER_ID 컬럼 사용)
-        if (!foundComment.getMemberId().equals(memberId)) {
+        if (!foundCommentManagement.getMemberId().equals(memberId)) {
             throw new RuntimeException("본인이 작성한 댓글만 수정할 수 있습니다.");
         }
 
@@ -309,13 +322,13 @@ public class BoardServiceImpl implements BoardService {
     public void deleteComment(Long commentId, String memberId) {
 
         //1. 해당 댓글 정보조회
-        Comment currentComment = commentMapper.getComment(commentId);
-        if (currentComment == null) {
+        CommentManagement currentCommentManagement = commentMapper.getComment(commentId);
+        if (currentCommentManagement == null) {
             throw new NotBoardCommentException();
         }
 
         //  권한 확인 (본인 글 여부)
-        if (!currentComment.getMemberId().equals(memberId)) {
+        if (!currentCommentManagement.getMemberId().equals(memberId)) {
             throw new NotPostOwnerException();
         }
 
@@ -330,12 +343,12 @@ public class BoardServiceImpl implements BoardService {
             commentMapper.deleteComment(commentId);
 
             // 3.만약 이제 대댓글 이었다면
-            if(currentComment.getParentCommentId() != null){
-                Long parentId = currentComment.getParentCommentId();
-                Comment parentComment = commentMapper.getComment(parentId);
+            if(currentCommentManagement.getParentCommentId() != null){
+                Long parentId = currentCommentManagement.getParentCommentId();
+                CommentManagement parentCommentManagement = commentMapper.getComment(parentId);
 
                 // 4. 부모가  '삭제된 댓글 상태이고, 이제 남은 자식이 하나도 없다면?
-                if(parentComment != null && "삭제된 댓글입니다.".equals(parentComment.getContent())){
+                if(parentCommentManagement != null && "삭제된 댓글입니다.".equals(parentCommentManagement.getContent())){
                     int remainingChildren = commentMapper.getChildCommentCount(parentId);
                     if(remainingChildren == 0){
                         // 부모 댓글도 이제 완전히 삭제 처리
@@ -357,40 +370,37 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public Long writeBoard(BoardRequest request, String memberId) {
 
-        // 해당 접속 아이디와 글 작성하려고 한 아이디가 동일인지 확인
+        // 1. 게시판 유무 확인
+        validateBoardCodeExists(request.getBoardCode());
+
+        // 3. 카테고리 유효성 검증
+        isValidateCategoryForBoard(request.getBoardCode(), request.getCategoryId());
+
+        // 2. 해당 접속 아이디와 글 작성하려고 한 아이디가 동일인지 확인
         MemberInfo memberInfo = memberMapper.readMemberByMemberId(memberId)
                                             .orElseThrow(MemberNotFoundException::new);
 
-        /*  [검증] 'N' 상태인 사용자가 가입인사(G)가 아닌 다른 곳에 글을 할 때 차단 (정책 변경으로 사용 안함)
-        if("N".equals(memberInfo.getUserStatus()) && !"G".equals(request.getBoardType())){
-            int greetingCount = memberMapper.checkGreetingBoardWrite(memberId);
-            throw  new NotWriteBoardException(); //가입인사를 먼저 작성해야 학습 게시판 글 작성이 가능 합니다.
-        }
-        **/
-
-        // DTO 정보를 Model 객체(Board)로 변환
-        Board board = new Board();
-            board.setTitle(request.getTitle());
-            board.setContent(request.getContent());
-
-            // 실제 고유 아이디 저장
-            board.setMemberId(memberId);
-
-            // 기존 컬럼 유지를 위해 회원 정보에서 아이디를 꺼내 저장
-            board.setUserId(memberInfo.getUserId());
-
-            board.setBoardType(request.getBoardType());
-            board.setCategory(request.getCategory());
-            board.setTagName(request.getTagName());
+        // 2. Build
+        Board board = Board.builder()
+                .title(request.getTitle())
+                .content(request.getContent())
+                // 실제 고유 아이디 저장
+                .memberId(memberId)
+                // 기존 컬럼 유지를 위해 회원 정보에서 아이디를 꺼내 저장
+                .userId(memberInfo.getUserId())
+                .boardCode(request.getBoardCode())
+                .categoryId(request.getCategoryId())
+                .tagName(request.getTagName())
+                .build();
 
             // MyBatis Mapper를 통해 DB에 저장 (생성된 ID는 board 객체에 자동으로 담김)
             boardMapper.insertBoard(board);
 
             if(board.getBoardId() == null){
                 throw new FailureCreateContentException();
-            }else{
-                return board.getBoardId();
             }
+
+            return board.getBoardId();
     }
 
     /**
@@ -475,32 +485,39 @@ public class BoardServiceImpl implements BoardService {
     }
 
     /**
-     *
+     * 게시글 수정
      * @param boardId
-     * @param boardReq
+     * @param request
      * @param memberId
      */
     @Override
-    public void updateBoard(Long boardId, BoardRequest boardReq, String memberId) {
-        // 게시글 정보 확인
+    public void updateBoard(Long boardId, BoardRequest request, String memberId) {
+
+        // 1. 게시판 유무 확인
+        validateBoardCodeExists(request.getBoardCode());
+
+        // 2. 게시글 정보 확인
         BoardResponse board = boardMapper.getSearchBoard(boardId, memberId);
         if(board == null) {
             throw new NotBoardContentException();
         }
+        // 3. 카테고리 유효성 검증
+        isValidateCategoryForBoard(request.getBoardCode(), request.getCategoryId());
 
         // DB에 저장된 작성자와 현재 요청한 사람이 같은지 비교
         if(!board.getMemberId().equals(memberId)){
             throw new NotPostOwnerException();
         }
-            Board board1 = new Board();
-                board1.setBoardId(boardId);
-                board1.setTitle(boardReq.getTitle());
-                board1.setContent(boardReq.getContent());
-                board1.setBoardType(boardReq.getBoardType());
-                board1.setCategory(boardReq.getCategory());
-                board1.setTagName(boardReq.getTagName());
 
-                int result = boardMapper.updateBoard(board1);
+        Board updateData = Board.builder()
+                .boardId(boardId)
+                .title(request.getTitle())
+                .content(request.getContent())
+                .categoryId(request.getCategoryId())
+                .tagName(request.getTagName())
+                .build();
+
+        int result = boardMapper.updateBoard(updateData);
                 if(result == 0){
                     throw new FailureUpdateContentException();
                 }
@@ -514,7 +531,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public BoardResponse getSearchBoard(Long boardId, String memberId) {
-        // 1. 조회수 증가 (Redis에 저장)
+        // 1. 조회수 증가 (edis 에 저장)
         this.incrementViewCount(boardId);
 //        boardMapper.incrementViewCount(boardId);
 
@@ -559,10 +576,11 @@ public class BoardServiceImpl implements BoardService {
         // 리스트의 각 항목에 대해 Redis 조회수를 합산한다.
         if(boards != null && !boards.isEmpty()){
             for(Board board : boards){
-                // 각 게시글 IDdp goekdg ksms Redis  조회수를 가져온다.
+                // 각 게시글 ID과 Redis 조회수를 가져온다.
                 int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+
                 //DB 조회수에 Redis 조회수를 더해준다.
-                board.setViewCount(board.getViewCount() + redisViewCount);
+                board.combineRedisViewCount(redisViewCount);
             }
         }
 
@@ -575,16 +593,16 @@ public class BoardServiceImpl implements BoardService {
      * 로그인 시, 회원 정보 카드에서 내가 작성한 리스트 조회
      * @param page
      * @param size
-     * @param boardType
-     * @param category
+     * @param boardCode
+     * @param categoryId
      * @param tagName
      * @param memberId
      * @return
      */
     @Override
     @Transactional
-    public Map<String, Object> getBoardMyList(int page, int size, String boardType
-                                             ,String category, String tagName
+    public Map<String, Object> getBoardMyList(int page, int size, String boardCode
+                                             ,String categoryId, String tagName
                                              ,String keyword, String memberId) {
        // 마이너스 페이지 방지
         if(page < 1){
@@ -593,19 +611,20 @@ public class BoardServiceImpl implements BoardService {
 
         int offset = (page-1 ) * size; // offset는 최소 0이 보장
 
-        List<Board> boards =  boardMapper.getBoardListWithPaging(offset, size, boardType, category, memberId, keyword, tagName);
+        List<Board> boards =  boardMapper.getBoardListWithPaging(offset, size, boardCode, categoryId, memberId, keyword, tagName);
 
         //[추가] 리스트의 각 항목에 Redis 조회수를 합산
         if(boards !=null && !boards.isEmpty()){
             for(Board board : boards){
                 // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
                 int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+
                 // DB 조회수에 Redis 조회수를 더해준다.
-                board.setViewCount(board.getViewCount() + redisViewCount);
+                board.combineRedisViewCount(redisViewCount);
             }
         }
 
-        int totalCount =boardMapper.getBoardTotalCount(boardType, category, memberId, keyword,tagName);
+        int totalCount =boardMapper.getBoardTotalCount(boardCode, categoryId, memberId, keyword,tagName);
 
         // 게시글이 없는 경우,
         if(boards == null || boards.isEmpty()){
@@ -636,12 +655,12 @@ public class BoardServiceImpl implements BoardService {
      * 페이징 처리가 된 게시글 목록을 조회합니다.
      * @param page 현재 페이지 번호
      * @param size 페이지당 게시글 수
-     * @param category 카테고리 (필터링용)
+     * @param categoryId 카테고리 (필터링용)
      * @return 목록 데이터와 페이징 정보를 담은 Map
      */
     @Override
     @Transactional
-    public Map<String, Object> getBoardListWithPaging(int page ,int size ,String boardType ,String category ,String memberId ,String tagName) {
+    public Map<String, Object> getBoardListWithPaging(int page ,int size ,String boardCode ,String categoryId ,String memberId ,String tagName) {
         // 마이너스 페이지 방지
         if(page < 1){
             page = 1;
@@ -649,7 +668,7 @@ public class BoardServiceImpl implements BoardService {
 
         int offset = (page -1 ) * size; // offset는 최소 0이 보장
 
-        List<Board> boards = boardMapper.getBoardListWithPaging(offset, size, boardType, category,null, null, tagName);
+        List<Board> boards = boardMapper.getBoardListWithPaging(offset, size, boardCode, categoryId,null, null, tagName);
 
         //[추가] 리스트의 각 항목에 Redis 조회수를 합산
         if(boards !=null && !boards.isEmpty()){
@@ -657,11 +676,11 @@ public class BoardServiceImpl implements BoardService {
                 // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
                 int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
                 // DB 조회수에 Redis 조회수를 더해준다.
-                board.setViewCount(board.getViewCount() + redisViewCount);
+                board.combineRedisViewCount(redisViewCount);
             }
         }
 
-        int totalCount =boardMapper.getBoardTotalCount(boardType, category, null, null,tagName);
+        int totalCount =boardMapper.getBoardTotalCount(boardCode, categoryId, null, null,tagName);
 
         // 게시글이 없는 경우,
         if(boards == null || boards.isEmpty()){
@@ -718,19 +737,26 @@ public class BoardServiceImpl implements BoardService {
      */
     @Override
     @Transactional // 게시글과 댓글 삭제 상태가 한 번에 보장되어야 함
-    public boolean deleteBoards(List<Long> boardIds, String memberId) {
+    public boolean deleteBoards(List<Long> boardIds, String memberId, boolean isAdmin) {
 
         // 유효성 검사 (삭제할 ID 확인)
         if(boardIds == null || boardIds.isEmpty()){
-            throw new MissingDeleteTargetException();
+            throw new MissingDeleteTargetException(); //해제할 스크랩 목록을 선택해주세요.
         }
 
-        // 게시판 소프트 삭제 (Delete_YN = 'Y)
-        int updatedContent = boardMapper.updateBoardDeleteYN(boardIds, memberId);
+        int updatedContent;
+
+        if(isAdmin){
+            // 관리자 & 슈퍼 관리자는 본인 여부 상관없이 단건 및 일괄 삭제 가능
+            updatedContent = boardMapper.updateBoardDeleteYNByAdmin(boardIds);
+        } else {
+            // 게시판 소프트 삭제 (Delete_YN = 'Y) 일반사용자
+             updatedContent = boardMapper.updateBoardDeleteYN(boardIds, memberId);
+        }
 
         if(updatedContent == 0){
             // 단 한 건도 업데이트 되지 않았다면 (남의 글이거나 존재하지 않는 글)
-                throw new NotBoardContentException();
+                throw new NotBoardContentException(); //해당 게시판의 게시글을 찾을 수 없습니다.
         }
 
         // 연쇄 삭제: 해당 게시글들에 달린 모든 댓글도 보이지 않게 처리
@@ -739,21 +765,20 @@ public class BoardServiceImpl implements BoardService {
         // 파일 소프트 삭제
         boardMapper.updateFilesDeleteYnByBoardIds(boardIds);
 
-
         return true;
     }
 
     /**
      * 전문 검색(Full-Text Search)을 사용하여 게시글을 검색하고 페이징된 결과를 반환합니다.
      * @param keyword 검색어
-     * @param boardType 게시판 타입 (선택 사항)
+     * @param boardCode 게시판 타입 (선택 사항)
      * @param page 현재 페이지
      * @param size 페이지당 개수
      * @return 검색 결과 및 페이징 정보
      */
     @Override
     @Transactional(readOnly = true)
-    public Map<String, Object> searchBoardContent(String keyword, String boardType, int page, int size) {
+    public Map<String, Object> searchBoardContent(String keyword, String boardCode, int page, int size) {
         // 검색어가 비어있는지 확인
         if(keyword == null || keyword.trim().isEmpty()){
             throw new InvalidSearchKeywordException(); // 입력된 키워드가 없습니다.
@@ -765,19 +790,20 @@ public class BoardServiceImpl implements BoardService {
         int offset = (page -1) * size;
 
         //DB 조회
-        List<Board> boards = boardMapper.searchBoardContent(formattedKeyword, boardType, offset,size);
+        List<Board> boards = boardMapper.searchBoardContent(formattedKeyword, boardCode, offset,size);
 
         //[추가] 리스트의 각 항목에 Redis 조회수를 합산
         if(boards !=null && !boards.isEmpty()){
             for(Board board : boards){
                 // 각 게시글 ID에 해당하는 Redis 조회수를 가져온다.
                 int redisViewCount = viewCountRedisService.getViewCount(board.getBoardId());
+
                 // DB 조회수에 Redis 조회수를 더해준다.
-                board.setViewCount(board.getViewCount() + redisViewCount);
+                board.combineRedisViewCount(redisViewCount);
             }
         }
 
-        int totalCount = boardMapper.getSearchBoardCount(formattedKeyword, boardType);
+        int totalCount = boardMapper.getSearchBoardCount(formattedKeyword, boardCode);
 
         // 결과가 없을 경우 빈 리스트([])를 반환하도록 보장
         List<BoardResponse> list = (boards !=null)
@@ -819,6 +845,32 @@ public class BoardServiceImpl implements BoardService {
             boardMapper.deleteBoardLike(boardId, memberId);
             boardMapper.updateLikeCount(boardId, -1);
             return false;
+        }
+    }
+
+
+    /* ========================================================================= */
+    /*                          private method */
+    /* ========================================================================= */
+
+    /**
+     * 카테고리 유효성 검증
+     * @param boardCode
+     * @param categoryId
+     */
+    private void isValidateCategoryForBoard(String boardCode, String categoryId){
+        if(!boardMapper.isValidateCategoryForBoard(boardCode, categoryId)){
+            throw new InvalidCategoryException(); //유효하지 않은 카테고리입니다
+        }
+    }
+
+    /**
+     * boardCode 존재 여부를 검증한다.
+     * @param boardCode
+     */
+    private void validateBoardCodeExists(String boardCode) {
+        if(!boardMasterMapper.validateBoardCodeExist(boardCode)){
+            throw new NotFoundBoardCodeException();
         }
     }
 }

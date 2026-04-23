@@ -22,7 +22,7 @@ public class Notification {
 
     private String isRead;          // 읽음 여부(Y/N)
 
-    private LocalDateTime regDate;  // 발생 시간
+    private LocalDateTime createAt;  // 발생 시간
 
     private String targetUrl;       // 클릭 시 이동할 페이지 주소
 }

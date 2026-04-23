@@ -3,9 +3,9 @@ package com.sqld_board.sqld.service.board;
 import com.sqld_board.sqld.dto.request.board.BoardRequest;
 import com.sqld_board.sqld.dto.request.board.CommentRequest;
 import com.sqld_board.sqld.dto.response.board.BoardResponse;
+import com.sqld_board.sqld.dto.response.code.CategoryResponse;
 import com.sqld_board.sqld.model.board.BoardFile;
-import com.sqld_board.sqld.model.board.Comment;
-import org.apache.ibatis.annotations.Param;
+import com.sqld_board.sqld.model.commentManagement.CommentManagement;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,19 +16,28 @@ import java.util.Map;
 public interface BoardService {
 
   /**
+   * 카테고리 조회
+   * @param boardCode
+   * @return
+   */
+   List<CategoryResponse> getCategoryListByBoardCode(String boardCode);
+
+  /**
    * 내 스크랩 페이지 삭제
    * @param scrapId
    * @param memberId
    */
-   void deleteMyScrapPage(@Param("scrapId") List<Long> scrapId, @Param("memberId") String memberId);
+   void deleteMyScrapPage(List<Long> scrapId,String memberId);
 
   /**
    * 내 스크랩 페이지 조회
    * @param memberId
    * @return
    */
-   Map<String, Object> searchScrapMyPage(@Param("page")int page, @Param("size")int size
-                                        ,@Param("keyword") String keyword, @Param("memberId") String memberId);
+   Map<String, Object> searchScrapMyPage(int page
+                                       , int size
+                                       , String keyword
+                                       , String memberId);
 
    /**
     *  스크랩 추가
@@ -36,13 +45,13 @@ public interface BoardService {
     * @param memberId
     * @return
     */
-   Boolean insertBoardScrap(@Param("boardId")Long boardId, @Param("memberId") String memberId);
+   Boolean insertBoardScrap(Long boardId ,String memberId);
 
    /**
     * 첨부파일 삭제
     * @param fileIds
     */
-   void deleteFiles(@Param("fileIds") List<Long> fileIds);
+   void deleteFiles(List<Long> fileIds);
 
    /**
     * 첨부파일 다운로드 시, 파일정보 조회
@@ -62,27 +71,30 @@ public interface BoardService {
     * 내가 작성한 글 리스트 조회
     * @param page
     * @param size
-    * @param boardType
-    * @param category
+    * @param boardCode
+    * @param categoryId
     * @param tagName
     * @param memberId
     * @return
     */
-   Map<String, Object> getBoardMyList(int page, int size, String boardType
-                                     ,String category, String tagName
-                                     ,String keyword, String memberId);
+   Map<String, Object> getBoardMyList(int page, int size
+                                    , String boardCode ,String categoryId
+                                    , String tagName ,String keyword
+                                    , String memberId);
 
    /**
     * 페이징된 게시판 목록 조회
     * @param page
     * @param size
-    * @param boardType
-    * @param category
+    * @param boardCode
+    * @param categoryId
     * @param tagName
     * @param memberId
     * @return
     */
-   Map<String, Object> getBoardListWithPaging(int page, int size, String boardType, String category, String tagName, String memberId);
+   Map<String, Object> getBoardListWithPaging(int page, int size
+                                            , String boardCode , String categoryId
+                                            , String tagName, String memberId);
 
    /**
     * 전체 게시글 목록을 조회합니다.
@@ -125,7 +137,7 @@ public interface BoardService {
      * @param boardId
      * @return
      */
-    List<Comment> getCommentList(Long boardId);
+    List<CommentManagement> getCommentList(Long boardId);
 
     /**
      * 댓글 작성
@@ -172,7 +184,7 @@ public interface BoardService {
      * @param boardId
      * @param memberId
      */
-    boolean deleteBoards(List<Long> boardId, String memberId);
+    boolean deleteBoards(List<Long> boardId, String memberId, boolean isAdmin);
 
     /**
      * 인기 게시글 조회
@@ -183,12 +195,12 @@ public interface BoardService {
     /**
      * 전문 검색(Full-Text Search)을 사용하여 게시글을 검색합니다.
      * @param keyword
-     * @param boardType
+     * @param boardCode
      * @param page
      * @param size
      * @return
      */
-    Map<String, Object> searchBoardContent(String keyword, String boardType, int page, int size);
+    Map<String, Object> searchBoardContent(String keyword, String boardCode, int page, int size);
 
     /**
      * 추천을 토글(추가 또는 취소)합니다.

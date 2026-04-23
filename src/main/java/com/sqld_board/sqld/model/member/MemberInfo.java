@@ -47,10 +47,10 @@ public class MemberInfo {
     private String profileImage;
 
     //가입 일시
-    private Date createAt;
+    private LocalDateTime createAt;
 
     //수정 일시
-    private Date updateAt;
+    private LocalDateTime updateAt;
 
     // 최종 접속 일시
     private LocalDateTime lastLogAt;

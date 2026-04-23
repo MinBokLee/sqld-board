@@ -106,8 +106,8 @@
             M.USER_ID,
             M.USER_NAME,
             B.MEMBER_ID,
-            B.BOARD_TYPE,
-            B.CATEGORY,
+            B.BOARD_CODE,
+            B.categoryId,
             B.VIEW_COUNT,
             B.LIKE_COUNT,
             M.PROFILE_IMAGE,
@@ -127,8 +127,8 @@
             M.USER_ID,
             M.USER_NAME,
             B.MEMBER_ID,
-            B.BOARD_TYPE,
-            B.CATEGORY,
+            B.BOARD_CODE,
+            B.categoryId,
             B.VIEW_COUNT,
             B.LIKE_COUNT,
             M.PROFILE_IMAGE,
@@ -157,8 +157,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -169,7 +169,7 @@
     INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
                 SELECT BOARD_ID
                   FROM BOARD
-             WHERE  BOARD_TYPE = 'S' 
+             WHERE  BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -177,7 +177,7 @@
         ORDER BY B.CREATE_AT DESC
  {executed in 12 msec}
 [2026-03-19 10:33:09.674] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-         WHERE  BOARD_TYPE = 'S'
+         WHERE  BOARD_CODE = 'S'
  {executed in 70 msec}
 [2026-03-19 10:33:09.688] [ERROR] [http-nio-8881-exec-8] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168686 milliseconds.  Allowed clock skew: 0 milliseconds.
 [2026-03-19 10:33:09.687] [ERROR] [http-nio-8881-exec-7] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-17T07:33:41Z. Current time: 2026-03-19T01:33:09Z, a difference of 151168687 milliseconds.  Allowed clock skew: 0 milliseconds.
@@ -218,8 +218,8 @@
             M.USER_ID,
             M.USER_NAME,
             B.MEMBER_ID,
-            B.BOARD_TYPE,
-            B.CATEGORY,
+            B.BOARD_CODE,
+            B.categoryId,
             B.VIEW_COUNT,
             B.LIKE_COUNT,
             M.PROFILE_IMAGE,
@@ -248,8 +248,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -260,7 +260,7 @@
     INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
                 SELECT BOARD_ID
                   FROM BOARD
-             WHERE  BOARD_TYPE = 'S' 
+             WHERE  BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -268,7 +268,7 @@
         ORDER BY B.CREATE_AT DESC
  {executed in 39 msec}
 [2026-03-19 10:33:09.802] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-         WHERE  BOARD_TYPE = 'S'
+         WHERE  BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-03-19 10:33:21.931] [INFO ] [http-nio-8881-exec-3] c.s.s.controller.sign.SignController - >>>>>> Incoming SignIn Request: SignInMemberReq(userId=admin, userPass=Knou200634!!@)
 [2026-03-19 10:33:21.975] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT MEMBER_ID
@@ -392,8 +392,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -404,7 +404,7 @@
     INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
                 SELECT BOARD_ID
                   FROM BOARD
-             WHERE  BOARD_TYPE = 'S' 
+             WHERE  BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -418,8 +418,8 @@
             M.USER_ID,
             M.USER_NAME,
             B.MEMBER_ID,
-            B.BOARD_TYPE,
-            B.CATEGORY,
+            B.BOARD_CODE,
+            B.categoryId,
             B.VIEW_COUNT,
             B.LIKE_COUNT,
             M.PROFILE_IMAGE,
@@ -431,7 +431,7 @@
         WHERE B.BOARD_ID = 83
  {executed in 9 msec}
 [2026-03-19 10:33:32.013] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-         WHERE  BOARD_TYPE = 'S'
+         WHERE  BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-03-19 10:33:32.022] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
             FILE_ID,
@@ -471,8 +471,8 @@
             M.USER_ID,
             M.USER_NAME,
             B.MEMBER_ID,
-            B.BOARD_TYPE,
-            B.CATEGORY,
+            B.BOARD_CODE,
+            B.categoryId,
             B.VIEW_COUNT,
             B.LIKE_COUNT,
             M.PROFILE_IMAGE,
@@ -541,8 +541,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -553,7 +553,7 @@
     INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
                 SELECT BOARD_ID
                   FROM BOARD
-             WHERE  BOARD_TYPE = 'N' 
+             WHERE  BOARD_CODE = 'N'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -561,7 +561,7 @@
         ORDER BY B.CREATE_AT DESC
  {executed in 66 msec}
 [2026-03-19 10:33:39.787] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-         WHERE  BOARD_TYPE = 'N'
+         WHERE  BOARD_CODE = 'N'
  {executed in 22 msec}
 [2026-03-19 10:33:39.788] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* boardMapper.getBoardListWithPaging */
                B.BOARD_ID
@@ -570,8 +570,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -582,7 +582,7 @@
     INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
                 SELECT BOARD_ID
                   FROM BOARD
-             WHERE  BOARD_TYPE = 'S' 
+             WHERE  BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -590,7 +590,7 @@
         ORDER BY B.CREATE_AT DESC
  {executed in 26 msec}
 [2026-03-19 10:33:39.801] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT COUNT(*) FROM BOARD /* boardMapper.getgetBoardTotalCount */
-         WHERE  BOARD_TYPE = 'S'
+         WHERE  BOARD_CODE = 'S'
  {executed in 12 msec}
 [2026-03-19 11:38:07.630] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
 [2026-03-19 11:38:07.727] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete

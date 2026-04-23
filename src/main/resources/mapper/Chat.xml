@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqld_board.sqld.mapper.ChatMapper">
+
+    <!-- select -->
+    <!-- select -->
+    <!-- select -->
+
+    <!-- [채팅방] 저장된 메지시 가져오기 -->
+    <select id="getChatHistory" resultType="ChatMessage">
+        SELECT /* ChatMapper.ChatMessage */
+               CM.MESSAGE_ID                /* 메시지 아이디 */
+             , CM.ROOM_ID                   /* 채팅방 아이디 */
+             , CM.SENDER_ID                 /* 발신인 아이디 */
+             ,  M.USER_NAME AS SENDER_NAME   /* 발신인 명 */
+             , CM.CONTENT                   /* 내용 */
+             , CM.SEND_TIME                 /* 보낸 시간 */
+             , CM.CHAT_TYPE                 /* 채팅방 타입 */
+          FROM CHAT_MESSAGE CM
+     LEFT JOIN MEMBER_INFO M ON CM.SENDER_ID = M.MEMBER_ID
+         WHERE ROOM_ID = #{roomId}
+      ORDER BY SEND_TIME ASC /* 시간 순 정렬 */
+         LIMIT 50           /* 50개까지 */
+    </select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package com.sqld_board.sqld.model.board;
+package com.sqld_board.sqld.model.commentManagement;
 
 import lombok.*;
 
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class Comment {
+public class CommentManagement {
 
     private Long commentId;        // 댓글 아이디 (PK)
     private Long boardId;          // 게시글 아이디 (FK)

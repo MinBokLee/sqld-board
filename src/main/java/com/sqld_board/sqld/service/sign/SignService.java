@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface SignService {
 
-    Optional<MemberSimpleInfoRes> readMemberSimpleInfo(String memberId);
+    MemberSimpleInfoRes readMemberSimpleInfo(String memberId);
 
     /**
      * 회원의 userId를 받아 회원 정보를 삭제한다.(단건)
@@ -21,23 +21,23 @@ public interface SignService {
 
     void sendVerificationCode(String email);
 
-    boolean verifyCode(String email, String code);
+    void verifyCode(String email, String code);
 
     void sendPassChangeCode(String userId, String email);
 
-    boolean verifyPassChangeCode(String userId, String email, String code);
+    void verifyPassChangeCode(String userId, String email, String code);
 
-    boolean updatePassword(String userId, String email, String newPassword);
+    void updatePassword(String userId, String email, String newPassword);
 
-    boolean updateProfileImage(String memberId, String profileImage);
+    void updateProfileImage(String memberId, String profileImage);
 
-    boolean checkUserIdDuplicate(String userId);
+    void checkUserIdDuplicate(String userId);
 
-    boolean checkUserNameDuplicate(String userName);
+    void checkUserNameDuplicate(String userName);
 
     SignInResult signIn(SignInMemberReq req);
 
-    Optional<SignInResponseDto> refreshAccessToken(String refreshTokenString);
+    SignInResponseDto refreshAccessToken(String refreshTokenString);
 
     void logout(String userId);
 

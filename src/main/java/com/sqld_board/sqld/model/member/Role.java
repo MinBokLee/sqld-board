@@ -7,5 +7,5 @@ package com.sqld_board.sqld.model.member;
 public enum Role {
      SUPER_ADMIN
     ,ADMIN
-    ,USER,;
+    ,USER;
 }

@@ -1,7 +1,5 @@
 package com.sqld_board.sqld.service.notification;
 
-import com.sqld_board.sqld.dto.request.notification.NotificationRequest;
-import com.sqld_board.sqld.dto.request.websocket.RealTimeMessage;
 import com.sqld_board.sqld.dto.response.webSocket.NotificationResponse;
 
 import java.util.List;

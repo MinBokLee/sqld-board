@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sqld_board.sqld.mapper.BoardMapper">
 
-    <!-- 게시글 유무 확인(조회수 증가전 Resis)-->
+    <!-- 특정 게시판(boardCode)에 해당 카테고리(categoryId)가 유효한지 확인 -->
+    <select id="isValidateCategoryForBoard" resultType="boolean">
+        SELECT /* BoardMapper.isValidCategoryForBoard */
+               COUNT(1)
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD           /* inner 는 생략 가능 */
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = #{boardCode}      /* 게시판 확인 */
+           AND CCD.CODE_ID = #{categoryId}       /* 카데고리명 확인 */
+           AND BM.USE_YN= 'Y'                   /* 사용중인 게시판인지 확인 */
+           AND CCD.USE_YN= 'Y'                  /* 사용중인 카테고리인지 확인 */
+    </select>
+
+    <!-- 게시글 유무 확인(조회수 증가전 Redis)-->
     <select id="existsBoardContent" resultType="int">
         SELECT /* BoardMapper.existBoardContent */
                COUNT(1)
@@ -11,7 +24,7 @@
            AND DELETE_YN = 'N'
     </select>
 
-    <!-- 페이지 스크랩 여부  확인 -->
+    <!-- 페이지 스크랩 여부 확인 -->
     <select id="checkBoardScrap" resultType="int">
         SELECT /* BoardMapper.checkBoardScrap (페이지 스크랩 여부  확인) */
                COUNT(*)
@@ -20,6 +33,7 @@
            AND MEMBER_ID = #{memberId}
     </select>
 
+    <!-- 스크랩 페이지 총개수 조회 -->
     <select id="getSearchScrapTotalCount" resultType="int">
         SELECT /* BoardMapper.getSearchScrapTotalCount 스크랩 페이지 총개수 조회*/
                COUNT(*)
@@ -39,8 +53,8 @@
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -151,8 +165,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -176,8 +190,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -205,8 +219,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -223,11 +237,11 @@
                   FROM BOARD
             <where>
                 DELETE_YN = 'N'
-                <if test="boardType != null and boardType != ''">
-                    AND BOARD_TYPE = #{boardType}
+                <if test="boardCode != null and boardCode != ''">
+                    AND BOARD_CODE = #{boardCode}
                 </if>
-                <if test="category != null and category != ''">
-                    AND CATEGORY = #{category}
+                <if test="categoryId != null and categoryId != ''">
+                    AND CATEGORY_ID = #{categoryId}
                 </if>
                 <if test="memberId != null and memberId != ''">
                     AND MEMBER_ID = #{memberId}
@@ -253,11 +267,11 @@
           FROM BOARD
         <where>
                 DELETE_YN = 'N'
-            <if test="boardType != null and boardType !=''">
-                AND BOARD_TYPE = #{boardType}
+            <if test="boardCode != null and boardCode !=''">
+                AND BOARD_CODE = #{boardCode}
             </if>
-            <if test="category != null and category != ''">
-                AND CATEGORY = #{category}
+            <if test="categoryId != null and categoryId != ''">
+                AND CATEGORY_ID = #{categoryId}
             </if>
             <if test="memberId != null and memberId != ''">
                 AND MEMBER_ID = #{memberId}
@@ -274,6 +288,16 @@
     <!-- update -->
     <!-- update -->
     <!-- update -->
+
+    <update id="updateBoardDeleteYNByAdmin">
+        UPDATE BOARD
+           SET DELETE_YN = 'N'
+             , UPDATE_AT = NOW()
+         WHERE BOARD_ID IN
+         <foreach item="boardIds" collection="boardIds" open="(" separator="," close=")">
+             #{boardIds}
+         </foreach>
+    </update>
 
     <update id="updateViewCountBulk">
         UPDATE BOARD
@@ -348,8 +372,8 @@
         UPDATE BOARD /* BoardMapper.updateBoard (게시글 수정)*/
            SET TITLE = #{title}
              , CONTENT = #{content}
-             , BOARD_TYPE = #{boardType}
-             , CATEGORY = #{category}
+             , BOARD_CODE = #{boardCode}
+             , CATEGORY_ID = #{categoryId}
              , TAG_NAME = #{tagName}
              , UPDATE_AT = NOW()
         WHERE BOARD_ID = #{boardId}
@@ -382,8 +406,8 @@
             , CONTENT
             , MEMBER_ID
             , USER_ID
-            , BOARD_TYPE
-            , CATEGORY
+            , BOARD_CODE
+            , CATEGORY_ID
             , VIEW_COUNT
             , CREATE_AT
             , UPDATE_AT
@@ -393,8 +417,8 @@
             , #{content}
             , #{memberId}
             , #{userId}
-            , #{boardType}
-            , #{category}
+            , #{boardCode}
+            , #{categoryId}
             , 0
             , NOW()
             , NOW()
@@ -498,8 +522,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -519,8 +543,8 @@
                      <if test =" keyword != null and keyword != ''">
                          AND MATCH(TITLE, CONTENT) AGAINST(#{keyword} IN BOOLEAN MODE)
                      </if>
-                      <if test ="boardType !=null and boardType !=''">
-                          AND BOARD_TYPE = #{boardType}
+                      <if test ="boardCode !=null and boardCode !=''">
+                          AND BOARD_CODE = #{boardCode}
                       </if>
                  </where>
               ORDER BY CREATE_AT DESC
@@ -540,8 +564,8 @@
             <if test=" keyword != null and keyword != ''">
                 AND MATCH(TITLE, CONTENT) AGAINST(#{keyword} IN BOOLEAN MODE)
             </if>
-            <if test="boardType != null and boardType != ''">
-                AND BOARD_TYPE = #{boardType}
+            <if test="boardCode != null and boardCode != ''">
+                AND BOARD_CODE = #{boardCode}
             </if>
         </where>
     </select>

@@ -72,8 +72,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -129,8 +129,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -147,7 +147,7 @@
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 20 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -181,7 +181,7 @@
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 17 msec}
 [2026-04-02 10:08:34.545] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -190,8 +190,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -223,8 +223,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -249,8 +249,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -267,7 +267,7 @@
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -281,8 +281,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -299,7 +299,7 @@
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -311,14 +311,14 @@
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 10 msec}
 [2026-04-02 10:08:43.346] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 10 msec}
 [2026-04-02 10:08:58.752] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
@@ -433,8 +433,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -451,7 +451,7 @@
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -465,8 +465,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -483,7 +483,7 @@
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -495,14 +495,14 @@
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 22 msec}
 [2026-04-02 10:09:39.574] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 22 msec}
 [2026-04-02 10:18:01.471] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
                B.BOARD_ID
@@ -511,8 +511,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -538,8 +538,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3870,8 +3870,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3949,8 +3949,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3971,8 +3971,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3989,7 +3989,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 20 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4012,7 +4012,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-04-02 16:04:19.769] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
@@ -4120,8 +4120,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -4205,8 +4205,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4260,8 +4260,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4278,7 +4278,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'N'
+                    AND BOARD_CODE = 'N'
 
                     AND MEMBER_ID = 'MEMBER_20260212_005' 
             ORDER BY CREATE_AT DESC
@@ -4292,7 +4292,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'N'
+                AND BOARD_CODE = 'N'
 
                 AND MEMBER_ID = 'MEMBER_20260212_005'
  {executed in 9 msec}
@@ -4319,8 +4319,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4337,7 +4337,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'G'
+                    AND BOARD_CODE = 'G'
 
                     AND MEMBER_ID = 'MEMBER_20260212_005' 
             ORDER BY CREATE_AT DESC
@@ -4351,7 +4351,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'G'
+                AND BOARD_CODE = 'G'
 
                 AND MEMBER_ID = 'MEMBER_20260212_005'
  {executed in 9 msec}
@@ -4378,8 +4378,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4396,7 +4396,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S'
+                    AND BOARD_CODE = 'S'
 
                     AND MEMBER_ID = 'MEMBER_20260212_005' 
             ORDER BY CREATE_AT DESC
@@ -4410,7 +4410,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
 
                 AND MEMBER_ID = 'MEMBER_20260212_005'
  {executed in 8 msec}
@@ -4437,8 +4437,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4542,8 +4542,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4584,8 +4584,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4782,8 +4782,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4912,8 +4912,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7100,8 +7100,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7298,8 +7298,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7399,8 +7399,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7538,8 +7538,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7580,8 +7580,8 @@ Caused by: java.io.IOException: Broken pipe
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7616,7 +7616,7 @@ Caused by: java.io.IOException: Broken pipe
          LIMIT 1
  {executed in 10 msec}
 [2026-04-02 16:37:48.193] [INFO ] [http-nio-8881-exec-3] c.s.sqld.exception.ExceptionAdvice - SignInFailureException
-com.sqld_board.sqld.exception.common.SignInFailureException: null
+com.sqld_board.sqld.exception.common.InvalidCredentialsException: null
 	at com.sqld_board.sqld.service.sign.SignServiceImpl.signIn(SignServiceImpl.java:300)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -7740,7 +7740,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-[2026-04-02 16:37:48.195] [WARN ] [http-nio-8881-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.SignInFailureException]
+[2026-04-02 16:37:48.195] [WARN ] [http-nio-8881-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.InvalidCredentialsException]
 [2026-04-02 16:37:52.237] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
              , USER_PASS
@@ -7758,7 +7758,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
          LIMIT 1
  {executed in 8 msec}
 [2026-04-02 16:37:52.395] [INFO ] [http-nio-8881-exec-4] c.s.sqld.exception.ExceptionAdvice - SignInFailureException
-com.sqld_board.sqld.exception.common.SignInFailureException: null
+com.sqld_board.sqld.exception.common.InvalidCredentialsException: null
 	at com.sqld_board.sqld.service.sign.SignServiceImpl.signIn(SignServiceImpl.java:300)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -7882,7 +7882,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-[2026-04-02 16:37:52.397] [WARN ] [http-nio-8881-exec-4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.SignInFailureException]
+[2026-04-02 16:37:52.397] [WARN ] [http-nio-8881-exec-4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.InvalidCredentialsException]
 [2026-04-02 16:37:52.938] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
              , USER_PASS
@@ -7900,7 +7900,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
          LIMIT 1
  {executed in 9 msec}
 [2026-04-02 16:37:53.106] [INFO ] [http-nio-8881-exec-5] c.s.sqld.exception.ExceptionAdvice - SignInFailureException
-com.sqld_board.sqld.exception.common.SignInFailureException: null
+com.sqld_board.sqld.exception.common.InvalidCredentialsException: null
 	at com.sqld_board.sqld.service.sign.SignServiceImpl.signIn(SignServiceImpl.java:300)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -8024,7 +8024,7 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-[2026-04-02 16:37:53.111] [WARN ] [http-nio-8881-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.SignInFailureException]
+[2026-04-02 16:37:53.111] [WARN ] [http-nio-8881-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.sqld_board.sqld.exception.common.InvalidCredentialsException]
 [2026-04-02 16:37:58.098] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT MEMBER_ID
              , USER_ID
              , USER_PASS
@@ -8170,8 +8170,8 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8360,8 +8360,8 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8459,8 +8459,8 @@ com.sqld_board.sqld.exception.common.SignInFailureException: null
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -13523,8 +13523,8 @@ com.sqld_board.sqld.exception.member.NotMatchUserException: null
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -13753,8 +13753,8 @@ com.sqld_board.sqld.exception.member.NotMatchUserException: null
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT

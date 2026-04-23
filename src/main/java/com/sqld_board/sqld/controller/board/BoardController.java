@@ -7,12 +7,13 @@ import com.sqld_board.sqld.dto.request.board.CommentRequest;
 import com.sqld_board.sqld.dto.request.board.ScrapDeleteRequest;
 import com.sqld_board.sqld.dto.response.Response;
 import com.sqld_board.sqld.dto.response.board.BoardResponse;
+import com.sqld_board.sqld.dto.response.code.CategoryResponse;
 import com.sqld_board.sqld.exception.MessageType;
 import com.sqld_board.sqld.exception.common.LoginRequiredException;
 import com.sqld_board.sqld.handler.ResponseHandler;
 import com.sqld_board.sqld.model.board.BoardFile;
-import com.sqld_board.sqld.model.board.Comment;
-import com.sqld_board.sqld.service.board.BoardServiceImpl;
+import com.sqld_board.sqld.model.commentManagement.CommentManagement;
+import com.sqld_board.sqld.service.board.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +45,15 @@ import static com.sqld_board.sqld.dto.response.Response.success;
 @RequestMapping("/api/board")
 public class BoardController {
 
-    private final BoardServiceImpl boardService;
+    private final BoardService boardService;
     private final ResponseHandler responseHandler;
+
+    @Operation(summary = "카테고리 조회")
+    @GetMapping("/{boardCode}/categories")
+    public ResponseEntity<Response> getCategoryListByBoardCode(@PathVariable String boardCode) {
+        List<CategoryResponse> categoryData = boardService.getCategoryListByBoardCode(boardCode);
+        return ResponseEntity.ok(Response.success(categoryData));
+    }
 
     @Operation(summary="스크랩 페이지 삭제")
     @DeleteMapping("/deleteMyScrapPage")
@@ -116,7 +124,7 @@ public class BoardController {
     @Operation(summary="게시판 댓글 확인")
     @GetMapping("/readComment")
     public ResponseEntity<Response> readComment(@RequestParam Long boardId) {
-        List<Comment> result = boardService.getCommentList(boardId);
+        List<CommentManagement> result = boardService.getCommentList(boardId);
         return ResponseEntity.ok(success(result));
     }
 
@@ -130,28 +138,35 @@ public class BoardController {
     }
 
     @Operation(summary = "게시판 글 수정")
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/list/{boardId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Response updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequest boardReq, @AuthenticationPrincipal User user) {
+    public ResponseEntity<Response> updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequest request, @AuthenticationPrincipal User user) {
 
+        // 1. 현재 로그인한 사용자의 ID(username)를 추출합니다. (로그인하지 않은 경우 null)
         String memberId = (user != null) ? user.getUsername() : null;
 
-        boardService.updateBoard(boardId, boardReq, memberId);
-        if(boardReq.getDeleteFileIds() != null && !boardReq.getDeleteFileIds().isEmpty()){
-            boardService.deleteFiles(boardReq.getDeleteFileIds());
+        boardService.updateBoard(boardId, request, memberId);
+
+        // 사용자가 삭제를 요청한 기존 첨부 파일들이 있다면 실제 파일과 DB 레코드를 삭제합니다.
+        if(request.getDeleteFileIds() != null && !request.getDeleteFileIds().isEmpty()){
+            boardService.deleteFiles(request.getDeleteFileIds());
         }
-        if (boardReq.getFiles() != null && !boardReq.getFiles().isEmpty()) {
-            boardService.uploadFiles(boardId, boardReq.getFiles());
+
+        // 새로 업로드할 첨부 파일이 있는 경우 서버에 저장하고 DB에 등록합니다.
+        if (request.getFiles() != null && !request.getFiles().isEmpty()) {
+            boardService.uploadFiles(boardId, request.getFiles());
         }
-        return success(MessageConstants.UPDATE_OK);
+
+        return ResponseEntity.ok(Response.success(MessageType.UPDATE_BOARD_CONTENT_SUCCESS));
     }
 
     @Operation(summary ="게시판 글 작성")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/list/write", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Response writeBoard(@ModelAttribute BoardRequest request, @AuthenticationPrincipal User user) {
+
         if(user == null) throw new LoginRequiredException();
         Long boardId = boardService.writeBoard(request, user.getUsername());
+
         if (request.getFiles() != null && !request.getFiles().isEmpty()) {
             boardService.uploadFiles(boardId, request.getFiles());
         }
@@ -179,8 +194,8 @@ public class BoardController {
     @Operation(summary = "게시글 전문 검색(FTS)")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/searchContent")
-    public Response searchContent(@RequestParam String keyword, @RequestParam(required = false) String boardType, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
-        Map<String, Object> result = boardService.searchBoardContent(keyword.trim(), boardType, page, size);
+    public Response searchContent(@RequestParam String keyword, @RequestParam(required = false) String boardCode, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        Map<String, Object> result = boardService.searchBoardContent(keyword.trim(), boardCode, page, size);
         return success(result);
     }
 
@@ -206,8 +221,8 @@ public class BoardController {
     @GetMapping("/my-list")
     public ResponseEntity<Response> getBoardMyList(@RequestParam(defaultValue = "1") int page
                                                   ,@RequestParam(defaultValue = "10") int size
-                                                  ,@RequestParam(required = false) String boardType
-                                                  ,@RequestParam(required = false) String category
+                                                  ,@RequestParam(required = false) String boardCode
+                                                  ,@RequestParam(required = false) String categoryId
                                                   ,@RequestParam(required = false) String tagName
                                                    ,@RequestParam(required = false) String keyword
                                                   , @AuthenticationPrincipal User user){
@@ -218,14 +233,14 @@ public class BoardController {
         if(size >100) size = 100; // 최대 100개까지만 허용
 
         String memberId = (user != null) ? user.getUsername() : null;
-        Map<String, Object> result = boardService.getBoardMyList(page, size, boardType, category, tagName, keyword, memberId);
+        Map<String, Object> result = boardService.getBoardMyList(page, size, boardCode, categoryId, tagName, keyword, memberId);
         return ResponseEntity.ok(Response.success(result));
     }
 
     @Operation(summary = "게시판 목록 페이징 조회")
     @GetMapping("/list/paging")
-    public ResponseEntity<Response> getBoardListWithPaging(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String boardType, @RequestParam(required = false) String category, @RequestParam(required = false) String memberId, @RequestParam(required = false) String tagName) {
-        Map<String, Object> result = boardService.getBoardListWithPaging(page, size, boardType, category, memberId, tagName);
+    public ResponseEntity<Response> getBoardListWithPaging(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String boardCode, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String memberId, @RequestParam(required = false) String tagName) {
+        Map<String, Object> result = boardService.getBoardListWithPaging(page, size, boardCode, categoryId, memberId, tagName);
         return ResponseEntity.ok(success(result));
     }
 
@@ -247,10 +262,17 @@ public class BoardController {
 
     @Operation(summary = "게시판 글 삭제(소프트)")
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/list/deleteBoardContent")
+    @PostMapping("/list/deleteBoardContent")
     public Response deleteBoards(@RequestBody BoardDeleteRequest boardDeleteRequest, @AuthenticationPrincipal User user) {
-        if(user == null) throw new LoginRequiredException();
-        boardService.deleteBoards(boardDeleteRequest.getBoardIds(), user.getUsername());
+
+        if(user == null) throw new LoginRequiredException(); //로그인이 필요한 서비스 입니다.
+
+        // ROLE_ADMIN OR ROLE_SUPER_ADMIN 권한이 있는지 확인
+        boolean isAdmin = user.getAuthorities()
+                              .stream()
+                              .anyMatch(a ->a.getAuthority().equals("ROLE_ADMIN") || a.getAuthority().equals("ROLE_SUPER_ADMIN"));
+        boardService.deleteBoards(boardDeleteRequest.getBoardIds(), user.getUsername(), isAdmin);
+
         return responseHandler.getSuccessResponse(MessageType.DELETE_CONTENT_Y);
     }
 }

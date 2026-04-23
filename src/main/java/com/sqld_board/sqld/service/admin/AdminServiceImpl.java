@@ -6,6 +6,7 @@ import com.sqld_board.sqld.exception.admin.InsufficientAdminPrivilegesException;
 import com.sqld_board.sqld.exception.admin.SelfAuthorityChangeException;
 import com.sqld_board.sqld.exception.admin.SuperAdminProtectedException;
 import com.sqld_board.sqld.exception.common.MemberNotFoundException;
+import com.sqld_board.sqld.exception.common.SelfDeleteResignException;
 import com.sqld_board.sqld.exception.member.CustomException;
 import com.sqld_board.sqld.exception.member.NotMatchUserException;
 import com.sqld_board.sqld.mapper.AdminMapper;
@@ -95,19 +96,27 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public MessageType deleteMembersBySuperAdmin(List<String> memberIds) {
 
-        // 0.사용자가 null 이거나 선택되지 않은 경우
+        // 1.사용자가 null 이거나 선택되지 않은 경우
         if(memberIds ==null || memberIds.isEmpty()){
-            throw new CustomException();
+            throw new CustomException(); // 삭제할 사용자가 선택되지 않았습니다.
+        }
+
+        // 2. 현재 로그인한 사용자의 ID 가져오기 (memberId)
+        String currentMemberId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if(memberIds.contains(currentMemberId)){
+            throw new SelfDeleteResignException(); //관리자 본인의 계정은 직접 탈퇴/강퇴 할 수 없습니다
         }
 
         //1. 권한 체크
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
 
         boolean isSuperAdmin = authentication.getAuthorities().stream()
                 .anyMatch(g -> g.getAuthority().equals("ROLE_SUPER_ADMIN"));
+
+        // 권한 체크
         if(!isSuperAdmin){
-            throw new InsufficientAdminPrivilegesException();
+            throw new InsufficientAdminPrivilegesException(); ////해당 관리자 권한을 변경할 수 있는 권한이 부족합니다.
         }
 
         // 1-2 삭제할 사용자가 작성한 글과, 댓글 익명화

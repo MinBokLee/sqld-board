@@ -1,6 +1,6 @@
 package com.sqld_board.sqld.mapper;
 
-import com.sqld_board.sqld.model.board.Comment;
+import com.sqld_board.sqld.model.commentManagement.CommentManagement;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -32,17 +32,17 @@ public interface CommentMapper {
 
     /**
      * 새로운 댓글을 등록합니다.
-     * @param comment 저장할 댓글 객체
+     * @param commentManagement 저장할 댓글 객체
      * @return 영향을 받은 행의 수 (1)
      */
-    int insertComment(Comment comment);
+    int insertComment(CommentManagement commentManagement);
 
     /**
      * 특정 게시글의 댓글 목록을 조회합니다.
      * @param boardId 게시글 ID
      * @return 댓글 리스트
      */
-    List<Comment> getCommentList(@Param("boardId") Long boardId);
+    List<CommentManagement> getCommentList(@Param("boardId") Long boardId);
 
     /**
      * 댓글 내용을 수정합니다.
@@ -64,5 +64,5 @@ public interface CommentMapper {
      * @param commentId 댓글 ID
      * @return 댓글 객체
      */
-    Comment getComment(@Param("commentId") Long commentId);
+    CommentManagement getComment(@Param("commentId") Long commentId);
 }

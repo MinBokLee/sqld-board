@@ -59,7 +59,7 @@ public class NotificationStompServiceImpl implements NotificationStompService {
                 .message(message.getContent())
                 .targetUrl(message.getTargetUrl()) // DTO의 URL을 매핑
                 .isRead("N")
-                .regDate(LocalDateTime.now())
+                .createAt(LocalDateTime.now())
                 .build();
 
         // 2. [모델 변환] toModel 호출

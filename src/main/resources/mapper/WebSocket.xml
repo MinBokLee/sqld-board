@@ -8,6 +8,7 @@
     <!-- select -->
     <!-- select -->
 
+
     <!-- insert -->
     <!-- insert -->
     <!-- insert -->
@@ -15,12 +16,14 @@
     <!-- 채팅 저장 -->
     <insert id="insertChatMessage" parameterType="ChatMessage" useGeneratedKeys="true" keyProperty="messageId">
         INSERT INTO CHAT_MESSAGE( /* WebSocketMapper.insertChatMessage (채팅 저장) */
-                    SENDER_ID
+                    ROOM_ID
+                  , SENDER_ID
                   , CONTENT
                   , SEND_TIME
                   , CHAT_TYPE
         )    VALUES(
-                    #{senderId}
+                    #{roomId}
+                  , #{senderId}
                   , #{content}
                   , #{sendTime}
                   , #{chatType}

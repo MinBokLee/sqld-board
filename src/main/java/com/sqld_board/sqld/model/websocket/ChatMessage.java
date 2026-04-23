@@ -1,20 +1,23 @@
 package com.sqld_board.sqld.model.websocket;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
 public class ChatMessage {
 
     private long messageId;
 
-    private String senderId;            // 보낸 사람
+    private String senderName;          // 발신자 명
+
+    private String roomId;
+
+    private String senderId;            // 발신인 아이디
 
     private String content;             // 메세지 내용
 

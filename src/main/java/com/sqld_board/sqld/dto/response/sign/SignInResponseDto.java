@@ -1,16 +1,15 @@
 package com.sqld_board.sqld.dto.response.sign;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 /**
  * 로그인 성공 시, 클라이언트에게 반환될 사용자 정보와 토큰을 담는 DTO입니다.
  */
 @Getter
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 public class SignInResponseDto {
     /**
      * 사용자의 고유 식별자 (PK). 게시글 작성 시 등에 사용됩니다.

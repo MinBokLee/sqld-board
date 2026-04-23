@@ -24,10 +24,10 @@
         private String memberId;
 
         @Schema(description = "게시판 타입")
-        private String boardType;
+        private String boardCode;
 
         @Schema(description = "게시글 카테고리 (question, tip, faq, etc.)")
-        private String category;
+        private String categoryId;
 
         @Schema(description = "태그명")
         private String tagName;

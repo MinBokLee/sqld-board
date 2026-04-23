@@ -58,8 +58,8 @@ public class SampleController {
                 return Response.failure(MessageConstants.CREATE_FAIL);
             }
         } catch(Exception e){
-          // 로깅 또는 예외 핸들링
-          return Response.failure(MessageConstants.INTERNAL_SERVER_ERROR); // 500
+            // 로깅 또는 예외 핸들링
+            return Response.failure(MessageConstants.INTERNAL_SERVER_ERROR); // 500
         }
     }
 

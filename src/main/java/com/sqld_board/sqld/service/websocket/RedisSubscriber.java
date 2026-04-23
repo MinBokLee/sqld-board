@@ -29,7 +29,9 @@ public class RedisSubscriber implements MessageListener {
             RealTimeMessage rtMessage = objectMapper.readValue(publishMessage, RealTimeMessage.class);
 
             //[A] 오픈 채팅 메시지 처리
-            if (rtMessage.getType() == RealTimeMessage.MessageType.TALK) {
+            if (rtMessage.getType() == RealTimeMessage.MessageType.TALK ||
+                rtMessage.getType() == RealTimeMessage.MessageType.ENTER ||
+                rtMessage.getType() == RealTimeMessage.MessageType.QUIT) {
                 messagingTemplate.convertAndSend("/sub/chat/open", rtMessage);
 
                 //[B] 개인 알림/메시지 처리 (targetId가 있는 경우)

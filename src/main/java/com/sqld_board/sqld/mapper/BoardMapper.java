@@ -19,6 +19,18 @@ import java.util.Optional;
 @Repository
 public interface BoardMapper {
 
+
+    int updateBoardDeleteYNByAdmin(@Param(("boardIds"))List<Long> boardIds);
+
+    /**
+     * 게시판별 카테고리 유효성 검증
+     * @param boardCode 게시판 코드
+     * @param categoryId 카테고리 아이디
+     * @return 유효 여부(true/false)
+     */
+    Boolean isValidateCategoryForBoard(@Param("boardCode") String boardCode
+                                     , @Param("categoryId")String categoryId);
+
     /**
      * Redis에서 집계된 조회수를 DB에 일괄 합산한다.
      * @param boardId
@@ -128,28 +140,28 @@ public interface BoardMapper {
      * 13. 페이징 처리를 하여 게시글 목록을 조회합니다.
      * @param offset 시작 위치
      * @param size 가져올 개수
-     * @param boardType 게시판 타입
-     * @param category 카테고리 (필터링용)
+     * @param boardCode 게시판 타입
+     * @param categoryId 카테고리 (필터링용)
      * @param memberId 사용자 고유번호 (필터링용)
      * @return 조회된 게시글 리스트
      */
     List<Board> getBoardListWithPaging(@Param("offset") int offset,
                                        @Param("size") int size,
-                                       @Param("boardType") String boardType,
-                                       @Param("category") String category,
+                                       @Param("boardCode") String boardCode,
+                                       @Param("categoryId") String categoryId,
                                        @Param("memberId") String memberId,
                                        @Param("keyword") String keyword,
                                        @Param("tagName")  String tagName);
 
     /**
      * 12. 전체 게시글의 총 개수를 조회합니다.
-     * @param boardType 게시판 타입
-     * @param category 카테고리 (필터링용)
+     * @param boardCode 게시판 타입
+     * @param categoryId 카테고리 (필터링용)
      * @param memberId 사용자 고유번호 (필터링용)
      * @return 전체 게시글 수
      */
-    int getBoardTotalCount(@Param("boardType") String boardType
-                          ,@Param("category") String category
+    int getBoardTotalCount(@Param("boardCode") String boardCode
+                          ,@Param("categoryId") String categoryId
                           ,@Param("memberId") String memberId
                           ,@Param("keyword") String keyword
                           ,@Param("tagName") String tagName);
@@ -215,17 +227,17 @@ public interface BoardMapper {
     /**
      * 2. 전문 검색(Full-Text Search)을 사용하여 게시글을 검색합니다.
      * @param keyword 검색어
-     * @param boardType 게시판 타입 (필터링용)
+     * @param boardCode 게시판 타입 (필터링용)
      * @param offset 시작 위치
      * @param size 가져올 개수
      * @return 검색된 게시글 리스트
      */
-    List<Board> searchBoardContent(@Param("keyword") String keyword, @Param("boardType") String boardType, @Param("offset") int offset, @Param("size") int size);
+    List<Board> searchBoardContent(@Param("keyword") String keyword, @Param("boardCode") String boardCode, @Param("offset") int offset, @Param("size") int size);
 
     /**
      * 1. 검색된 게시글의 총 개수를 조회합니다.
      * @param keyword 검색어
-     * @param boardType 게시판 타입 (필터링용)
+     * @param boardCode 게시판 타입 (필터링용)
      * @return 검색 결과 총 개수
      */
-    int getSearchBoardCount(@Param("keyword") String keyword, @Param("boardType") String boardType);        }
+    int getSearchBoardCount(@Param("keyword") String keyword, @Param("boardCode") String boardCode);        }

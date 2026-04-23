@@ -81,7 +81,7 @@ public class CustomSecurityConfig {
                                 ,"/api/auth/signUp"
                                 ,"/api/auth/token-refresh"
                                 ,"/api/auth/verify/**"
-                                ,"/api/common/check**"
+                                ,"/api/common/**"
                                 ,"/api/notification/**"
                                 ).permitAll()
 
@@ -107,7 +107,12 @@ public class CustomSecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/api/members/**").authenticated()
 
                 // --- [3] ADMIN API (관리자 전용) ---
-                .requestMatchers("/api/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/boardMaster/**").permitAll() //조회는 pass
+                .requestMatchers( "/api/admin/**"
+                                 ,"/api/common-code-group/**"
+                                 ,"/api/common-code-group-detail/**"
+                                 ,"/api/boardMaster/**"
+                                ).hasAnyRole("ADMIN", "SUPER_ADMIN")
                 .anyRequest().authenticated()
         );
 

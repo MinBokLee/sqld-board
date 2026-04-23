@@ -30,17 +30,21 @@
         <typeAlias alias="BoardResponse"                type="com.sqld_board.sqld.dto.response.board.BoardResponse"/>
         <typeAlias alias="MemberSimpleInfoRes"          type="com.sqld_board.sqld.dto.response.member.MemberSimpleInfoRes"/>
         <typeAlias alias="NotificationResponse"         type="com.sqld_board.sqld.dto.response.webSocket.NotificationResponse"/>
+        <typeAlias alias="ChatMessageResponse"         type="com.sqld_board.sqld.dto.response.chat.ChatMessageResponse"/>
+        <typeAlias alias="CategoryResponse"             type="com.sqld_board.sqld.dto.response.code.CategoryResponse"/>
 
         <!-- Models -->
         <typeAlias alias="Board"                        type="com.sqld_board.sqld.model.board.Board"/>
         <typeAlias alias="BoardFile"                    type="com.sqld_board.sqld.model.board.BoardFile"/>
         <typeAlias alias="BoardLike"                    type="com.sqld_board.sqld.model.board.BoardLike"/>
-        <typeAlias alias="Comment"                      type="com.sqld_board.sqld.model.board.Comment"/>
-        <typeAlias alias="EmailVerification"            type="com.sqld_board.sqld.model.member.EmailVerification"/>
+        <typeAlias alias="Comment"                      type="com.sqld_board.sqld.model.commentManagement.CommentManagement"/>
+        <typeAlias alias="EmailVerification"            type="com.sqld_board.sqld.model.emailVerification.EmailVerification"/>
         <typeAlias alias="MemberInfo"                   type="com.sqld_board.sqld.model.member.MemberInfo"/>
         <typeAlias alias="Board_Scrap"                  type="com.sqld_board.sqld.model.board.BoardScrap"/>
         <typeAlias alias="ChatMessage"                  type="com.sqld_board.sqld.model.websocket.ChatMessage"/>
         <typeAlias alias="Notification"                 type="com.sqld_board.sqld.model.notification.Notification"/>
+        <typeAlias alias="CommonCodeDetail"             type="com.sqld_board.sqld.model.code.CommonCodeDetail"/>
+        <typeAlias alias="CommonCodeGroup"              type="com.sqld_board.sqld.model.code.CommonCodeGroup"/>
+        <typeAlias alias="BoardMaster"                  type="com.sqld_board.sqld.model.board.BoardMaster"/>
     </typeAliases>
-
 </configuration>

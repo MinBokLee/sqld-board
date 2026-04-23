@@ -21,7 +21,7 @@
                                 , NOTI_TYPE
                                 , MESSAGE
                                 , IS_READ
-                                , REG_DATE
+                                , CREATE_AT
                                 , TARGET_URL
         )    VALUES (
                       #{receiverId}
@@ -29,7 +29,7 @@
                     , #{notiType}
                     , #{message}
                     , #{isRead}
-                    , #{regDate}
+                    , #{createAt}
                     , #{targetUrl}
                     )
     </insert>

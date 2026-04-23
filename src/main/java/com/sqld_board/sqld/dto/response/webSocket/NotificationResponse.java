@@ -4,7 +4,6 @@ import com.sqld_board.sqld.model.notification.Notification;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class NotificationResponse {
 
     private String isRead;          // 읽음 여부(Y/N)
 
-    private LocalDateTime regDate;  // 발생 시간
+    private LocalDateTime createAt;  // 발생 시간
 
     private String targetUrl;       // 클릭 시 이동할 페이지 주소
 
@@ -35,7 +34,7 @@ public class NotificationResponse {
                 .notiType(noti.getNotiType())
                 .message(noti.getMessage())
                 .isRead(noti.getIsRead())
-                .regDate(noti.getRegDate())
+                .createAt(noti.getCreateAt())
                 .targetUrl(noti.getTargetUrl())
                 .build();
     }

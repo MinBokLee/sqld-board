@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RealTimeMessage {
 
-    private Long notiId; // [추가] 알림 고유 ID (DB PK)
+    private Long notiId;            // [추가] 알림 고유 ID (DB PK)
+
+    private String senderName;      // 발신자 명
 
     // 메세지 타입 구분
     public  enum MessageType {
@@ -34,8 +36,5 @@ public class RealTimeMessage {
 
     // 알림 클릭 시 이동할 URL( 알림용 추가 필드)
     private String targetUrl;
-
-
-
 
 }

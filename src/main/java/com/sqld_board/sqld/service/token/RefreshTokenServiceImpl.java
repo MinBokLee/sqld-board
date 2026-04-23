@@ -1,5 +1,6 @@
 package com.sqld_board.sqld.service.token;
 
+import com.sqld_board.sqld.exception.common.TokenExpiredException;
 import com.sqld_board.sqld.handler.JwtHandler;
 import com.sqld_board.sqld.mapper.RefreshTokenMapper;
 import com.sqld_board.sqld.model.token.RefreshToken;
@@ -54,8 +55,8 @@ public class RefreshTokenServiceImpl implements RefreshTokenService{
     @Override
     public RefreshToken verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
-            refreshTokenMapper.deleteByMemberId(token.getMemberId());
-            throw new RuntimeException("Refresh token was expired. Please make a new signin request");
+            refreshTokenMapper.deleteByMemberId(token.getMemberId()); // 만료된 토큰 삭제.
+            throw new TokenExpiredException(); // 만료된 토큰 입니다.
         }
         return token;
     }

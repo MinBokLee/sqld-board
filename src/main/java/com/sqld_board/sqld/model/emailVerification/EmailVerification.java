@@ -1,4 +1,4 @@
-package com.sqld_board.sqld.model.member;
+package com.sqld_board.sqld.model.emailVerification;
 
 import lombok.*;
 

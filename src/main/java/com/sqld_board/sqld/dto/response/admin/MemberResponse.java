@@ -2,12 +2,13 @@ package com.sqld_board.sqld.dto.response.admin;
 
 import com.sqld_board.sqld.common.util.DateTimeUtils;
 import com.sqld_board.sqld.model.member.MemberInfo;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberResponse {
     private String memberId;
     private String userId;
@@ -16,6 +17,7 @@ public class MemberResponse {
     private String userRole;
     private String userStatus;
     private String lastLoginAt;
+    private String profileImage;
 
     public MemberResponse(MemberInfo memberInfo) {
         this.memberId = memberInfo.getMemberId();
@@ -24,6 +26,7 @@ public class MemberResponse {
         this.userEmail = memberInfo.getUserEmail();
         this.userRole = memberInfo.getUserRole();
         this.userStatus = memberInfo.getUserStatus();
+        this.profileImage = memberInfo.getProfileImage();
         this.lastLoginAt = DateTimeUtils.format(memberInfo.getLastLogAt());
     }
 }

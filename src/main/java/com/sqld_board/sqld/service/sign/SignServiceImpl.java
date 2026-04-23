@@ -6,20 +6,18 @@ import com.sqld_board.sqld.dto.response.member.MemberSimpleInfoRes;
 import com.sqld_board.sqld.dto.response.sign.SignInResponseDto;
 import com.sqld_board.sqld.dto.response.sign.SignInResult;
 import com.sqld_board.sqld.exception.MessageType;
-import com.sqld_board.sqld.exception.common.MemberNotFoundException;
-import com.sqld_board.sqld.exception.common.SignInFailureException;
-import com.sqld_board.sqld.exception.emailVerification.ExistMailException;
+import com.sqld_board.sqld.exception.common.*;
+import com.sqld_board.sqld.exception.emailVerification.MailSendFailureException;
 import com.sqld_board.sqld.exception.member.ExistMemberException;
 import com.sqld_board.sqld.exception.member.NotMatchUserException;
 import com.sqld_board.sqld.handler.JwtHandler;
 import com.sqld_board.sqld.mapper.BoardMapper;
 import com.sqld_board.sqld.mapper.EmailVerificationMapper;
 import com.sqld_board.sqld.mapper.MemberMapper;
-import com.sqld_board.sqld.model.member.EmailVerification;
+import com.sqld_board.sqld.model.emailVerification.EmailVerification;
 import com.sqld_board.sqld.model.member.MemberInfo;
 import com.sqld_board.sqld.model.member.Role;
 import com.sqld_board.sqld.model.token.RefreshToken;
-
 import com.sqld_board.sqld.service.token.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +31,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Slf4j
@@ -59,16 +60,13 @@ public class SignServiceImpl implements SignService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<MemberSimpleInfoRes> readMemberSimpleInfo(String memberId) {
+    public MemberSimpleInfoRes readMemberSimpleInfo(String memberId) {
 
-        //1. 회원 정보 조회
-        Optional<MemberSimpleInfoRes> info = memberMapper.readMemberSimpleInfo(memberId);
+        // 1. 회원 정보 체크
+        MemberSimpleInfoRes infoData = memberMapper.readMemberSimpleInfo(memberId).orElseThrow(MemberNotFoundException::new);
 
-        //2. 존재하지 않는 정보면 예외처리.
-        if(info.isEmpty()){
-            throw new MemberNotFoundException();
-        }
-         return info;
+        // 2.데이터 반환
+        return infoData;
     }
 
     /**
@@ -79,21 +77,28 @@ public class SignServiceImpl implements SignService {
     @Override
     @Transactional
     public MessageType deleteByMemberId(String memberId) {
-        // 현재 로그인한 사용자의 인증 정보 가져오기
+
+        log.info("memberID :{}", memberId);
+        // 1. 현재 로그인한 사용자의 인증 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        // 비로그인 사용자 차단
+        // 2. 비로그인 사용자 차단
         if(authentication == null || "anonymousUser".equals(authentication.getName())) {
-            throw new NotMatchUserException();
+            throw new NotMatchUserException(); // 본인의 계정만 탈퇴할 수 있습니다.
         }
+
         String currentUserId = authentication.getName(); //JWT 토큰에 담긴 사용자의 ID(username)
 
-        // 관리자 여부 확인
-        boolean isAdmin = authentication.getAuthorities().stream()
-                        .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+        // 3. 권한 확인
+        boolean requestIsAdmin = authentication.getAuthorities().stream()
+                        .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN") || a.getAuthority().equals("ROLE_SUPER_ADMIN"));
+
+        if(requestIsAdmin && currentUserId.equals(memberId)) {
+            throw new SelfDeleteResignException(); // 관리자 본인의 계정은 직접 탈퇴/강퇴 할 수 없습니다.
+        }
 
         // 본인도 아니고, 관리자 권한이 없으면 차단
-        if(!currentUserId.equals(memberId) && !isAdmin)   {
+        if(!currentUserId.equals(memberId) && !requestIsAdmin)   {
             throw new NotMatchUserException();
         }
 
@@ -112,12 +117,12 @@ public class SignServiceImpl implements SignService {
         memberMapper.deleteMember(memberInfo.getMemberId());
 
         // 누구에 의한 삭제인지 판한해 메세지 타입 반환
-        if(isAdmin && !currentUserId.equals(memberId))    {
+        if(requestIsAdmin && !currentUserId.equals(memberId))    {
             //관리자가 본인이 아닌 남을 지웠을 때,
-            return MessageType.ADMIN_KICK_SUCCESS;
+            return MessageType.ADMIN_KICK_SUCCESS; // 해당 사용자를 강제 탈퇴 처리하였습니다.
         }else {
             // 본인이 삭제를 진행한 경우,
-            return MessageType.DELETE_MEMBER_SUCCESS;
+            return MessageType.DELETE_MEMBER_SUCCESS; // 회원 탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.
         }
     }
 
@@ -128,16 +133,14 @@ public class SignServiceImpl implements SignService {
     @Transactional
     public void sendVerificationCode(String email) {
 
-        // 이미 가입된 회원 여부 체크
+        // 1. 이미 가입된 회원 여부 체크
         if(memberMapper.existsByUserEmail(email)){
             throw new ExistMemberException();
         }
 
-        // 이미 인증 완료된 이메일 여부 체크
-        int isVerified = emailVerificationMapper.checkAlreadyVerified(email);
-        if(isVerified > 0 ){
-            throw new ExistMailException();
-        }
+        // 2. 기존에 이메일로 발송된 모든 인증 기록을 삭제(초기화) 한다.
+        emailVerificationMapper.deleteVerification(email);
+
 
         // 1. 6자리 난수 생성
         String code = String.format("%06d", new Random().nextInt(1000000));
@@ -148,7 +151,7 @@ public class SignServiceImpl implements SignService {
                 .verificationCode(code)
                 .expiredAt(LocalDateTime.now().plusMinutes(5))
                 .build();
-        emailVerificationMapper.upsertVerification(verification);
+        emailVerificationMapper.insertVerification(verification);
 
         // 3. 메일 발송
         SimpleMailMessage message = new SimpleMailMessage();
@@ -166,18 +169,22 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional
-    public boolean verifyCode(String email, String code) {
-        Optional<EmailVerification> found = emailVerificationMapper.findByEmail(email);
-        
-        if (found.isPresent()) {
-            EmailVerification v = found.get();
-            // 코드 일치 및 만료 시간 확인
-            if (v.getVerificationCode().equals(code) && v.getExpiredAt().isAfter(LocalDateTime.now())) {
-                emailVerificationMapper.updateIsVerified(email, "Y");
-                return true;
+    public void verifyCode(String email, String code) {
+        // 1.데이터 존재확인
+        EmailVerification verification = emailVerificationMapper.findByEmail(email).orElseThrow(NotFoundEmailVerificationException::new); // 이메일 인증정보를 찾을 수 없습니다
+
+        // 2. 이메일 인증 시간 만료 체크
+            if(verification.getExpiredAt().isBefore(LocalDateTime.now())){
+                throw new ExpiredVerificationCodeException(); // 인증 시간이 만료되었습ㄴ디ㅏ.
             }
-        }
-        return false;
+
+        // 3. 인증 번호 일치 여부 체크
+            if(!verification.getVerificationCode().equals(code)){
+                throw new InvalidVerificationCodeException(); // 인증 번호가 일치하지 않습니다.
+            }
+
+        //  4. 이메일 인증 완료 처리 진행
+            emailVerificationMapper.updateIsVerified(email, "Y");
     }
 
     /**
@@ -189,7 +196,7 @@ public class SignServiceImpl implements SignService {
     public void sendPassChangeCode(String userId, String email) {
         // 1. 아이디와 이메일 일치 확인
         if (!memberMapper.existsByUserIdAndEmail(userId, email)) {
-            throw new RuntimeException("입력하신 아이디와 이메일 정보가 일치하지 않습니다.");
+                throw new InvalidCredentialsException(); // 아이디 또는 비밀번호가 일치하지 않습니다.
         }
 
         // 2. 인증번호 생성 및 DB 저장 (회원가입 로직 재사용 가능)
@@ -199,17 +206,23 @@ public class SignServiceImpl implements SignService {
                 .verificationCode(code)
                 .expiredAt(LocalDateTime.now().plusMinutes(5))
                 .build();
-        emailVerificationMapper.upsertVerification(verification);
+        emailVerificationMapper.insertVerification(verification);
 
-        // 3. 메일 발송
+        // 3. 메일 메시지 내용 추가
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(email);
         message.setSubject("[SQLD 게시판] 비밀번호 변경 인증 번호");
         message.setText("비밀번호 변경을 위한 인증 번호는 [" + code + "] 입니다. 5분 이내에 입력해 주세요.");
-        mailSender.send(message);
 
-        log.info("Password change verification code sent to: {} for user: {}", email, userId);
+        // 4. 메일 발송 및 예외 처리
+        try {
+            mailSender.send(message);
+        } catch (Exception e) {
+            log.error("메일 발송 실패:{}", e.getMessage());
+            // 실패하면 예외처리 후, 트랜잭션 롤백 진행
+            throw new MailSendFailureException(); // 메일 발송에 실패 하였습니다. 다시 시도해주세요.
+            }
     }
 
     /**
@@ -217,12 +230,13 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional
-    public boolean verifyPassChangeCode(String userId, String email, String code) {
+    public void verifyPassChangeCode(String userId, String email, String code) {
         // 아이디-이메일 일치 여부 다시 확인 (보안 강화)
         if (!memberMapper.existsByUserIdAndEmail(userId, email)) {
-            return false;
+            throw new InvalidCredentialsException(); // 아이디 또는 비밀번호가 일치하지 않습니다.
         }
-        return verifyCode(email, code);
+        // 아이디 비밀번호가 일치하는 경우, verifyCode 실행
+         verifyCode(email, code);
     }
 
     /**
@@ -230,29 +244,29 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional
-    public boolean updatePassword(String userId, String email, String newPassword) {
+    public void updatePassword(String userId, String email, String newPassword) {
         // 1. 해당 이메일이 인증되었는지 확인
-        EmailVerification v = emailVerificationMapper.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("인증 정보를 찾을 수 없습니다."));
+        EmailVerification v = emailVerificationMapper.findByEmail(email).orElseThrow(NotFoundEmailVerificationException::new); // 이메일 인증 정보를 찾을 수 없습니다.
 
         if (!"Y".equals(v.getIsVerified())) {
-            throw new RuntimeException("인증이 완료되지 않았습니다.");
+            throw new EmailNotVerifiedException(); //  이메일 인증이 완료되지 않았습니다.
         }
 
         // 2. 아이디-이메일 일치 확인 및 회원 정보 조회
-        MemberInfo memberInfo = memberMapper.readMemberByUsersId(userId)
-                .orElseThrow(() -> new MemberNotFoundException());
+        MemberInfo memberInfo = memberMapper.readMemberByUsersId(userId).orElseThrow((MemberNotFoundException::new)); // 회원 아이디를 찾을 수 없습니다.
+
         if (!memberInfo.getUserEmail().equals(email)) {
-            throw new RuntimeException("아이디와 이메일 정보가 일치하지 않습니다.");
+            throw new InvalidCredentialsException(); // 아이디와 이메일 정보가 일치하지 않습니다.
         }
 
         // 3. 비밀번호 업데이트 (memberId 기반)
         int result = memberMapper.updatePassword(memberInfo.getMemberId(), passwordEncoder.encode(newPassword));
-        
+
+        if(result != 1) {
+            throw new PasswordChangeFailedException(); // 비밀번호 변경에 실패했습니다.
+        }
         // 4. 보안을 위해 인증 정보 초기화
         emailVerificationMapper.updateIsVerified(email, "N");
-        
-        return result == 1;
     }
 
     /**
@@ -260,8 +274,13 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional
-    public boolean updateProfileImage(String memberId, String profileImage) {
-        return memberMapper.updateProfileImage(memberId, profileImage) == 1;
+    public void updateProfileImage(String memberId, String profileImage) {
+
+         int result = memberMapper.updateProfileImage(memberId, profileImage);
+
+         if(result != 1){
+             throw new ImageUpdateFailedException(); // 프로필 이미지 수정에 실패했습니다. 다시 시도해주세요.
+         }
     }
 
     /**
@@ -269,8 +288,13 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional(readOnly = true)
-    public boolean checkUserIdDuplicate(String userId) {
-        return memberMapper.existsByUserId(userId);
+    public void checkUserIdDuplicate(String userId) {
+       boolean existsId =  memberMapper.existsByUserId(userId);
+
+       // 아이디 중복 체크
+       if(existsId){
+            throw new ExistUserIdException(); //이미 사용 중인 아이디입니다.
+        }
     }
 
     /**
@@ -278,8 +302,12 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional(readOnly = true)
-    public boolean checkUserNameDuplicate(String userName) {
-        return memberMapper.existsByUserName(userName);
+    public void checkUserNameDuplicate(String userName) {
+        boolean isTrue = memberMapper.existsByUserName(userName);
+
+         if(isTrue){
+             throw new ExistUserNameException(); // 이미 사용중인 이름(닉네임) 입니다.
+         }
     }
 
     /**
@@ -287,7 +315,7 @@ public class SignServiceImpl implements SignService {
      *
      * @param req 로그인 요청 정보 (사용자 ID, 비밀번호)
      * @return {@link SignInResult} 객체 (회원정보, 액세스 토큰, 리프레시 토큰)
-     * @throws SignInFailureException 비밀번호가 일치하지 않을 경우
+     * @throws InvalidCredentialsException 비밀번호가 일치하지 않을 경우
      */
     @Override
     @Transactional
@@ -297,7 +325,7 @@ public class SignServiceImpl implements SignService {
         MemberInfo foundMember = readMemberByUsersId(req.getUserId());
         //1. 비밀번호 검증
         if (!passwordEncoder.matches(req.getUserPass(), foundMember.getUserPass())) {
-            throw new SignInFailureException();
+            throw new InvalidCredentialsException();
         }
 
         // 보안 강화 (중복 로그인 막을 때 실행)
@@ -326,28 +354,33 @@ public class SignServiceImpl implements SignService {
      */
     @Override
     @Transactional
-    public Optional<SignInResponseDto> refreshAccessToken(String refreshTokenString) {
-        return refreshTokenService.findByToken(refreshTokenString)
-                .map(refreshTokenService::verifyExpiration)
-                .map(RefreshToken::getMemberId)
-                .map(memberId -> {
-                    MemberInfo memberInfo = readMemberByMemberId(memberId);
-                    Map<String, Object> claims = new HashMap<>();
-                    claims.put("role", memberInfo.getUserRole());
-                    claims.put("memberId", memberInfo.getMemberId());
-                    
-                    String newAccessToken = jwtHandler.createToken(jwtSecret, claims, accessTokenExpiration, memberInfo.getMemberId());
+    public SignInResponseDto refreshAccessToken(String refreshTokenString) {
+        // 1. [검증] 토큰 존재 여부 확인
+        RefreshToken token = refreshTokenService.findByToken(refreshTokenString).orElseThrow(InvalidRefreshTokenException::new); // 유효하지 않은 토큰 입니다.
 
-                    // 세션 복구를 위해 사용자 정보를 함께 반환
-                    return SignInResponseDto.builder()
-                            .memberId(memberInfo.getMemberId())
-                            .userId(memberInfo.getUserId())
-                            .userName(memberInfo.getUserName())
-                            .userRole(memberInfo.getUserRole())
-                            .profileImage(memberInfo.getProfileImage())
-                            .accessToken(newAccessToken)
-                            .build();
-                });
+        // 2. [검증] 토큰 만료 여부 확인 (예외처리 포함)
+        refreshTokenService.verifyExpiration(token);
+
+        // 3. [조회] 토큰에 담긴 memberId로 사용자 정보 조회
+        String memberId = token.getMemberId();
+        MemberInfo memberInfo = readMemberByMemberId(memberId);
+
+        // 4. [생성] 새로운 엑세스 토큰 생성
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", memberInfo.getUserRole());
+        claims.put("memberId", memberInfo.getMemberId());
+
+        String newAccessToken = jwtHandler.createToken(jwtSecret, claims, accessTokenExpiration, memberInfo.getMemberId());
+
+        // 5. [반환] 세션 복구를 위한 사용자 정보와 새 토큰 반환
+        return SignInResponseDto.builder()
+                .memberId(memberInfo.getMemberId())
+                .userId(memberInfo.getUserId())
+                .userName(memberInfo.getUserName())
+                .userRole(memberInfo.getUserRole())
+                .profileImage(memberInfo.getProfileImage())
+                .accessToken(newAccessToken)
+                .build();
     }
 
 
@@ -375,26 +408,24 @@ public class SignServiceImpl implements SignService {
     @Override
     @Transactional
     public boolean signUpMember(SignUpMemberReq req) {
-        try {
+
             // 0-1. 이메일 인증 여부 최종 확인
             EmailVerification v = emailVerificationMapper.findByEmail(req.getUserEmail())
-                    .orElseThrow(() -> new RuntimeException("인증 정보를 찾을 수 없습니다."));
+                    .orElseThrow(NotFoundEmailVerificationException::new); // 이메일 인증정보를 찾을 수 없습니다.
 
             if (!"Y".equals(v.getIsVerified())) {
-                throw new RuntimeException("이메일 인증이 완료되지 않았습니다.");
+                throw new EmailNotVerifiedException(); //이메일 인증이 완료되지 않았습니다.
             }
 
-            // 0-2. 아이디 및 이름 중복 최종 확인
-            if (memberMapper.existsByUserId(req.getUserId())) {
-                throw new RuntimeException("이미 사용 중인 아이디입니다.");
-            }
-            if (memberMapper.existsByUserName(req.getUserName())) {
-                throw new RuntimeException("이미 사용 중인 이름입니다.");
-            }
+            // 0-2. 사용중인 아이디 유무 체크
+            checkUserIdDuplicate(req.getUserId());
+
+            // 사용중인 이름(닉네임) 유무 체크
+            checkUserNameDuplicate(req.getUserName());
 
             // 1. MySQL member 테이블을 통해 다음 시퀀스 번호 생성 및 가져오기
             Map<String, Object> params = new HashMap<>();
-            params.put("name", req.getMemberId());
+            params.put("userId", req.getUserId());
             memberMapper.insertMemberSequence(params);
 
             Long nextSeq = ((Number) params.get("id")).longValue();
@@ -403,11 +434,11 @@ public class SignServiceImpl implements SignService {
             String currentDate = java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd"));
             String memberId = String.format("MEMBER_%s_%03d", currentDate, nextSeq);
 
-            // 3. 사용자 역할(Role) 변환
-            String role = Role.USER.name();
-            if ("2".equals(req.getUserRole())) {
-                role = Role.ADMIN.name();
-            }
+//            // 3. 사용자 역할(Role) 변환
+//            String role = Role.USER.name();
+//            if ("2".equals(req.getUserRole())) {
+//                role = Role.ADMIN.name();
+//            }
 
 
             // 4. MemberInfo 모델 객체 생성
@@ -418,20 +449,20 @@ public class SignServiceImpl implements SignService {
                     .userName(req.getUserName())
                     .userEmail(req.getUserEmail())
                     .emailVerified(req.getEmailVerified())
-                    .userRole(role)
+                    .userRole(Role.USER.name())
                     .userStatus("Y")
                     .build();
 
             // 5. 데이터베이스에 저장
             int result = memberMapper.signUpMember(memberInfo);
-            if(result == 1){
-                emailVerificationMapper.deleteVerification(req.getUserEmail());
+
+            // 회원가입 오류 체크
+            if(result != 1){
+                throw new SignUpException(); // 회원가입 중 오류가 발생했습니다.
             }
-            return result == 1;
-        } catch (Exception e) {
-            log.error("회원가입 실패", e);
-            throw new RuntimeException("회원가입 처리 중 오류가 발생했습니다.", e);
-        }
+                // 회원가입 성공 후, 인증 정보 삭제
+                emailVerificationMapper.deleteVerification(req.getUserEmail());
+            return true;
     }
 
     /**********************/

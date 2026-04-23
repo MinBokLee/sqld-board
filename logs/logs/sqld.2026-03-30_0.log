@@ -135,8 +135,8 @@
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -287,8 +287,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -305,7 +305,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -317,7 +317,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 15:05:26.411] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT R_ID as rId, MEMBER_ID as memberId, R_TOKEN as rToken, EXPIRY_DATE as expiryDate
         FROM refresh_token
@@ -1434,8 +1434,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -1452,7 +1452,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -1464,7 +1464,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 15:21:47.583] [WARN ] [http-nio-8881-exec-4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
 [2026-03-30 15:21:47.583] [WARN ] [http-nio-8881-exec-2] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
@@ -1541,8 +1541,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -1559,7 +1559,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -1571,7 +1571,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 16 msec}
 [2026-03-30 15:22:14.226] [INFO ] [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
 [2026-03-30 15:22:14.242] [INFO ] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
@@ -2046,8 +2046,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2134,8 +2134,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2152,7 +2152,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -2166,8 +2166,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2184,7 +2184,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -2196,14 +2196,14 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-03-30 15:24:56.030] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 15:24:59.720] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -2291,8 +2291,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2309,7 +2309,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -2323,8 +2323,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2341,7 +2341,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -2353,14 +2353,14 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 15:25:04.089] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 15:25:05.264] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -2419,8 +2419,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2512,8 +2512,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2604,8 +2604,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -2696,8 +2696,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3120,8 +3120,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3272,8 +3272,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3290,7 +3290,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -3302,7 +3302,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 15:48:03.030] [INFO ] [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
 [2026-03-30 15:48:03.042] [INFO ] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
@@ -4162,8 +4162,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4180,7 +4180,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4211,7 +4211,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 15:50:13.371] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getBoardListWithPaging (페이징 처리된 게시판 목록 조회 (지연 조인 최적화 적용)) */
                B.BOARD_ID
@@ -4220,8 +4220,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4238,7 +4238,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4252,8 +4252,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4270,7 +4270,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4282,14 +4282,14 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 15:50:13.381] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 15:50:17.008] [INFO ] [http-nio-8881-exec-8] c.s.sqld.exception.ExceptionAdvice - error
 org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
@@ -4407,8 +4407,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4425,7 +4425,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4455,7 +4455,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 6 msec}
 [2026-03-30 15:50:20.353] [INFO ] [http-nio-8881-exec-2] c.s.sqld.exception.ExceptionAdvice - error
 org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
@@ -4677,8 +4677,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4695,7 +4695,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4709,8 +4709,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -4740,7 +4740,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 15:51:49.914] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
                B.BOARD_ID
@@ -4749,8 +4749,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4774,8 +4774,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -4792,7 +4792,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -4826,7 +4826,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 15:51:52.836] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -4835,8 +4835,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -4987,8 +4987,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5135,8 +5135,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5160,8 +5160,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5178,7 +5178,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -5212,7 +5212,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 15:52:08.406] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -5221,8 +5221,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5254,8 +5254,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5301,8 +5301,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5319,7 +5319,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -5333,8 +5333,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5353,7 +5353,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-03-30 15:52:12.107] [ERROR] [http-nio-8881-exec-2] c.s.sqld.exception.ExceptionAdvice - 해당 게시글을 찾을 수 업습니다.
 com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
@@ -5492,8 +5492,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5640,8 +5640,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5732,8 +5732,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5796,8 +5796,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5829,8 +5829,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5847,7 +5847,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -5859,7 +5859,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 145 msec}
 [2026-03-30 16:16:34.334] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
                C.COMMENT_ID
@@ -5890,8 +5890,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -5912,8 +5912,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5930,7 +5930,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -5942,7 +5942,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:16:34.352] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -5980,8 +5980,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -5998,7 +5998,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6014,7 +6014,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 16:16:36.357] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6023,8 +6023,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6060,8 +6060,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6078,7 +6078,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6110,8 +6110,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6130,7 +6130,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:16:52.846] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -6150,8 +6150,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6168,7 +6168,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6202,7 +6202,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 9 msec}
 [2026-03-30 16:16:54.584] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6211,8 +6211,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6244,8 +6244,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6270,8 +6270,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6288,7 +6288,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6324,8 +6324,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6344,7 +6344,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:16:58.716] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -6364,8 +6364,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6390,8 +6390,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6408,7 +6408,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6442,7 +6442,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:17:01.693] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6451,8 +6451,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6484,8 +6484,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6510,8 +6510,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6528,7 +6528,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6562,7 +6562,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:17:09.159] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6571,8 +6571,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6604,8 +6604,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6630,8 +6630,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6648,7 +6648,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6682,7 +6682,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 26 msec}
 [2026-03-30 16:17:13.227] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6691,8 +6691,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6724,8 +6724,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6750,8 +6750,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6768,7 +6768,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6804,8 +6804,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6824,7 +6824,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:17:17.141] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -6844,8 +6844,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6870,8 +6870,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -6888,7 +6888,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -6922,7 +6922,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:17:22.560] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -6931,8 +6931,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -6964,8 +6964,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7109,8 +7109,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7127,7 +7127,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7141,8 +7141,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7161,7 +7161,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                          AND MATCH(TITLE, CONTENT) AGAINST('테스트*' IN BOOLEAN MODE)
 
-                          AND BOARD_TYPE = 'S' 
+                          AND BOARD_CODE = 'S'
               ORDER BY CREATE_AT DESC
                           LIMIT 10
                 OFFSET 0
@@ -7175,14 +7175,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                 AND MATCH(TITLE, CONTENT) AGAINST('테스트*' IN BOOLEAN MODE)
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 16:18:05.060] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:10.951] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -7255,8 +7255,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7273,7 +7273,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7307,7 +7307,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:10.975] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -7316,8 +7316,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -7406,8 +7406,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7424,7 +7424,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7438,8 +7438,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7456,7 +7456,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7468,14 +7468,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:15.654] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:21.365] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -7532,8 +7532,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7550,7 +7550,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7564,8 +7564,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7582,9 +7582,9 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S'
+                    AND BOARD_CODE = 'S'
 
-                    AND CATEGORY = 'question' 
+                    AND categoryId = 'question'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7596,16 +7596,16 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:21.389] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
 
-                AND CATEGORY = 'question'
+                AND categoryId = 'question'
  {executed in 4 msec}
 [2026-03-30 16:18:22.753] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -7662,8 +7662,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7680,7 +7680,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7694,8 +7694,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7712,7 +7712,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7724,14 +7724,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:22.775] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:25.742] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -7788,8 +7788,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7806,7 +7806,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 10
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7820,8 +7820,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7838,7 +7838,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7850,14 +7850,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:25.764] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 9 msec}
 [2026-03-30 16:18:32.997] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
                B.BOARD_ID
@@ -7866,8 +7866,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7940,8 +7940,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7958,7 +7958,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -7972,8 +7972,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -7990,7 +7990,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'N' 
+                    AND BOARD_CODE = 'N'
             ORDER BY CREATE_AT DESC
             LIMIT 10 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8002,14 +8002,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:38.588] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'N'
+                AND BOARD_CODE = 'N'
  {executed in 4 msec}
 [2026-03-30 16:18:42.466] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
                B.BOARD_ID
@@ -8018,8 +8018,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8092,8 +8092,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8110,7 +8110,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8124,8 +8124,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8144,7 +8144,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                          AND MATCH(TITLE, CONTENT) AGAINST('공지사항*' IN BOOLEAN MODE)
 
-                          AND BOARD_TYPE = 'S' 
+                          AND BOARD_CODE = 'S'
               ORDER BY CREATE_AT DESC
                           LIMIT 10
                 OFFSET 0
@@ -8157,7 +8157,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:18:45.483] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT COUNT(*)
         FROM BOARD
@@ -8165,7 +8165,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                 AND MATCH(TITLE, CONTENT) AGAINST('공지사항*' IN BOOLEAN MODE)
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 16:18:49.863] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -8222,8 +8222,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8240,7 +8240,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8254,8 +8254,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8274,7 +8274,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                          AND MATCH(TITLE, CONTENT) AGAINST('테스트*' IN BOOLEAN MODE)
 
-                          AND BOARD_TYPE = 'S' 
+                          AND BOARD_CODE = 'S'
               ORDER BY CREATE_AT DESC
                           LIMIT 10
                 OFFSET 0
@@ -8288,14 +8288,14 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                 AND MATCH(TITLE, CONTENT) AGAINST('테스트*' IN BOOLEAN MODE)
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:49.890] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
                COUNT(*)
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:55.219] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -8352,8 +8352,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8370,7 +8370,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8382,7 +8382,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:55.238] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT /* BoardMapper.searchBoardContent*/
                B.BOARD_ID
@@ -8391,8 +8391,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8411,7 +8411,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                          AND MATCH(TITLE, CONTENT) AGAINST('가입*' IN BOOLEAN MODE)
 
-                          AND BOARD_TYPE = 'S' 
+                          AND BOARD_CODE = 'S'
               ORDER BY CREATE_AT DESC
                           LIMIT 10
                 OFFSET 0
@@ -8425,7 +8425,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
 
                 AND MATCH(TITLE, CONTENT) AGAINST('가입*' IN BOOLEAN MODE)
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:18:58.714] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
                B.BOARD_ID
@@ -8434,8 +8434,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8524,8 +8524,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8542,7 +8542,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8558,7 +8558,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 8 msec}
 [2026-03-30 16:19:03.163] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
                C.COMMENT_ID
@@ -8585,8 +8585,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -8627,8 +8627,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8717,8 +8717,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8735,7 +8735,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8769,7 +8769,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 16:19:18.670] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -8778,8 +8778,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -8820,8 +8820,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8910,8 +8910,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -8928,7 +8928,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -8964,8 +8964,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -8984,7 +8984,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:19:21.516] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -9013,8 +9013,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -9103,8 +9103,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -9121,7 +9121,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -9155,7 +9155,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:19:23.831] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -9164,8 +9164,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -9282,8 +9282,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -9395,8 +9395,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -9417,8 +9417,8 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -9435,7 +9435,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -9458,7 +9458,7 @@ com.sqld_board.sqld.exception.board.NotFoundContentBoardException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:19:37.753] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT COUNT(*)
         FROM board_like
@@ -9808,8 +9808,8 @@ com.sqld_board.sqld.exception.board.ScrapFailedException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -9841,8 +9841,8 @@ com.sqld_board.sqld.exception.board.ScrapFailedException: null
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -9859,7 +9859,7 @@ com.sqld_board.sqld.exception.board.ScrapFailedException: null
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -9875,7 +9875,7 @@ com.sqld_board.sqld.exception.board.ScrapFailedException: null
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:20:59.148] [ERROR] [http-nio-8881-exec-5] jdbc.sqltiming - 3. PreparedStatement.execute() FAILED! SELECT COUNT(*) /* BoardMapper.checkBoardScrap (페이지 스크랩 여부  확인)*/
           FROM BOARD_SCRAP
@@ -10120,8 +10120,8 @@ java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'where clause'
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -10138,7 +10138,7 @@ java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'where clause'
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -10150,7 +10150,7 @@ java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'where clause'
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:20:59.285] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - UPDATE BOARD /* BoardMapper.incrementViewCount (특정 게시글의 조회수를 1 증가시키는 쿼리)*/
            SET VIEW_COUNT = VIEW_COUNT + 1
@@ -10163,8 +10163,8 @@ java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'where clause'
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -10773,8 +10773,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -10864,8 +10864,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -10882,7 +10882,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -10916,7 +10916,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 36 msec}
 [2026-03-30 16:21:26.984] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -10925,8 +10925,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -11421,8 +11421,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -11528,8 +11528,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -11546,7 +11546,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -11582,8 +11582,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -11602,7 +11602,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'DELETE_YN' in 'wher
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:22:26.647] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -12876,8 +12876,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -13141,8 +13141,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -13159,7 +13159,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -13171,7 +13171,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 10 msec}
 [2026-03-30 16:47:51.023] [INFO ] [http-nio-8881-exec-9] c.s.sqld.exception.ExceptionAdvice - error
 org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
@@ -13398,8 +13398,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -13537,8 +13537,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -13555,7 +13555,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -13585,7 +13585,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:52:20.035] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
 [2026-03-30 16:52:20.058] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
@@ -13704,8 +13704,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -13722,7 +13722,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -13736,8 +13736,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -13767,7 +13767,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 9 msec}
 [2026-03-30 16:52:31.163] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - UPDATE BOARD /* BoardMapper.incrementViewCount (특정 게시글의 조회수를 1 증가시키는 쿼리)*/
            SET VIEW_COUNT = VIEW_COUNT + 1
@@ -13781,8 +13781,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -13834,8 +13834,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -13852,7 +13852,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -13864,7 +13864,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 8 msec}
 [2026-03-30 16:52:33.039] [ERROR] [http-nio-8881-exec-5] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-30T07:47:57Z. Current time: 2026-03-30T07:52:33Z, a difference of 276039 milliseconds.  Allowed clock skew: 0 milliseconds.
 [2026-03-30 16:52:35.270] [ERROR] [http-nio-8881-exec-7] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-30T07:47:57Z. Current time: 2026-03-30T07:52:35Z, a difference of 278270 milliseconds.  Allowed clock skew: 0 milliseconds.
@@ -13875,8 +13875,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -14096,8 +14096,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -14114,7 +14114,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -14128,8 +14128,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14148,7 +14148,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:54:04.061] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -14177,8 +14177,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -14248,8 +14248,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -14343,8 +14343,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -14361,7 +14361,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -14375,8 +14375,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14395,7 +14395,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:54:10.498] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
                C.COMMENT_ID
@@ -14492,8 +14492,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14584,8 +14584,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14676,8 +14676,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14903,8 +14903,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -14945,8 +14945,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -14963,7 +14963,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -14979,7 +14979,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 25 msec}
 [2026-03-30 16:57:25.113] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -14988,8 +14988,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15078,8 +15078,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -15096,7 +15096,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -15126,7 +15126,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 16:57:26.608] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -15188,8 +15188,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15332,8 +15332,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -15350,7 +15350,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -15364,8 +15364,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15395,7 +15395,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 16:59:08.566] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT COUNT(*)
         FROM board_like
@@ -15417,8 +15417,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15507,8 +15507,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -15525,7 +15525,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -15555,7 +15555,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 6 msec}
 [2026-03-30 17:58:57.461] [WARN ] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=59m53s104ms).
 [2026-03-30 18:05:57.113] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
@@ -15675,8 +15675,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -15693,7 +15693,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -15707,8 +15707,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15738,7 +15738,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 6 msec}
 [2026-03-30 18:09:29.543] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - UPDATE BOARD /* BoardMapper.incrementViewCount (특정 게시글의 조회수를 1 증가시키는 쿼리)*/
            SET VIEW_COUNT = VIEW_COUNT + 1
@@ -15751,8 +15751,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -15805,8 +15805,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -15823,7 +15823,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -15835,7 +15835,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 18:09:32.036] [ERROR] [http-nio-8881-exec-4] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-30T08:24:02Z. Current time: 2026-03-30T09:09:32Z, a difference of 2730035 milliseconds.  Allowed clock skew: 0 milliseconds.
 [2026-03-30 18:09:33.210] [ERROR] [http-nio-8881-exec-3] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-30T08:24:02Z. Current time: 2026-03-30T09:09:33Z, a difference of 2731210 milliseconds.  Allowed clock skew: 0 milliseconds.
@@ -15880,8 +15880,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -15921,8 +15921,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -16012,8 +16012,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -16030,7 +16030,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -16064,7 +16064,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-03-30 18:09:51.431] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -16073,8 +16073,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16163,8 +16163,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16252,8 +16252,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16342,8 +16342,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16569,8 +16569,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16591,8 +16591,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -16609,7 +16609,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -16636,7 +16636,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 18:11:20.610] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT COUNT(*) /* BoardMapper.checkBoardScrap (페이지 스크랩 여부  확인)*/
           FROM BOARD_SCRAP
@@ -16654,8 +16654,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16762,8 +16762,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -16780,7 +16780,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -16792,7 +16792,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 8 msec}
 [2026-03-30 18:11:24.859] [INFO ] [http-nio-8881-exec-8] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -16848,8 +16848,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -16938,8 +16938,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17165,8 +17165,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -17183,7 +17183,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -17197,8 +17197,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17228,7 +17228,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 18:20:59.770] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT COUNT(*)
         FROM board_like
@@ -17298,8 +17298,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17353,8 +17353,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -17371,7 +17371,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -17388,7 +17388,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 13 msec}
 [2026-03-30 18:21:01.897] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -17444,8 +17444,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17534,8 +17534,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17623,8 +17623,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17780,8 +17780,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -17869,8 +17869,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18026,8 +18026,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18115,8 +18115,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18342,8 +18342,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18384,8 +18384,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -18402,7 +18402,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -18420,8 +18420,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18451,7 +18451,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 15 msec}
 [2026-03-30 18:28:13.598] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT COUNT(*)
         FROM board_like
@@ -18517,8 +18517,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -18535,7 +18535,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -18565,7 +18565,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 18:28:14.900] [INFO ] [http-nio-8881-exec-3] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -18623,8 +18623,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18713,8 +18713,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -18935,8 +18935,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19113,8 +19113,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19225,8 +19225,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19367,8 +19367,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19422,8 +19422,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -19440,7 +19440,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -19457,7 +19457,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 18:42:04.235] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -19502,8 +19502,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19578,8 +19578,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -19596,7 +19596,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -19608,7 +19608,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 25 msec}
 [2026-03-30 18:44:57.782] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -19665,8 +19665,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19756,8 +19756,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19900,8 +19900,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -19922,8 +19922,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -19940,7 +19940,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -19952,7 +19952,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 136 msec}
 [2026-03-30 18:45:28.123] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -20001,8 +20001,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20070,8 +20070,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -20088,7 +20088,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -20123,7 +20123,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 11 msec}
 [2026-03-30 18:45:30.351] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -20180,8 +20180,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20271,8 +20271,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20389,8 +20389,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -20484,8 +20484,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -20502,7 +20502,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -20534,8 +20534,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20554,7 +20554,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 18:46:33.561] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -20632,8 +20632,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20690,8 +20690,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20739,8 +20739,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -20946,8 +20946,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -21020,8 +21020,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -21038,7 +21038,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -21050,7 +21050,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 18:47:07.308] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -21261,8 +21261,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -21279,7 +21279,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -21295,7 +21295,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 17 msec}
 [2026-03-30 18:47:07.676] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -21304,8 +21304,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -21552,8 +21552,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -21570,7 +21570,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -21584,8 +21584,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -21604,7 +21604,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 18:47:51.034] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -21818,8 +21818,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -21855,8 +21855,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -21873,7 +21873,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -21890,7 +21890,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 18:51:37.954] [INFO ] [http-nio-8881-exec-2] jdbc.sqltiming - UPDATE BOARD /* BoardMapper.incrementViewCount (특정 게시글의 조회수를 1 증가시키는 쿼리)*/
            SET VIEW_COUNT = VIEW_COUNT + 1
@@ -21903,8 +21903,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -22011,8 +22011,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -22029,7 +22029,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -22041,7 +22041,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 6 msec}
 [2026-03-30 18:51:41.462] [INFO ] [http-nio-8881-exec-7] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -22261,8 +22261,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -22279,7 +22279,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -22293,8 +22293,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -22313,7 +22313,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 30 msec}
 [2026-03-30 18:51:41.820] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -22531,8 +22531,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -22549,7 +22549,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -22583,7 +22583,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 3 msec}
 [2026-03-30 18:52:32.928] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
                B.BOARD_ID
@@ -22592,8 +22592,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -22688,8 +22688,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -22762,8 +22762,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -22780,7 +22780,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -22792,7 +22792,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 11 msec}
 [2026-03-30 18:52:44.485] [INFO ] [http-nio-8881-exec-4] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -22871,8 +22871,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -22929,8 +22929,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -22947,7 +22947,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -22959,7 +22959,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 14 msec}
 [2026-03-30 19:01:02.066] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -23054,8 +23054,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -23072,7 +23072,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -23086,8 +23086,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -23122,7 +23122,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 19:01:02.131] [INFO ] [http-nio-8881-exec-5] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -23201,8 +23201,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -23219,7 +23219,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -23231,7 +23231,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 6 msec}
 [2026-03-30 19:01:02.205] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -23260,8 +23260,8 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -24466,8 +24466,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -24484,7 +24484,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -24498,8 +24498,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -24518,7 +24518,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 9 msec}
 [2026-03-30 21:35:04.395] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
                FILE_ID
@@ -24542,8 +24542,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -24578,8 +24578,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -24596,7 +24596,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -24626,7 +24626,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 4 msec}
 [2026-03-30 21:35:06.692] [ERROR] [http-nio-8881-exec-3] c.sqld_board.sqld.handler.JwtHandler - JWT token is expired: JWT expired at 2026-03-30T10:11:55Z. Current time: 2026-03-30T12:35:06Z, a difference of 8591692 milliseconds.  Allowed clock skew: 0 milliseconds.
 [2026-03-30 21:35:06.772] [INFO ] [http-nio-8881-exec-10] jdbc.sqltiming - SELECT R_ID as rId, MEMBER_ID as memberId, R_TOKEN as rToken, EXPIRY_DATE as expiryDate
@@ -24670,8 +24670,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -24711,8 +24711,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -24820,8 +24820,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -24838,7 +24838,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 30 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -24850,7 +24850,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 8 msec}
 [2026-03-30 21:35:07.335] [INFO ] [http-nio-8881-exec-1] jdbc.sqltiming - UPDATE BOARD /* BoardMapper.incrementViewCount (특정 게시글의 조회수를 1 증가시키는 쿼리)*/
            SET VIEW_COUNT = VIEW_COUNT + 1
@@ -24863,8 +24863,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -24919,8 +24919,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -24960,8 +24960,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -25003,8 +25003,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -25046,8 +25046,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -25142,8 +25142,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -25185,8 +25185,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -25203,7 +25203,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 100 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -25215,7 +25215,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 21:36:13.887] [INFO ] [http-nio-8881-exec-9] jdbc.sqltiming - SELECT
                MEMBER_ID
@@ -25240,8 +25240,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -25258,7 +25258,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 100 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -25270,7 +25270,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE  DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 5 msec}
 [2026-03-30 21:50:44.447] [INFO ] [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
 [2026-03-30 21:50:44.544] [INFO ] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete

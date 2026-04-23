@@ -3,9 +3,7 @@ package com.sqld_board.sqld.dto.response.board;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sqld_board.sqld.model.board.Board;
 import com.sqld_board.sqld.model.board.BoardFile;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +13,9 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class BoardResponse {
     private Long boardId;
     private String memberId;
@@ -24,8 +24,8 @@ public class BoardResponse {
     private String userId;
     private String userName;
     private String profileImage;
-    private String boardType;
-    private String category;
+    private String boardCode;
+    private String categoryId;
     private int viewCount;
     private int likeCount; // 추천수 추가
     private int commentCount; // 댓글수 추가
@@ -49,8 +49,8 @@ public class BoardResponse {
         this.userId = board.getUserId();
         this.userName = board.getUserName();
         this.profileImage = board.getProfileImage();
-        this.boardType = board.getBoardType();
-        this.category = board.getCategory();
+        this.boardCode = board.getBoardCode();
+        this.categoryId = board.getCategoryId();
         this.viewCount = board.getViewCount();
         this.likeCount = board.getLikeCount();
         this.commentCount = board.getCommentCount();

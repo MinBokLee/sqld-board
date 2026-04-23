@@ -9,7 +9,7 @@
     <!-- insert -->
 
     <!-- 인증 정보 저장 또는 갱신 (MariaDB/MySQL ON DUPLICATE KEY UPDATE 활용) -->
-    <insert id="upsertVerification" parameterType="EmailVerification">
+    <insert id="insertVerification" parameterType="EmailVerification">
         INSERT INTO email_verification (
             EMAIL_CHECK,
             IS_VERIFIED,
@@ -70,5 +70,4 @@
           FROM EMAIL_VERIFICATION
          WHERE EMAIL_CHECK = #{email}
     </delete>
-
 </mapper>

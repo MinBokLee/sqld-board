@@ -57,7 +57,7 @@
 
     <!-- 댓글 등록 -->
     <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
-        INSERT INTO comment_management ( /* commentMapper.insertComment (댓글 등록)*/
+        INSERT INTO COMMENT_MANAGEMENT ( /* commentMapper.insertComment (댓글 등록)*/
                     BOARD_ID
                   , MEMBER_ID
                   , USER_ID

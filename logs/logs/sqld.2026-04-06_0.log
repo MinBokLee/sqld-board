@@ -3334,8 +3334,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3433,8 +3433,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , B.TITLE
              , B.CONTENT
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , B.CREATE_AT
@@ -3572,8 +3572,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              ,(SELECT COUNT(*)
@@ -3590,7 +3590,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
                   FROM BOARD
              WHERE DELETE_YN = 'N'
 
-                    AND BOARD_TYPE = 'S' 
+                    AND BOARD_CODE = 'S'
             ORDER BY CREATE_AT DESC
             LIMIT 20 OFFSET 0
         ) AS temp ON B.BOARD_ID = temp.BOARD_ID
@@ -3604,8 +3604,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3645,7 +3645,7 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
           FROM BOARD
          WHERE DELETE_YN = 'N'
 
-                AND BOARD_TYPE = 'S'
+                AND BOARD_CODE = 'S'
  {executed in 7 msec}
 [2026-04-06 22:55:09.548] [INFO ] [http-nio-8881-exec-6] jdbc.sqltiming - SELECT /* MemberMapper.readMemberByMemberId (memberId를 통한 회원 정보 조회) */
                MEMBER_ID
@@ -3705,8 +3705,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3764,8 +3764,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3813,8 +3813,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3896,8 +3896,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -3955,8 +3955,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE
@@ -4004,8 +4004,8 @@ Caused by: java.lang.IllegalStateException: Illegal access: this web application
              , M.USER_ID
              , M.USER_NAME
              , B.MEMBER_ID
-             , B.BOARD_TYPE
-             , B.CATEGORY
+             , B.BOARD_CODE
+             , B.categoryId
              , B.VIEW_COUNT
              , B.LIKE_COUNT
              , M.PROFILE_IMAGE

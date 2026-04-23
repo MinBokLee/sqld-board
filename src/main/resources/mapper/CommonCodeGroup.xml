@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqld_board.sqld.mapper.CommonCodeGroupMapper">
+
+    <!-- select -->
+    <!-- select -->
+    <!-- select -->
+
+    <!-- 정렬 순서 중복 체크 -->
+    <select id="validateSortOrderDuplicate" resultType="boolean">
+        SELECT COUNT(1)
+          FROM COMMON_CODE_GROUP
+         WHERE SORT_ORDER = #{sortOrder}
+        <!-- 수정 시,(fgroupcode가 있을 때) '나는 제외하고 검색'-->
+        <if test="groupCode != null and groupCode != ''">
+           AND GROUP_CODE != #{groupCode}
+        </if>
+    </select>
+
+    <!-- 전체 그룹 중 최대 정렬 순서 조회 -->
+    <select id="getMaxSortOrder" resultType="int">
+        SELECT IFNULL(MAX(SORT_ORDER),0)
+          FROM COMMON_CODE_GROUP
+    </select>
+
+    <!-- 그룹코드 중복 조회  -->
+    <select id="existGroupCode" resultType="boolean">
+        SELECT /* CommonCodeGroupMapper.existGroupCOde */
+               COUNT(1)
+          FROM COMMON_CODE_GROUP
+         WHERE GROUP_CODE = #{groupCode}
+    </select>
+
+    <!-- 그룹코드 목록 조회 -->
+    <select id="getGroupCodeList" resultType="CommonCodeGroup">
+        SELECT /* CommonCodeGroupMapper.getGroupCode (그룹코드 조회) */
+               GROUP_CODE
+             , GROUP_NAME
+             , USE_YN
+             , SORT_ORDER
+             , CREATE_AT
+          FROM COMMON_CODE_GROUP
+      ORDER BY SORT_ORDER ASC
+    </select>
+
+    <!-- 그룹코드 상세 조회 -->
+    <select id="readDetailGroupCode" resultType="CommonCodeGroup">
+        SELECT /* CommonCodeGroupMapper.readGroupCode (그룹코드 조회) */
+               GROUP_CODE
+             , GROUP_NAME
+             , USE_YN
+             , SORT_ORDER
+             , CREATE_AT
+          FROM COMMON_CODE_GROUP
+         WHERE GROUP_CODE = #{groupCode}
+    </select>
+
+    <!-- insert -->
+    <!-- insert -->
+    <!-- insert -->
+
+    <!-- 그룹코드 추가-->
+    <insert id="addGroupCode">
+        INSERT INTO COMMON_CODE_GROUP ( /* CommonCodeGroupMapper.addGroupCode (그룹코드 추가) */
+                    GROUP_CODE
+                  , GROUP_NAME
+                  , USE_YN
+                  , SORT_ORDER
+                  , CREATE_AT
+        )    VALUES (
+                    #{groupCode}
+                  , #{groupName}
+                  , #{useYn}
+                  , #{sortOrder}
+                  , CURRENT_TIMESTAMP
+                   )
+    </insert>
+
+
+
+    <!-- update -->
+    <!-- update -->
+    <!-- update -->
+
+    <!-- 그룹 코드 수정 -->
+    <update id="updateGroupCode">
+        UPDATE /* CommonCodeGroupMapper.updateGroupCode (그룹코드 수정) */
+               COMMON_CODE_GROUP
+           SET GROUP_NAME = #{groupName}
+             , USE_YN = #{useYn}
+             , SORT_ORDER = #{sortOrder}
+             , UPDATE_AT = CURRENT_TIMESTAMP
+         WHERE GROUP_CODE = #{groupCode}
+    </update>
+
+</mapper>
