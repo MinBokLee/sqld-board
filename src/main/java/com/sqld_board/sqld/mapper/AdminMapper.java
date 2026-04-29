@@ -24,7 +24,7 @@ public interface AdminMapper {
      * 게시글 완전 삭제(배치) 30일 기준
      * @return
      */
-    int deleteOldSoftDeletedBoards();
+    int deleteOldSoftDeletedBoards(@Param("days") int days);
 
     /**
      *

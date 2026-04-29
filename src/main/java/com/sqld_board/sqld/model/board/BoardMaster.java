@@ -14,10 +14,11 @@ public class BoardMaster {
     private String boardCode;
     private String boardName;
     private String groupCode;
-    private String fileYn;
     private String useYn;
+    private String fileYn;
     private String replyYn;
-    private int sortOrder; // COMMON_CODE_GROUP - SORT_ORDER 추가
+    private String tagYn;
+    private Integer sortOrder; // COMMON_CODE_GROUP - SORT_ORDER 추가
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 }

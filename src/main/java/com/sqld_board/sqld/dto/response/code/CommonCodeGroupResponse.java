@@ -15,7 +15,7 @@ public class CommonCodeGroupResponse {
     private String groupCode;
     private String groupName;
     private String useYn;
-    private int sortOrder;
+    private Integer sortOrder;
     private LocalDateTime createAt;
 
     public static CommonCodeGroupResponse modelToDto(CommonCodeGroup group) {

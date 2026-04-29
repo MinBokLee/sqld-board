@@ -25,7 +25,7 @@ public interface CommonCodeDetailService {
      * @param groupCode
      * @return
      */
-    CommonCodeDetailResponse readDetailCommonDetailCode(String groupCode);
+    List<CommonCodeDetailResponse> readDetailCommonDetailCode(String groupCode);
 
     /**
      * 그룹 상세코드 추가

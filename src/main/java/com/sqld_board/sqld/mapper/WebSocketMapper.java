@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface WebSocketMapper {
 
+    int deleteOldChatMessage(@Param("days") int days);
 
     List<ChatMessage> getCHatHistory(@Param("roomId") String roomId);
     //  채팅 저장

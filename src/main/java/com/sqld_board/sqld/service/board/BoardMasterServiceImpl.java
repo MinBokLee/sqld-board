@@ -26,10 +26,14 @@ import java.util.stream.Collectors;
 public class BoardMasterServiceImpl implements BoardMasterService{
 
     private final BoardService boardService;
-
     private final BoardMasterMapper boardMasterMapper;
     private final CommonCodeGroupMapper commonCodeGroupMapper;
 
+    /**
+     * 게시판 설정 update
+     * @param boardCode
+     * @param request
+     */
     @Override
     public void updateBoardMaster(String boardCode, BoardMasterRequest request) {
         // 1. boardCode 존재 확인
@@ -48,6 +52,7 @@ public class BoardMasterServiceImpl implements BoardMasterService{
                                                   .useYn(request.getUseYn())
                                                   .fileYn(request.getFileYn())
                                                   .replyYn(request.getReplyYn())
+                                                  .tagYn(request.getTagYn())
                                                   .build();
        // 4. update 실행
             boardMasterMapper.updateBoardMaster(boardMasterData);
@@ -79,9 +84,9 @@ public class BoardMasterServiceImpl implements BoardMasterService{
 
         // 2. 각 마스터 정보에 카테고리 시리스트 매핑
         return boardConfigList.stream().map(list ->{
-            List<CategoryResponse> categories = boardService.getCategoryListByBoardCode(list.getBoardCode());
+                    List<CategoryResponse> categories = boardService.getCategoryListByBoardCode(list.getBoardCode());
 
-            // 수정된 of () 호출 조힙
+            // 수정된 of () 호출 조합
             return BoardMasterResponse.of(list, categories);
         }).collect(Collectors.toList());
 
@@ -107,9 +112,10 @@ public class BoardMasterServiceImpl implements BoardMasterService{
         BoardMaster boardMasterData = BoardMaster.builder()
                         .groupCode(request.getGroupCode())
                         .boardName(request.getBoardName())
-                        .useYn(request.getUseYn() !=null ? request.getUseYn() : "Y")
+                        .useYn(request.getUseYn() != null ? request.getUseYn() : "Y")
                         .fileYn(request.getFileYn() != null ? request.getFileYn() : "Y")
                         .replyYn(request.getReplyYn() != null ? request.getReplyYn() : "Y")
+                        .tagYn(request.getTagYn() != null ? request.getTagYn() : "Y")
                         .build();
         boardMasterMapper.addBoardMaster(boardMasterData);
     }

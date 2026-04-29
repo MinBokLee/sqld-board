@@ -513,6 +513,7 @@ public class BoardServiceImpl implements BoardService {
                 .boardId(boardId)
                 .title(request.getTitle())
                 .content(request.getContent())
+                .boardCode(request.getBoardCode())
                 .categoryId(request.getCategoryId())
                 .tagName(request.getTagName())
                 .build();

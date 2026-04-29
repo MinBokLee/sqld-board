@@ -12,5 +12,5 @@ public class GroupCodeRequest {
     private String groupCode;
     private String groupName;
     private String useYn;
-    private int sortOrder;
+    private Integer sortOrder;
 }

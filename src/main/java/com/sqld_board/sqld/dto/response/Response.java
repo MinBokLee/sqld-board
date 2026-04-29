@@ -1,9 +1,6 @@
 package com.sqld_board.sqld.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sqld_board.sqld.constants.MessageConstants;
-import com.sqld_board.sqld.exception.ExceptionType;
-import com.sqld_board.sqld.exception.MessageType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,26 +42,6 @@ public class Response {
     public static Response success(int code, String msg){
         return new Response(true, code, msg,null,null);
     }
-    /**
-     * 데이터 없이 성공 응답을 생성합니다.
-     * @param msg 성공 메시지와 코드를 담고 있는 {@link MessageConstants}
-     * @return 데이터가 없는 성공 응답 객체
-     */
-    public static <T> Response success(MessageConstants msg) {
-        return new Response(true, msg.getStatusCode(),msg.getMessage(), null,null);
-    }
-
-
-    /**
-     * 데이터를 포함한 성공 응답을 생성합니다.
-     * @param msg 성공 메시지와 코드를 담고 있는 {@link MessageConstants}
-     * @param data 응답에 포함될 데이터
-     * @return 데이터를 포함한 성공 응답 객체
-     * @param <T> 데이터의 제네릭 타입
-     */
-    public static <T> Response success(MessageConstants msg, T data) {
-        return new Response(true, msg.getStatusCode(), msg.getMessage(),null, new Success<>(data));
-    }
 
     /**
      * 데이터만 포함한 성공 응답을 생성합니다. (기본 성공 코드: 200)
@@ -76,14 +53,6 @@ public class Response {
         return new Response(true, 200, "Success", null, new Success<>(data));
     }
 
-    /**
-     * {@link MessageConstants}를 사용한 실패 응답을 생성합니다.
-     * @param msg 실패 메시지와 코드를 담고 있는 {@link MessageConstants}
-     * @return 실패 응답 객체
-     */
-    public static Response failure(MessageConstants msg){
-        return new Response(false, msg.getStatusCode(), msg.getMessage(), null,null);
-    }
 
     /**
      * 사용자 정의 코드와 메시지를 사용한 실패 응답을 생성합니다.

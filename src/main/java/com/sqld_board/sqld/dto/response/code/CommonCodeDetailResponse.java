@@ -13,7 +13,7 @@ public class CommonCodeDetailResponse {
     private String  groupCode;
     private String  codeId;
     private String  codeName;
-    private int sortOrder;
+    private Integer sortOrder;
     private String useYn;
     private LocalDateTime createAt;
 

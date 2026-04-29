@@ -47,7 +47,7 @@ public interface CommonCodeDetailMapper {
      * @param groupCode
      * @return
      */
-    Optional<CommonCodeDetail> readDetailCommonDetailCode(@Param("groupCode") String groupCode);
+    List<CommonCodeDetail> readDetailCommonDetailCode(@Param("groupCode") String groupCode);
 
     /**
      * 그룹 상세 코드 등록

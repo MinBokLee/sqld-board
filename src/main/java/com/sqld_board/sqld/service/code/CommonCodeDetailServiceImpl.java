@@ -68,13 +68,19 @@ public class CommonCodeDetailServiceImpl implements CommonCodeDetailService{
      */
     @Transactional(readOnly = true)
     @Override
-    public CommonCodeDetailResponse readDetailCommonDetailCode(String groupCode) {
+    public List<CommonCodeDetailResponse> readDetailCommonDetailCode(String groupCode) {
 
         // 1. 그룹코드 상세 조회 & 유효성 검사
-        CommonCodeDetail codeDetailData = commonCodeDetailMapper.readDetailCommonDetailCode(groupCode).orElseThrow(NotFoundGroupDetailCodeException::new);
+        List<CommonCodeDetail> codeDetailData = commonCodeDetailMapper.readDetailCommonDetailCode(groupCode);
 
-        // 2. Model Response DTO로 변환
-        return CommonCodeDetailResponse.modelToDto(codeDetailData);
+        if(codeDetailData.isEmpty()){
+            throw new NotFoundGroupDetailCodeException();
+        }
+
+        // 2. Model Response DTO List 로 변환
+        return codeDetailData.stream()
+                            .map(CommonCodeDetailResponse::modelToDto)
+                            .collect(Collectors.toList());
     }
 
     /**

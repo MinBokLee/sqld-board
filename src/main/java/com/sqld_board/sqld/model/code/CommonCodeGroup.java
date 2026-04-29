@@ -13,7 +13,7 @@ public class CommonCodeGroup {
     private String groupCode;
     private String groupName;
     private String useYn;
-    private int sortOrder;
+    private Integer sortOrder;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 

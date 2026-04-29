@@ -16,10 +16,11 @@ public class BoardMasterResponse {
     private String boardCode;
     private String boardName;
     private String groupCode;
-    private String fileYn;
     private String useYn;
+    private String fileYn;
     private String replyYn;
-    private int sortOrder;
+    private String tagYn;
+    private Integer sortOrder;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
@@ -31,12 +32,13 @@ public class BoardMasterResponse {
                                   .boardCode(boardMaster.getBoardCode())
                                   .boardName(boardMaster.getBoardName())
                                   .groupCode(boardMaster.getGroupCode())
-                                  .fileYn(boardMaster.getFileYn())
                                   .useYn(boardMaster.getUseYn())
+                                  .fileYn(boardMaster.getFileYn())
                                   .replyYn(boardMaster.getReplyYn())
+                                  .tagYn(boardMaster.getTagYn())
+                                  .sortOrder(boardMaster.getSortOrder())
                                   .createAt(boardMaster.getCreateAt())
                                   .updateAt(boardMaster.getUpdateAt())
-                                  .sortOrder(boardMaster.getSortOrder())
                                   .categories(categories)
                                   .build();
     }

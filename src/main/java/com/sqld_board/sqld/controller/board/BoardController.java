@@ -1,8 +1,8 @@
 package com.sqld_board.sqld.controller.board;
 
-import com.sqld_board.sqld.constants.MessageConstants;
 import com.sqld_board.sqld.dto.request.board.BoardDeleteRequest;
 import com.sqld_board.sqld.dto.request.board.BoardRequest;
+import com.sqld_board.sqld.dto.request.board.CommentModifyRequest;
 import com.sqld_board.sqld.dto.request.board.CommentRequest;
 import com.sqld_board.sqld.dto.request.board.ScrapDeleteRequest;
 import com.sqld_board.sqld.dto.response.Response;
@@ -33,8 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.sqld_board.sqld.dto.response.Response.success;
-
 /**
  * 게시판(Board) 및 댓글(Comment) 관련 API 엔드포인트를 처리하는 컨트롤러 클래스입니다.
  * 모든 경로는 프론트엔드와 호환되도록 원래대로 복구되었습니다.
@@ -49,25 +47,30 @@ public class BoardController {
     private final ResponseHandler responseHandler;
 
     @Operation(summary = "카테고리 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{boardCode}/categories")
-    public ResponseEntity<Response> getCategoryListByBoardCode(@PathVariable String boardCode) {
+    public Response getCategoryListByBoardCode(@PathVariable String boardCode) {
         List<CategoryResponse> categoryData = boardService.getCategoryListByBoardCode(boardCode);
-        return ResponseEntity.ok(Response.success(categoryData));
+
+        return Response.success(categoryData);
     }
 
     @Operation(summary="스크랩 페이지 삭제")
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/deleteMyScrapPage")
-    public ResponseEntity<Response> deleteMyScrapPage(@RequestBody ScrapDeleteRequest scrapDeleteReq, @AuthenticationPrincipal User user){
+    public Response deleteMyScrapPage(@RequestBody ScrapDeleteRequest scrapDeleteReq, @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
         boardService.deleteMyScrapPage(scrapDeleteReq.getScrapIds(), user.getUsername());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.BOARD_SCRAP_DELETE_SUCCESS));
+
+        return responseHandler.getSuccessResponse(MessageType.BOARD_SCRAP_DELETE_SUCCESS);
     }
 
     @Operation(summary = "스크랩 페이지 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/searchScrapMyPage")
-    public ResponseEntity<Response> searchScrapMyPage(@RequestParam (defaultValue = "1") int page
+    public Response searchScrapMyPage(@RequestParam (defaultValue = "1") int page
                                                      ,@RequestParam (defaultValue = "10") int size
-                                                     ,@RequestParam String keyword
+                                                     ,@RequestParam (required = false, defaultValue = "") String keyword
                                                      ,@AuthenticationPrincipal User user){
         if (user == null) throw new LoginRequiredException();
 
@@ -75,21 +78,26 @@ public class BoardController {
         if(size > 100) size = 100;
 
         Map<String, Object> resultData = boardService.searchScrapMyPage(page, size, keyword.trim(), user.getUsername());
-        return ResponseEntity.ok(success(resultData));
+        return Response.success(resultData);
     }
 
     @Operation(summary = "스크랩 추가/취소(토글)")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/insertBoardScrap")
-    public ResponseEntity<Response> insertBoardScrap(@RequestParam Long boardId, @AuthenticationPrincipal User user){
+    public Response insertBoardScrap(@RequestParam Long boardId, @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
         boolean isScrapped = boardService.insertBoardScrap(boardId, user.getUsername());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(isScrapped ? MessageType.BOARD_SCRAP_INSERT_SUCCESS : MessageType.BOARD_SCRAP_DELETE_SUCCESS));
+
+        return responseHandler.getSuccessResponse(isScrapped ? MessageType.BOARD_SCRAP_INSERT_SUCCESS : MessageType.BOARD_SCRAP_DELETE_SUCCESS);
     }
 
     @Operation(summary = "인기 게시글 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/popularBoards")
-    public ResponseEntity<Response> getPopularBoards(){
-        return ResponseEntity.ok(success(boardService.getPopularBoards()));
+    public Response getPopularBoards(){
+        List<BoardResponse> popularBoards  = boardService.getPopularBoards();
+
+        return Response.success(popularBoards);
     }
 
     @Operation(summary = "첨부 파일 다운로드")
@@ -99,6 +107,7 @@ public class BoardController {
         Resource resource = boardService.downloadFile(fileId);
         BoardFile fileInfo = boardService.getBoardFileInfo(fileId);
         String encodeFileName = URLEncoder.encode(fileInfo.getOriginName(), StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodeFileName + "\"" )
                 .header(HttpHeaders.CONTENT_TYPE, "application/octet-stream")
@@ -106,26 +115,31 @@ public class BoardController {
     }
 
     @Operation(summary = "게시판 댓글 삭제")
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/deleteComment/{commentId}")
-    public ResponseEntity<Response> deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal User user){
+    public Response deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
         boardService.deleteComment(commentId, user.getUsername());
-        return ResponseEntity.ok(success(MessageConstants.DELETE_OK));
+        return responseHandler.getSuccessResponse(MessageType.DELETE_COMMENT);
     }
 
     @Operation(summary="게시판 댓글 수정")
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/modifyComment")
-    public ResponseEntity<Response> modifyComment(@RequestParam Long commentId, @RequestParam String content, @AuthenticationPrincipal User user){
+    public Response modifyComment(@RequestBody CommentModifyRequest request, @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
-        boardService.updateComment(commentId, content, user.getUsername());
-        return ResponseEntity.ok(success(MessageConstants.UPDATE_OK));
+        boardService.updateComment(request.getCommentId(), request.getContent(), user.getUsername());
+
+        return responseHandler.getSuccessResponse(MessageType.UPDATE_COMMENT);
     }
 
     @Operation(summary="게시판 댓글 확인")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/readComment")
-    public ResponseEntity<Response> readComment(@RequestParam Long boardId) {
-        List<CommentManagement> result = boardService.getCommentList(boardId);
-        return ResponseEntity.ok(success(result));
+    public Response readComment(@RequestParam Long boardId) {
+        List<CommentManagement> boardComment = boardService.getCommentList(boardId);
+
+        return Response.success(boardComment);
     }
 
     @Operation(summary="게시판 댓글 작성")
@@ -138,8 +152,9 @@ public class BoardController {
     }
 
     @Operation(summary = "게시판 글 수정")
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/list/{boardId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Response> updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequest request, @AuthenticationPrincipal User user) {
+    public Response updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequest request, @AuthenticationPrincipal User user) {
 
         // 1. 현재 로그인한 사용자의 ID(username)를 추출합니다. (로그인하지 않은 경우 null)
         String memberId = (user != null) ? user.getUsername() : null;
@@ -156,7 +171,7 @@ public class BoardController {
             boardService.uploadFiles(boardId, request.getFiles());
         }
 
-        return ResponseEntity.ok(Response.success(MessageType.UPDATE_BOARD_CONTENT_SUCCESS));
+        return responseHandler.getSuccessResponse(MessageType.UPDATE_BOARD_CONTENT_SUCCESS);
     }
 
     @Operation(summary ="게시판 글 작성")
@@ -194,9 +209,10 @@ public class BoardController {
     @Operation(summary = "게시글 전문 검색(FTS)")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/searchContent")
-    public Response searchContent(@RequestParam String keyword, @RequestParam(required = false) String boardCode, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
-        Map<String, Object> result = boardService.searchBoardContent(keyword.trim(), boardCode, page, size);
-        return success(result);
+    public Response searchContent(@RequestParam(required = false, defaultValue = "") String keyword, @RequestParam(required = false) String boardCode, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        Map<String, Object> searchData = boardService.searchBoardContent(keyword.trim(), boardCode, page, size);
+
+        return Response.success(searchData);
     }
 
     @Operation(summary = "게시글 추천 토글")
@@ -205,6 +221,7 @@ public class BoardController {
     public Response toggleLike(@RequestParam Long boardId, @AuthenticationPrincipal User user) {
         if(user == null) throw new LoginRequiredException();
         boolean isLiked = boardService.toggleLike(boardId, user.getUsername());
+
         return responseHandler.getSuccessResponse(isLiked ? MessageType.IsLiked_Content : MessageType.IsNotLiked_Content);
     }
 
@@ -214,17 +231,18 @@ public class BoardController {
     public Response getSearchBoard(@PathVariable Long boardId, @AuthenticationPrincipal User user){
         String memberId = (user != null) ? user.getUsername() : null;
         BoardResponse result = boardService.getSearchBoard(boardId, memberId);
-        return success(result);
+        return Response.success(result);
     }
 
     @Operation(summary = "내가 쓴 글의 리스트 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/my-list")
-    public ResponseEntity<Response> getBoardMyList(@RequestParam(defaultValue = "1") int page
+    public Response getBoardMyList(@RequestParam(defaultValue = "1") int page
                                                   ,@RequestParam(defaultValue = "10") int size
                                                   ,@RequestParam(required = false) String boardCode
                                                   ,@RequestParam(required = false) String categoryId
                                                   ,@RequestParam(required = false) String tagName
-                                                   ,@RequestParam(required = false) String keyword
+                                                  ,@RequestParam(required = false, defaultValue = "") String keyword
                                                   , @AuthenticationPrincipal User user){
         if(user == null) throw new LoginRequiredException();
 
@@ -233,22 +251,25 @@ public class BoardController {
         if(size >100) size = 100; // 최대 100개까지만 허용
 
         String memberId = (user != null) ? user.getUsername() : null;
-        Map<String, Object> result = boardService.getBoardMyList(page, size, boardCode, categoryId, tagName, keyword, memberId);
-        return ResponseEntity.ok(Response.success(result));
+        Map<String, Object> myContentDataList = boardService.getBoardMyList(page, size, boardCode, categoryId, tagName, keyword.trim(), memberId);
+        return Response.success(myContentDataList);
     }
 
     @Operation(summary = "게시판 목록 페이징 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/list/paging")
-    public ResponseEntity<Response> getBoardListWithPaging(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String boardCode, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String memberId, @RequestParam(required = false) String tagName) {
-        Map<String, Object> result = boardService.getBoardListWithPaging(page, size, boardCode, categoryId, memberId, tagName);
-        return ResponseEntity.ok(success(result));
+    public Response getBoardListWithPaging(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String boardCode, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String memberId, @RequestParam(required = false) String tagName) {
+        Map<String, Object> pagingData = boardService.getBoardListWithPaging(page, size, boardCode, categoryId, memberId, tagName);
+
+        return Response.success(pagingData);
     }
 
     @Operation(summary = "게시판 목록 읽기")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/list")
-    public ResponseEntity<Response> getBoardList() {
-        List<BoardResponse> result = boardService.getBoardList();
-        return ResponseEntity.ok(success(result));
+    public Response getBoardList() {
+        List<BoardResponse> boardList = boardService.getBoardList();
+        return Response.success(boardList);
     }
 
     // Redis 타입으로 수정 완료함 ( 이 API는 로그용으로 남겨둠)

@@ -6,6 +6,7 @@ import com.sqld_board.sqld.dto.response.code.CommonCodeGroupResponse;
 import com.sqld_board.sqld.exception.MessageType;
 import com.sqld_board.sqld.handler.ResponseHandler;
 import com.sqld_board.sqld.service.code.CommonCodeGroupService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,46 +25,35 @@ public class CommonCodeGroupController {
     private final CommonCodeGroupService commonCodeGroupService;
 
 
-    /**
-     * 그룹코드 수정
-     * @param groupCode
-     * @param groupCodeRequest
-     * @return
-     */
+    @Operation(summary = "그룹코드 수정")
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/updateGroupCode/{groupCode}")
-    public ResponseEntity<Response> updateGroupCode(@PathVariable String groupCode, @RequestBody GroupCodeRequest groupCodeRequest){
+    public Response updateGroupCode(@PathVariable String groupCode,
+                                    @RequestBody GroupCodeRequest groupCodeRequest){
         commonCodeGroupService.updateGroupCode(groupCode, groupCodeRequest);
-        return ResponseEntity.ok(Response.success(MessageType.UPDATE_GROUP_CODE_SUCCESS));
+
+        return responseHandler.getSuccessResponse(MessageType.UPDATE_GROUP_CODE_SUCCESS);
     }
 
-    /**
-     * 그룹코드 상세조회
-     * @param groupCode
-     * @return
-     */
+    @Operation(summary = "그룹코드 상세조회")
     @GetMapping("/readDetailGroupCode/{groupCode}")
-    public ResponseEntity<Response> readDetailGroupCode(@PathVariable String groupCode){
+    public Response readDetailGroupCode(@PathVariable String groupCode){
 
-        CommonCodeGroupResponse rData = commonCodeGroupService.readDetailGroupCode(groupCode);
+        CommonCodeGroupResponse groupCodeDetailData = commonCodeGroupService.readDetailGroupCode(groupCode);
 
-        return ResponseEntity.ok(Response.success(rData));
+        return Response.success(groupCodeDetailData);
     }
 
-    /**
-     * 그룹코드 목록 조회
-     * @return
-     */
+    @Operation(summary = "그룹코드 목록 조회")
     @GetMapping("/getGroupCodeList")
-    public ResponseEntity<Response> getGroupCodeList(){
+    public Response getGroupCodeList(){
       List<CommonCodeGroupResponse> groupCodeList = commonCodeGroupService.getGroupCodeList();
-      return ResponseEntity.ok(Response.success(groupCodeList));
+
+      return Response.success(groupCodeList);
     }
 
-    /**
-     * 그룹코드를 등록한다.
-     * @param groupCodeRequest
-     * @return
-     */
+
+    @Operation(summary = "그룹코드를 등록한다.")
     @PostMapping("/addGroupCode")
     @ResponseStatus(HttpStatus.CREATED)
     public Response addGroupCode(@RequestBody GroupCodeRequest groupCodeRequest){

@@ -131,7 +131,7 @@ public class AdminServiceImpl implements AdminService {
         // 3. 회원 정보 일괄 삭제
         adminMapper.deleteMembersBySuperAdmin(memberIds);
 
-        return MessageType.ADMIN_KICK_SUCCESS;
+        return MessageType.ADMIN_KICK_SUCCESS; //해당 사용자를 강제 탈퇴 처리하였습니다.
     }
 
     /**

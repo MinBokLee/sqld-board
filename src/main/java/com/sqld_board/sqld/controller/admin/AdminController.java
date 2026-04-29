@@ -9,6 +9,7 @@ import com.sqld_board.sqld.service.admin.AdminServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,20 +32,18 @@ public class AdminController {
 
     @Operation(summary = "게시글 복구")
     @PutMapping("/restore/{boardId}")
-    public ResponseEntity<Response> restore(@PathVariable long boardId) {
+    @ResponseStatus(HttpStatus.OK)
+    public Response restore(@PathVariable long boardId) {
         adminService.restore(boardId);
 
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.BOARD_CONTENTS_RESTORE));
+        return responseHandler.getSuccessResponse(MessageType.BOARD_CONTENTS_RESTORE);
     }
 
-    /**
-     * 3. 사용자 ->운영자로 Role 변경
-     * @param memberId
-     * @return
-     */
+
     @Operation(summary = "사용자 Role 변경")
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/changeRoleAdmin/{memberId}")
-    public ResponseEntity<Response> changeRoleByAdmin(@PathVariable String memberId, @AuthenticationPrincipal User user){
+    public Response changeRoleByAdmin(@PathVariable String memberId, @AuthenticationPrincipal User user){
         // 1. 현재 관리자의 Id(로그인 아이디)
         String currentAdminId = user.getUsername();
 
@@ -56,6 +55,7 @@ public class AdminController {
 
         MemberResponse updateData = adminService.changeRoleByAdmin(currentAdminId, isSuperAdmin, memberId);
 
+
         MessageType msgType;
         if("ADMIN".equals(updateData.getUserRole())){
             msgType  = MessageType.ADMIN_PROMOTED_SUCCESS;// 관리자로 승격
@@ -63,35 +63,37 @@ public class AdminController {
             msgType =MessageType.ADMIN_DEMOTED_SUCCESS; // 사용자로 강등
         }
 
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(msgType, updateData));
+        return responseHandler.getSuccessResponse(msgType, updateData);
     }
+
+
     /**
-     * 2. 회원 일괄 삭제
+     * 회원 일괄 삭제
      * DELETE 메소드에 @RequestBody를 사용하는 방식은, 최신 브라우저와 라이브러리(Axios 등)에서 잘 작동하지만,
      * 아주 오래된 환경에서는 차단될 수 있다. post 방식을 대안으로 고려할 수 있다.
      * @param memberBulkDeleteReq
      * @return
      */
     @Operation(summary = "회원 일괄 삭제")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/deleteMembersBySuperAdmin")
-    public ResponseEntity<Response> deleteMembersBySuperAdmin(@RequestBody MemberBulkDeleteReq memberBulkDeleteReq){
+    public Response deleteMembersBySuperAdmin(@RequestBody MemberBulkDeleteReq memberBulkDeleteReq){
 
         List<String> memberIds = memberBulkDeleteReq.getMemberIds();
 
-        MessageType result = adminService.deleteMembersBySuperAdmin(memberIds);
-         return ResponseEntity.ok(Response.success(result));
+        MessageType resultMsg = adminService.deleteMembersBySuperAdmin(memberIds);
+
+         return responseHandler.getSuccessResponse(resultMsg); //해당 사용자를 강제 탈퇴 처리하였습니다.
     }
 
-    /**
-     * 1. 회원 정보를 확인한다.
-     * @return
-     */
+
     @Operation(summary = "회원 리스트 확인")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/getMemberList")
-    public ResponseEntity<Response> getMemberList(){
+    public Response getMemberList(){
         List<MemberResponse> memberList = adminService.getMemberList();
-        return ResponseEntity.ok(Response.success(memberList));
-    }
 
+        return Response.success(memberList);
+    }
 
 }

@@ -1,7 +1,6 @@
 package com.sqld_board.sqld.controller.sign;
 
 import com.sqld_board.sqld.common.util.DateTimeUtils;
-import com.sqld_board.sqld.constants.MessageConstants;
 import com.sqld_board.sqld.dto.request.sign.*;
 import com.sqld_board.sqld.dto.response.Response;
 import com.sqld_board.sqld.dto.response.member.MemberSimpleInfoRes;
@@ -39,19 +38,23 @@ public class SignController {
     private long refreshTokenExpiration;
 
     @Operation(summary = "로그인 후, 간단 회원정보 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/member/readMemberSimpleInfo")
-    public ResponseEntity<Response> readMemberSimpleInfo(@AuthenticationPrincipal User user) {
+    public Response readMemberSimpleInfo(@AuthenticationPrincipal User user) {
         if(user == null){
             throw new LoginRequiredException(); // 로그인이 필요한 서비스 입니다.
         }
 
-        MemberSimpleInfoRes infoData = signService.readMemberSimpleInfo(user.getUsername());
-        return ResponseEntity.ok(Response.success(infoData));
+        String memberId = user.getUsername();
+        MemberSimpleInfoRes memberInfoData = signService.readMemberSimpleInfo(memberId);
+
+        return Response.success(memberInfoData);
     }
 
     @Operation(summary = "회원 삭제(단건)")
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/member/deleteMember/{memberId}")
-    public ResponseEntity<Response> deleteMember(@PathVariable String memberId, @AuthenticationPrincipal User user){
+    public Response deleteMember(@PathVariable String memberId, @AuthenticationPrincipal User user){
 
         // 로그인 체크
         if(user == null){
@@ -59,33 +62,40 @@ public class SignController {
         }
 
         MessageType resultMsg = signService.deleteByMemberId(memberId);
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(resultMsg));
+        return responseHandler.getSuccessResponse(resultMsg);
     }
 
     @Operation(summary = "비밀번호 변경 인증코드 요청")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/common/pass-change/request")
-    public ResponseEntity<Response> requestPassChange(@RequestBody PassChangeRequest req) {
+    public Response requestPassChange(@RequestBody PassChangeRequest req) {
             signService.sendPassChangeCode(req.getUserId(), req.getEmail());
-            return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.MAIL_SEND_SUCCESS)); // 인증 코드 메일이 성공적으로 발송되었습니다. 확인해주세요.
+
+            return responseHandler.getSuccessResponse(MessageType.MAIL_SEND_SUCCESS); // 인증 코드 메일이 성공적으로 발송되었습니다. 확인해주세요.
     }
 
     @Operation(summary = "비밀번호 변경 인증코드 확인")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/common/pass-change/verify")
-    public ResponseEntity<Response> verifyPassChange(@RequestBody PassVerifyRequest req) {
+    public Response verifyPassChange(@RequestBody PassVerifyRequest req) {
         signService.verifyPassChangeCode(req.getUserId(), req.getEmail(), req.getCode());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.VERIFICATION_MAIL_SUCCESS)); // 이메일 인증이 완료 되었습니다.
+
+        return responseHandler.getSuccessResponse(MessageType.VERIFICATION_MAIL_SUCCESS); // 이메일 인증이 완료 되었습니다.
     }
 
     @Operation(summary = "비밀번호 최종 수정")
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/common/pass-change")
-    public ResponseEntity<Response> updatePassword(@RequestBody PassUpdateRequest req) {
+    public Response updatePassword(@RequestBody PassUpdateRequest req) {
         signService.updatePassword(req.getUserId(), req.getEmail(), req.getNewPassword());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.CHANGE_PASSWORD_SUCCESS)); //비밀번호가 변경되었습니다.
+
+        return responseHandler.getSuccessResponse(MessageType.CHANGE_PASSWORD_SUCCESS); //비밀번호가 변경되었습니다.
     }
 
     @Operation(summary = "프로필 이미지 업데이트")
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/member/profile-image")
-    public ResponseEntity<Response> updateProfileImage(@RequestBody ProfileImageReq req, @AuthenticationPrincipal User user) {
+    public Response updateProfileImage(@RequestBody ProfileImageReq req, @AuthenticationPrincipal User user) {
 
         if(user==null){
             throw new LoginRequiredException();// 로그인이 필요한 서비스 입니다.
@@ -94,36 +104,44 @@ public class SignController {
         String memberId = user.getUsername();
 
         signService.updateProfileImage(memberId, req.getProfileImage());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.IMAGE_UPDATE_SUCCESS)); // 프로필 이미지가 성공적으로 수정 되었습니다.
+        return responseHandler.getSuccessResponse(MessageType.IMAGE_UPDATE_SUCCESS); // 프로필 이미지가 성공적으로 수정 되었습니다.
     }
 
     @Operation(summary = "이메일 인증번호 발송")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/common/send-code")
-    public ResponseEntity<Response> sendCode(@RequestBody EmailVerificationReq req) {
+    public Response sendCode(@RequestBody EmailVerificationReq req) {
         signService.sendVerificationCode(req.getEmail());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.MAIL_SEND_SUCCESS));
+
+        return responseHandler.getSuccessResponse(MessageType.MAIL_SEND_SUCCESS);
     }
 
     @Operation(summary = "이메일 인증번호 확인")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/common/verify-code")
-    public ResponseEntity<Response> verifyCode(@RequestBody EmailVerificationReq req) {
+    public Response verifyCode(@RequestBody EmailVerificationReq req) {
         signService.verifyCode(req.getEmail(), req.getCode());
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.VERIFICATION_MAIL_SUCCESS));
+
+        return responseHandler.getSuccessResponse(MessageType.VERIFICATION_MAIL_SUCCESS);
 
     }
 
     @Operation(summary = "아이디 중복 확인")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/common/check-id")
-    public ResponseEntity<Response> checkUserId(@RequestParam String userId) {
+    public Response checkUserId(@RequestParam String userId) {
         signService.checkUserIdDuplicate(userId);
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.AVAILABLE_USER_ID)); // 사용 가능한 아이디입니다.
+
+        return responseHandler.getSuccessResponse(MessageType.AVAILABLE_USER_ID); // 사용 가능한 아이디입니다.
     }
 
     @Operation(summary = "이름 중복 확인")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/common/check-name")
-    public ResponseEntity<Response> checkUserName(@RequestParam String userName) {
+    public Response checkUserName(@RequestParam String userName) {
         signService.checkUserNameDuplicate(userName);
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.AVAILABLE_USER_NAME)); // 사용 가능한 이름(닉네임) 입니다.
+
+        return responseHandler.getSuccessResponse(MessageType.AVAILABLE_USER_NAME); // 사용 가능한 이름(닉네임) 입니다.
     }
 
     @Operation(summary = "액세스 토큰 재발급")
@@ -172,11 +190,12 @@ public class SignController {
     }
 
     @Operation(summary = "회원 가입")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/auth/signUp")
-    public ResponseEntity<Response> signUpMember(@RequestBody SignUpMemberReq req) {
+    public Response signUpMember(@RequestBody SignUpMemberReq req) {
 
         signService.signUpMember(req);
-        return ResponseEntity.ok(responseHandler.getSuccessResponse(MessageType.SIGNUP_SUCCESS));
+        return responseHandler.getSuccessResponse(MessageType.SIGNUP_SUCCESS);
     }
 
     @Operation(summary = "로그아웃")
@@ -185,7 +204,16 @@ public class SignController {
         if (authentication != null) {
             signService.logout(authentication.getName());
         }
-        ResponseCookie responseCookie = ResponseCookie.from("refresh-token", "").maxAge(0).path("/").build();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, responseCookie.toString()).body(Response.success(MessageConstants.LOGOUT_OK));
+
+        // 쿠키 삭제 설정
+        ResponseCookie responseCookie = ResponseCookie.from("refresh-token", "")
+                                                      .maxAge(0) // 쿠기 수명 0 즉시 만료
+                                                      .path("/") // 전체 경로에서 쿠키 유효성 제거
+                                                      .build();
+
+        // body 메시지 생성
+        Response body = responseHandler.getSuccessResponse(MessageType.LOGOUT_SUCCESS);
+
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, responseCookie.toString()).body(body);
     }
 }

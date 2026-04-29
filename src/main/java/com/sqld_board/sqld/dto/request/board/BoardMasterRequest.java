@@ -15,6 +15,7 @@ public class BoardMasterRequest {
     private String fileYn;
     private String useYn;
     private String replyYn;
+    private String tagYn;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 

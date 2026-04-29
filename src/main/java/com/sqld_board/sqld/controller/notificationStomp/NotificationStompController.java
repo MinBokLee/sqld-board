@@ -3,6 +3,7 @@ package com.sqld_board.sqld.controller.notificationStomp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sqld_board.sqld.dto.request.websocket.RealTimeMessage;
 import com.sqld_board.sqld.service.notificationStomp.NotificationStompService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,11 +27,8 @@ public class NotificationStompController {
 
     private final ObjectMapper objectMapper; // [JSON 변환기  - 객체-> String ]
 
-    /**
-     * 알림 저장
-     * @param message
-     * @throws Exception
-     */
+
+    @Operation(summary = "알림 저장")
     @MessageMapping("/notification")
     public void notification(RealTimeMessage message) throws  Exception{
         // 1. 서버 시간 등 공통 설정

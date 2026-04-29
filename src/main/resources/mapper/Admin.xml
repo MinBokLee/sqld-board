@@ -1,151 +1,105 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sqld_board.sqld.mapper.AdminMapper">
 
-    <!-- select -->
-    <!-- select -->
-    <!-- select -->
-
-    <!-- 전체 게시글 총 개수 조회 -->
-    <select id="selectDeleteBoardCount" resultType="int">
-        SELECT /* AdminMapper.selectDeleteBoardCount (전체 게시글 총 개수 조회) */
-               COUNT(*)
-          FROM BOARD
-        WHERE DELETE_YN = 'Y'
-         <if test = "keyword != null and keyword != ''">
-            AND MATCH(TITLE, CONTENT) AGAINST(#{keyword} IN BOOLEAN MODE)
-         </if>
-    </select>
-
-    <!-- 삭제된 게시글 목록 조회-->
-    <select id="selectDeleteBoardList" resultType="BoardResponse">
-        SELECT /* selectDeleteBoardList */
-               B.BOARD_ID
-             , B.TITLE
-             , B.CONTENT
-             , B.BOARD_CODE
-             , B.CATEGORY_ID
-             , B.VIEW_COUNT
-             , B.LIKE_COUNT
-             , B.TAG_NAME
-             , B.CREATE_AT
-             , B.UPDATE_AT
-             , M.USER_ID
-             , M.USER_NAME
-             , M.PROFILE_IMAGE
-             , (SELECT COUNT(*)
-                  FROM COMMENT_MANAGEMENT CM
-                 WHERE CM.BOARD_ID = B.BOARD_ID
-                )   AS commentCount /* 전체 댓글(삭제된 댓글 포함) 수 표시 */
-         FROM BOARD B
-   INNER JOIN(SELECT BOARD_ID
-                FROM BOARD
-               WHERE DELETE_YN = 'Y'
-                 <if test="keyword != null and keyword != ''">
-                     AND MATCH(TITLE, CONTENT) AGAINST(#{keyword} IN BOOLEAN MODE)
-                </if>
-            ORDER BY UPDATE_AT DESC
-        LIMIT #{offset}, #{size}
-              )AS temp ON B.BOARD_ID = temp.BOARD_ID
-    LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID =M.MEMBER_ID
-     ORDER BY B.UPDATE_AT DESC
-    </select>
-
-    <select id="getMemberRole" resultType="MemberInfo">
-        SELECT
-              USER_ROLE
-         FROM MEMBER_INFO
-        WHERE MEMBER_ID = #{memberId}
-
-    </select>
-
-    <!-- 사용자 최신 정보 조회 -->
-    <select id="getMemberDetail" resultType="MemberInfo">
-        SELECT /* AdminMapper.getMemberRole 사용자 Role 조회 */
+    <!-- 회원 리스트를 조회. -->
+    <select id="getMemberList" resultType="com.sqld_board.sqld.model.member.MemberInfo">
+        SELECT /* AdminMapper.getMemberList */
                MEMBER_ID
              , USER_ID
+             , USER_PASS
              , USER_NAME
+             , USER_EMAIL
+             , EMAIL_VERIFIED
              , USER_ROLE
+             , USER_STATUS
+             , PROFILE_IMAGE
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+         WHERE USER_ROLE != 'SUPER_ADMIN'
+         ORDER BY CREATE_AT DESC
+    </select>
+
+    <!-- userRole 조회 -->
+    <select id="getMemberRole" resultType="com.sqld_board.sqld.model.member.MemberInfo">
+        SELECT /* AdminMapper.getMemberRole */
+               USER_ROLE
           FROM MEMBER_INFO
          WHERE MEMBER_ID = #{memberId}
     </select>
 
-    <!-- 전체 회원 정보 조회 (Admin)-->
-    <select id="getMemberList" resultType="MemberInfo">
-        SELECT /* AdminMapper.getMemberList (전체 회원 정보 조회 (Admin)) */
+    <!-- userRole 업데이트 후, 사용자 최신정보 조회 -->
+    <select id="getMemberDetail" resultType="com.sqld_board.sqld.model.member.MemberInfo">
+        SELECT /* AdminMapper.getMemberDetail */
                MEMBER_ID
              , USER_ID
+             , USER_PASS
              , USER_NAME
-             , USER_ROLE
              , USER_EMAIL
+             , EMAIL_VERIFIED
+             , USER_ROLE
              , USER_STATUS
-             , LAST_LOG_AT
              , PROFILE_IMAGE
-          FROM  MEMBER_INFO
+             , CREATE_AT
+             , UPDATE_AT
+             , LAST_LOG_AT
+          FROM MEMBER_INFO
+         WHERE MEMBER_ID = #{memberId}
     </select>
 
-    <!-- update -->
-    <!-- update -->
-    <!-- update -->
-
-    <!-- 게시글 복구 -->
-    <update id="restoreBoardContent">
-        UPDATE BOARD
-        SET DELETE_YN = 'N'
-          , UPDATE_AT = NOW()
-        WHERE BOARD_ID = #{boardId}
-    </update>
-
-    <!-- 운영자에서 사용자로 변경 -->
-    <update id= "changeRoleUser">
-        UPDATE MEMBER_INFO /* adminMapper.changeRoleUser (운영자에서 사용자로 변경)*/
-           SET USER_ROLE = 'USER'
-         WHERE MEMBER_ID = #{memberId}
-    </update>
-
-    <!-- 사용자에서 운영자로 변경 -->
-    <update id = "changeRoleAdmin">
-        UPDATE MEMBER_INFO /* adminMapper.changeRoleAdmin (사용자에서 운영자로 변경) */
-           SET USER_ROLE = 'ADMIN'
-         WHERE MEMBER_ID = #{memberId}
-    </update>
-
-    <!-- USER_STATUS 값을 N으로 변경 글 작성 불가 -->
+    <!-- USER_STATUS값을 N으로 변경 글 작성 불가 -->
     <update id="writeNotUser">
-        UPDATE MEMBER_INFO /*AdminMapper.writeNotUser (USER_STATUS 값을 N으로 변경 글 작성 불가)  */
-           SET USER_STATUS ='N'
-         where MEMBER_ID  = #{memberId}
+        UPDATE MEMBER_INFO /* AdminMapper.writeNotUser */
+           SET USER_STATUS = 'N'
+         WHERE MEMBER_ID = #{memberId}
     </update>
 
-    <!-- USER_STATUS값을 Y로 변경 글 작성 가능-->
+    <!-- USER_STATUS값을 Y로 변경 글 작성 가능 -->
     <update id="writeUser">
-        UPDATE member_info /*(AdminMapper.writeUser.USER_STATUS (값을 Y로 변경 글 작성 가능) */
+        UPDATE MEMBER_INFO /* AdminMapper.writeUser */
            SET USER_STATUS = 'Y'
          WHERE MEMBER_ID = #{memberId}
     </update>
 
-    <!-- delete -->
-    <!-- delete -->
-    <!-- delete -->
+    <!-- 사용자 Role -> 운영자 Role 변경 -->
+    <update id="changeRoleAdmin">
+        UPDATE MEMBER_INFO /* AdminMapper.changeRoleAdmin */
+           SET USER_ROLE = 'ADMIN'
+         WHERE MEMBER_ID = #{memberId}
+    </update>
 
-    <!-- 게삭제된 지 30일이 지난 데이터 물리 삭제 -->
-    <delete id="deleteOldSoftDeletedBoards">
-        DELETE /* BoardMapper.deleteOldSoftDeletedBoards 삭제된 지 30일이 지난 데이터 물리 삭제 */
-        FROM BOARD
-        WHERE DELETE_YN = 'Y'
-          AND UPDATE_AT <![CDATA[ <= ]]> DATE_SUB(NOW(), INTERVAL 30 DAY)
+    <!-- 운영자 Role -> 사용자 Role 변경 -->
+    <update id="changeRoleUser">
+        UPDATE MEMBER_INFO /* AdminMapper.changeRoleUser */
+           SET USER_ROLE = 'USER'
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- 회원 일괄 삭제 By Admin -->
+    <delete id="deleteMembersBySuperAdmin">
+        DELETE /* AdminMapper.deleteMembersBySuperAdmin */
+          FROM MEMBER_INFO
+         WHERE MEMBER_ID IN
+        <foreach collection="memberIds" item="memberId" open="(" separator="," close=")">
+            #{memberId}
+        </foreach>
     </delete>
 
-    <!-- 회원 일괄 삭제 -->
-    <delete id="deleteMembersBySuperAdmin">
-        DELETE /* member.deleteMembers (회원 일괄 삭제) */
-          FROM MEMBER_INFO
-         WHERE MEMBER_ID IN /* 기존 USER_ID 대신 MEMBER_ID 사용 */
-        <foreach item="id" collection="memberIds" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+    <!-- 삭제된 게시글 복구 -->
+    <update id="restoreBoardContent">
+        UPDATE BOARD /* AdminMapper.restoreBoardContent (삭제된 게시글 복구) */
+           SET DELETE_YN = 'N'
+         WHERE BOARD_ID = #{boardId}
+    </update>
+
+    <!-- 오래된 삭제 게시물(soft deleted) 물리 삭제 -->
+    <delete id="deleteOldSoftDeletedBoards" parameterType="int">
+        DELETE /* AdminMapper.deleteOldSoftDeletedBoards (오래된 삭제 게시물 물리 삭제) */
+          FROM BOARD
+         WHERE DELETE_YN = 'Y'
+           AND UPDATE_AT <![CDATA[ < ]]> DATE_SUB(NOW(), INTERVAL #{days} DAY)
     </delete>
 
 </mapper>

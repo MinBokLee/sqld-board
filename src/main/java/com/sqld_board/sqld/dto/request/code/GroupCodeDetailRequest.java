@@ -15,7 +15,7 @@ public class GroupCodeDetailRequest {
     private String  codeName;
 
     @Min(value = 1, message = "정렬 순서는 1 이상의 숫자여야 한다. ")
-    private int sortOrder;
+    private Integer sortOrder;
     private String useYn;
 
 }

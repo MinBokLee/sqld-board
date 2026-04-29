@@ -15,7 +15,7 @@ public class CommonCodeDetail {
     private String  groupCode;
     private String  codeId;
     private String  codeName;
-    private int sortOrder;
+    private Integer sortOrder;
     private String useYn;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;

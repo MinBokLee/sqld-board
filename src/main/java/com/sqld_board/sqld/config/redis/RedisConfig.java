@@ -1,6 +1,6 @@
 package com.sqld_board.sqld.config.redis;
 
-import com.sqld_board.sqld.service.websocket.RedisSubscriber;
+import com.sqld_board.sqld.service.redisConfig.RedisSubscriber;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
