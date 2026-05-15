@@ -127,7 +127,8 @@ public class CustomSecurityConfig {
             "http://localhost:3000",
             "http://127.0.0.1:5173",
             "http://localhost:63342/",
-            "http://175.197.69.42:8881"
+            "http://175.197.69.42:8881",
+            "https://sqld-front.pages.dev"
 
 
         ));
