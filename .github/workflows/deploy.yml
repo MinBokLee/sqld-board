@@ -57,7 +57,7 @@ jobs:
             -p 8881:8881 \
             -e SPRING_PROFILES_ACTIVE=prod \
             -e "JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_PASSWORD }}" \
-            ${{ secrets.DOCKER_USERNAME }}/sqld-app
+            ${{ secrets.DOCKER_USERNAME }} /sqld-app
 
             # 4. 안 쓰는 예전 이미지 정리
             sudo docker image prune -f
