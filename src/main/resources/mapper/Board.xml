@@ -447,7 +447,7 @@
 
     <!-- 추천 기록 추가 -->
     <insert id="insertBoardLike">
-        INSERT INTO board_like (BOARD_ID, MEMBER_ID, CREATE_AT)
+        INSERT INTO BOARD_LIKE (BOARD_ID, MEMBER_ID, CREATE_AT)
         VALUES (#{boardId}, #{memberId}, NOW())
     </insert>
 
@@ -489,7 +489,7 @@
 
     <!-- 추천 기록 삭제(취소) -->
     <delete id="deleteBoardLike">
-        DELETE FROM board_like
+        DELETE FROM BOARD_LIKE
         WHERE BOARD_ID = #{boardId} AND MEMBER_ID = #{memberId}
     </delete>
 
@@ -503,7 +503,7 @@
     <!-- 특정 사용자의 추천 여부 확인 (0이면 안 누름, 1이면 누름) -->
     <select id="checkBoardLike" resultType="int">
         SELECT COUNT(*)
-        FROM board_like
+        FROM BOARD_LIKE
         WHERE BOARD_ID = #{boardId} AND MEMBER_ID = #{memberId}
     </select>
 

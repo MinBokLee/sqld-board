@@ -5,24 +5,24 @@
 <mapper namespace="com.sqld_board.sqld.mapper.RefreshTokenMapper">
 
     <insert id="save" parameterType="com.sqld_board.sqld.model.token.RefreshToken">
-        INSERT INTO refresh_token (MEMBER_ID, R_TOKEN, EXPIRY_DATE)
+        INSERT INTO REFRESH_TOKEN (MEMBER_ID, R_TOKEN, EXPIRY_DATE)
         VALUES (#{memberId}, #{rToken}, #{expiryDate})
     </insert>
 
     <select id="findByToken" resultType="com.sqld_board.sqld.model.token.RefreshToken">
         SELECT R_ID as rId, MEMBER_ID as memberId, R_TOKEN as rToken, EXPIRY_DATE as expiryDate
-        FROM refresh_token
+        FROM REFRESH_TOKEN
         WHERE R_TOKEN = #{token}
     </select>
-    
+
     <select id="findByMemberId" resultType="com.sqld_board.sqld.model.token.RefreshToken">
         SELECT R_ID as rId, MEMBER_ID as memberId, R_TOKEN as rToken, EXPIRY_DATE as expiryDate
-        FROM refresh_token
+        FROM REFRESH_TOKEN
         WHERE MEMBER_ID = #{memberId}
     </select>
 
     <delete id="deleteByMemberId" parameterType="java.lang.String">
-        DELETE FROM refresh_token WHERE MEMBER_ID = #{memberId}
+        DELETE FROM REFRESH_TOKEN WHERE MEMBER_ID = #{memberId}
     </delete>
 
 </mapper>

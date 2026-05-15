@@ -5,7 +5,7 @@ spring:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://175.197.69.42:3306/sqld_prod?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
     username: sqld_prod
-    password: ENC(CZEAyQw+ZZvw8KwCXP+4Ob6bCUNbi0/k)
+    password: ENC(kFtHFPnpg+0Voa7bS9hCOEVskPXSJ5Jv)
     hikari:
       maximum-pool-size: 20       # 최대 커넥션 수 조설 (기본값 10에서 20정도로 증설)
       max-lifetime: 580000        # 커넥션 최대 유지 시간 약 9.6분 (DB wait_timeout이 10분인 경우 대응)
@@ -17,7 +17,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: mintest707@gmail.com
-    password: ENC(8HkGWnCXFmL7Z9uIO58Nv2giUmDOReNiNtunXaIcK2o=)
+    password: ENC(6/TegIFAUdRuqmKC9fWU1XSbqW7jufao9+teIvEiZOQ=)
     properties:
       mail:
         smtp:
@@ -28,6 +28,14 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
+  #redis setting
+  data:
+    redis:
+      host: 175.197.69.42
+      port: 6379
+      password: ENC(ZhRX6PJ3OvL7uZtdb4L1FOD1pe6aq/lB)
+#      password: ${SPRING_DATA_REDIS_PASSWORD:}
+
 
 # Jasypt가 ENC()를 인식하게 하는 기본 설정( 생략 가능하나 명시하는게 좋음)
 #Jasypt 스타터는 기본적으로 ENC(...)형식을 인식하며, 빈 이름을 지정하지 않으면 자동으로 내부 기본 빈을 사용
@@ -44,6 +52,6 @@ jasypt:
 
 file:
 #  upload-path: /Users/minboklee/Documents/upload #{mac}
-  upload-path: C:\web\sqld\upload #{window}
-
+#  upload-path: C:\web\sqld\upload #{window}
+  upload-path: /home/minbok/web/sqld/upload
 

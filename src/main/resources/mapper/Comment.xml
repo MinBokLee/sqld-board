@@ -31,7 +31,7 @@
              , C.CREATE_AT
              , C.UPDATE_AT
              , C.DELETE_YN
-        FROM comment_management C
+        FROM emin C
                  LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
         WHERE C.BOARD_ID = #{boardId}
           AND C.DELETE_YN = 'N'
@@ -46,7 +46,7 @@
              , MEMBER_ID
              , CONTENT
              , PARENT_COMMENT_ID
-          FROM comment_management WHERE COMMENT_ID = #{commentId}
+          FROM COMMENT_MANAGEMENT WHERE COMMENT_ID = #{commentId}
     </select>
 
 
@@ -97,7 +97,7 @@
 
     <!-- 댓글 내용 수정 -->
     <update id="updateComment">
-        UPDATE comment_management /* CommentMapper.updateComment (댓글 내용 수정) */
+        UPDATE COMMENT_MANAGEMENT /* CommentMapper.updateComment (댓글 내용 수정) */
            SET CONTENT = #{content}
              , UPDATE_AT = NOW()
          WHERE COMMENT_ID = #{commentId}
@@ -105,7 +105,7 @@
 
     <!-- 자식이 없는 경우, 댓글삭제 (Soft Delete) -->
     <update id="deleteComment">
-        UPDATE comment_management /* CommentMapper.deleteComment (자식이 없는 경우, 댓글삭제, 댓글삭제 (Soft Delete) */
+        UPDATE COMMENT_MANAGEMENT /* CommentMapper.deleteComment (자식이 없는 경우, 댓글삭제, 댓글삭제 (Soft Delete) */
            SET DELETE_YN = 'Y'
              , UPDATE_AT = NOW()
          WHERE COMMENT_ID = #{commentId}

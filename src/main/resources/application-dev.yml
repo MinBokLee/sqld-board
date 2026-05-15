@@ -3,8 +3,8 @@
 spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://175.197.69.42:3306/sqld_dev?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
-    username: sqlUser
+    url: jdbc:log4jdbc:mysql://175.197.69.42:3306/sqld_database?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: sqld_dev
     password: ENC(EFIHFYlZtbdmg9QuBzNYaQOzjw6QY+wf)
     hikari:
       maximum-pool-size: 10       # 최대 커넥션 수 조설 (기본값 10)
@@ -31,7 +31,9 @@ spring:
   # redis 설정
   data:
     redis:
-      host: localhost
+      host: 175.197.69.42
+      port: 6379
+      password: ENC(jfKmL6HUHaTFPEodEhMW2/oBZkqiJBpU)
 # ORACLE
 #  datasource:
 #    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

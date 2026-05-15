@@ -10,7 +10,7 @@
 
     <!-- 인증 정보 저장 또는 갱신 (MariaDB/MySQL ON DUPLICATE KEY UPDATE 활용) -->
     <insert id="insertVerification" parameterType="EmailVerification">
-        INSERT INTO email_verification (
+        INSERT INTO EMAIL_VERIFICATION (
             EMAIL_CHECK,
             IS_VERIFIED,
             VERIFICATION_CODE,
@@ -35,7 +35,7 @@
     <!-- 이미 인증이 완료된 메일인지 확인한다 -->
     <select id="checkAlreadyVerified" resultType="int">
         SELECT count(*)
-         FROM email_verification
+         FROM EMAIL_VERIFICATION
         WHERE EMAIL_CHECK = #{email}
           AND IS_VERIFIED = 'Y'
     </select>
@@ -48,14 +48,14 @@
             IS_VERIFIED,
             VERIFICATION_CODE,
             EXPIRED_AT
-        FROM email_verification
+        FROM EMAIL_VERIFICATION
         WHERE EMAIL_CHECK = #{email}
         ORDER BY VERIFICATION_ID DESC
         LIMIT 1
     </select>
 
     <update id="updateIsVerified">
-        UPDATE email_verification
+        UPDATE EMAIL_VERIFICATION
         SET IS_VERIFIED = #{status}
         WHERE EMAIL_CHECK = #{email}
     </update>

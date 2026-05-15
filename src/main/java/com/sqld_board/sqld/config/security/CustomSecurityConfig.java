@@ -126,8 +126,10 @@ public class CustomSecurityConfig {
             "http://localhost:5173",
             "http://localhost:3000",
             "http://127.0.0.1:5173",
-            "https://charts-utilize-birmingham-election.trycloudflare.com",
-            "http://localhost:63342/"
+            "http://localhost:63342/",
+            "http://175.197.69.42:8881"
+
+
         ));
         configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
