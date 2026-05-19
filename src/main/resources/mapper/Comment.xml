@@ -20,22 +20,22 @@
     <!-- 댓글 목록 조회 (사용자 정보 JOIN) -->
     <select id="getCommentList" resultType="Comment">
         SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
-               C.COMMENT_ID
-             , C.BOARD_ID
-             , C.MEMBER_ID
-             , C.USER_ID
+               CM.COMMENT_ID
+             , CM.BOARD_ID
+             , CM.MEMBER_ID
+             , CM.USER_ID
              , M.USER_NAME
-             , C.CONTENT
-             , C.PARENT_COMMENT_ID
-             , C.LIKE_COUNT
-             , C.CREATE_AT
-             , C.UPDATE_AT
-             , C.DELETE_YN
-        FROM emin C
-                 LEFT JOIN MEMBER_INFO M ON C.MEMBER_ID = M.MEMBER_ID
-        WHERE C.BOARD_ID = #{boardId}
-          AND C.DELETE_YN = 'N'
-        ORDER BY C.CREATE_AT ASC
+             , CM.CONTENT
+             , CM.PARENT_COMMENT_ID
+             , CM.LIKE_COUNT
+             , CM.CREATE_AT
+             , CM.UPDATE_AT
+             , CM.DELETE_YN
+        FROM COMMENT_MANAGEMENT CM
+                 LEFT JOIN MEMBER_INFO M ON CM.MEMBER_ID = M.MEMBER_ID
+        WHERE CM.BOARD_ID = #{boardId}
+          AND CM.DELETE_YN = 'N'
+        ORDER BY CM.CREATE_AT ASC
     </select>
 
     <!-- 특정 댓글 조회 -->
