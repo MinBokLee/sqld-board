@@ -53,5 +53,6 @@ jasypt:
 file:
 #  upload-path: /Users/minboklee/Documents/upload #{mac}
 #  upload-path: C:\web\sqld\upload #{window}
-  upload-path: /home/minbok/web/sqld/upload
+#  upload-path: /home/minbok/web/sqld/upload #{ubuntu}
+  upload-path: /uploads #{docker}
 

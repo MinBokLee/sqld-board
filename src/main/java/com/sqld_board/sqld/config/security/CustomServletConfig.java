@@ -33,7 +33,7 @@ public class CustomServletConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:/home/minbok/web/sqld/upload/") //ubuntu
+//                .addResourceLocations("file:/home/minbok/web/sqld/upload/") //ubuntu
                 .addResourceLocations("file:" + uploadPath + "/");
     }
 
