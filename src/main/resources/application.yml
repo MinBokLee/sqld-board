@@ -1,6 +1,6 @@
 # server port setting
 server:
-  port: 80
+  port: 8881
 
 spring:
   # application name setting
