@@ -56,5 +56,5 @@ jobs:
           script: |
             sudo docker rm -f sqld-app || true
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sqld-app
-            sudo docker run -d --name sqld-app -p 8080:8080 -v /home/minbok/sqld/web/upload -e SPRING_PROFILES_ACTIVE=prod -e JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_PASSWORD }} ${{ secrets.DOCKER_USERNAME }}/sqld-app
+            sudo docker run -d --name sqld-app -p 8080:8080 -v /home/minbok/sqld/web/upload:/uploads -e SPRING_PROFILES_ACTIVE=prod -e JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_PASSWORD }} ${{ secrets.DOCKER_USERNAME }}/sqld-app
             sudo docker image prune -f
