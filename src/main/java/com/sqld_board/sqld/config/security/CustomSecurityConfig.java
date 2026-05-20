@@ -49,7 +49,8 @@ public class CustomSecurityConfig {
                                 ,"/api/api-docs/**"
                                 ,"/swagger-resources/**"
                                 ,"/webjars/**"
-                                ,"ws-stomp");
+                                ,"ws-stomp"
+                                ,"/ws-stomp/**");
     }
 
     @Bean
