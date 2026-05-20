@@ -125,13 +125,14 @@ public class CustomSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:5173",
-            "http://localhost:3000",
-            "http://127.0.0.1:5173",
-            "http://localhost:63342/",
-            "http://175.197.69.42:8881",
-            "http://175.197.69.42",
-            "https://sqld-front.pages.dev"
+              "http://localhost:5173"
+            , "http://localhost:3000"
+            , "http://127.0.0.1:5173"
+            , "http://localhost:63342/"
+            , "http://175.197.69.42:8881"
+            , "http://175.197.69.42"
+            , "https://sqld.duckdns.org"
+
 
 
         ));
