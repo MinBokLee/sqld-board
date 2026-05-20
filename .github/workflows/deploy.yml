@@ -56,5 +56,5 @@ jobs:
           script: |
             sudo docker rm -f sqld-app || true
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sqld-app
-            sudo docker run -d --name sqld-app -p 8881:8881 -e SPRING_PROFILES_ACTIVE=prod -e JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_PASSWORD }} ${{ secrets.DOCKER_USERNAME }}/sqld-app
+            sudo docker run -d --name sqld-app -p 80:80 -e SPRING_PROFILES_ACTIVE=prod -e JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_PASSWORD }} ${{ secrets.DOCKER_USERNAME }}/sqld-app
             sudo docker image prune -f
