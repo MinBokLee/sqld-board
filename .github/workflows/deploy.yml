@@ -53,7 +53,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          port: 2026
           script: |
             sudo docker rm -f sqld-app || true
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sqld-app
