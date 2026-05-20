@@ -44,7 +44,9 @@ public class CustomSecurityConfig {
         return (web) -> web.ignoring()
                 .requestMatchers("/demo-ui.html"
                                 ,"/swagger-ui/**"
+                                ,"/api/swagger-ui/**"
                                 ,"/api-docs/**"
+                                ,"/api/api-docs/**"
                                 ,"/swagger-resources/**"
                                 ,"/webjars/**"
                                 ,"ws-stomp");
