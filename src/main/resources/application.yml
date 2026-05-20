@@ -1,8 +1,6 @@
 # server port setting
 server:
-  port: 8881
-  servlet:
-    context-path: /api
+  port: 8080
 
 spring:
   # application name setting
