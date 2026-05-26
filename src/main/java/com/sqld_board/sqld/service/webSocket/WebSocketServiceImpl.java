@@ -34,31 +34,39 @@ public class WebSocketServiceImpl implements WebSocketService {
     @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
-    private static final String PRESENCE_KEY_PREFIX = "chat:presence:";
+    /*private static final String PRESENCE_KEY_PREFIX = "chat:presence:";*/
+
+    private String getPresenceKey(String roomId) {
+        return "chat:presence:" + redisTopic + ":" + roomId;
+    }
 
     @Override
     public void addUser(String roomId, String nickName) {
-        String key = PRESENCE_KEY_PREFIX + roomId;
+//        String key = PRESENCE_KEY_PREFIX + roomId;
+        String key = getPresenceKey(roomId);
         redisTemplate.opsForSet().add(key, nickName);
         log.info("[Presence] User {} joined room {}", nickName, roomId);
     }
 
     @Override
     public void removeUser(String roomId, String nickName) {
-        String key = PRESENCE_KEY_PREFIX + roomId;
+//        String key = PRESENCE_KEY_PREFIX + roomId;
+        String key = getPresenceKey(roomId);
         redisTemplate.opsForSet().remove(key, nickName);
         log.info("[Presence] User {} left room {}", nickName, roomId);
     }
 
     @Override
     public Set<Object> getConnectedUsers(String roomId) {
-        String key = PRESENCE_KEY_PREFIX + roomId;
+//        String key = PRESENCE_KEY_PREFIX + roomId;
+        String key = getPresenceKey(roomId);
         return redisTemplate.opsForSet().members(key);
     }
 
     @Override
     public Long getConnectedUserCount(String roomId) {
-        String key = PRESENCE_KEY_PREFIX + roomId;
+//        String key = PRESENCE_KEY_PREFIX + roomId;
+        String key = getPresenceKey(roomId);
         return redisTemplate.opsForSet().size(key);
     }
 
