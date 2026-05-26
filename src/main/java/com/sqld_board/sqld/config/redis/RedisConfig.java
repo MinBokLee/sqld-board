@@ -18,7 +18,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    @Value("${redis.topic}")
+    @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
     @Bean

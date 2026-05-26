@@ -34,7 +34,7 @@ public class WebSocketEventListener {
 
     private final SimpMessagingTemplate messagingTemplate;
 
-    @Value("${redis.topic}")
+    @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
     // 1. 입장(구독) 감지

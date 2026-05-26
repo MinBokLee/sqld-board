@@ -25,7 +25,7 @@ public class NotificationStompServiceImpl implements NotificationStompService {
 
     private final ObjectMapper objectMapper;
 
-    @Value("${redis.topic}")
+    @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
     /**

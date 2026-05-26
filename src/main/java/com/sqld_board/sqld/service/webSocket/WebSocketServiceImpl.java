@@ -31,7 +31,7 @@ public class WebSocketServiceImpl implements WebSocketService {
 
     private final MemberMapper memberMapper;
 
-    @Value("${redis.topic}")
+    @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
     private static final String PRESENCE_KEY_PREFIX = "chat:presence:";

@@ -28,7 +28,7 @@ public class NotificationStompController {
 
     private final ObjectMapper objectMapper; // [JSON 변환기  - 객체-> String ]
 
-    @Value("${redis.topic}")
+    @Value("${spring.data.redis.topic}")
     private String redisTopic;
 
     @Operation(summary = "알림 저장")
