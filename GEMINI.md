@@ -13,18 +13,19 @@
 ---
 
 ## 📈 현재 진행 상태 (Current Status)
-- **최근 업데이트:** 2026-04-29 (Session_21 분석 완료)
+- **최근 업데이트:** 2026-05-14 (Session_22 Redis 환경 격리 완료)
 - **주요 성과:** 
-    - **BoardMaster 매핑 이슈 원인 규명**: `SORT_ORDER` 값이 0으로 매핑되는 이유가 MyBatis 생성자 매핑의 순서 의존성 및 타입 처리 방식에 있음을 분석함.
-    - **ClassCastException 진단**: `existsByBoardNameExceptMe` API 호출 시 발생하는 형변환 에러의 원인이 XML `resultType` 오설정임을 확인하고 해결 전략 수립.
-    - **RESTful 설계 표준 준수**: 상세 조회 API의 `@PathVariable` 적용 정당성 확보 및 기술 표준 가이드 강화.
-- **상태:** 실시간 통신 기능 안정화 이후, 게시판 관리 기능(BoardMaster)의 정교한 데이터 매핑 및 버그 수정 단계에 있음.
+    - **Redis 환경별 완전 격리**: Dev와 Prod 환경이 동일한 Redis 서버를 공유함에도 불구하고, 토픽(Topic) 및 키(Key) 접두사 분리를 통해 알림과 채팅 접속자 데이터의 혼선을 완벽히 차단함.
+    - **통신 보안 및 프로토콜 정상화**: 프론트엔드 API 호출 주소 불일치(SSL/포트) 문제를 진단하고 `http://175.197.69.42:8881` 기준으로 설정을 최적화함.
+    - **CI/CD 배포 안정화**: 502 Bad Gateway의 원인인 설정값 누락 및 포트 미스매치를 해결하여 Docker 기반 배포 프로세스의 신뢰성을 높임.
+- **상태:** 핵심 인프라(Redis, 통신 프로토콜) 환경 분리가 완료되어, 이제 각 환경에서 독립적인 기능 테스트 및 운영이 가능함.
 
 ---
 
 ## 🗂️ 세션 로그 인덱스 (Session Logs)
 ...
 - [Session_21: BoardMaster 매핑 이슈 분석 및 API 설계 표준 확립](./logs/gemini_history/session_20260429_01.md)
+- [Session_22: Redis 환경 격리 및 배포 트러블슈팅](./logs/gemini_history/session_20260514_01.md)
 
 ---
 
@@ -32,8 +33,8 @@
 - [ ] `BoardMaster.xml` 리턴 타입(`resultType`) 수정 및 매핑 고도화
 - [ ] `COMMON_CODE_GROUP` 실제 데이터 값 확인 (SORT_ORDER)
 - [ ] 프론트엔드 Axios Interceptor 기반 응답 언래핑(`data.data`) 적용 확인
-- [ ] `prod` 환경 데이터베이스 스키마 동기화 (SQL 실행)
-- [ ] 잔여 기능 예외 처리 및 응답 규격 통합 마무리
-- [x] 실시간 접속자 명단(Presence) 기능 도입 완료
-- [x] 통합 데이터 정리 스케줄러(DatabaseCleanupScheduler) 구축 완료
-- [x] 공통 코드 조회 API 리스트 반환 및 필터링 개선 완료
+- [ ] 프론트엔드 정식 배포 시 백엔드 CORS `AllowedOrigins` 최종 업데이트
+- [ ] 운영 환경 실시간 메시지 처리 성능 모니터링
+- [x] Redis 알림/접속자 환경별 토픽 분리 완료
+- [x] 배포 환경 502 Bad Gateway 이슈 해결 완료
+- [x] 프론트엔드 API 호출 주소(HTTP/8881) 교정 완료
