@@ -8,6 +8,7 @@ import com.sqld_board.sqld.mapper.WebSocketMapper;
 import com.sqld_board.sqld.model.websocket.ChatMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +24,15 @@ import java.util.Set;
 public class WebSocketServiceImpl implements WebSocketService {
 
     private final RedisTemplate<String, Object> redisTemplate;
+
     private final ObjectMapper objectMapper;
+
     private final WebSocketMapper webSocketMapper;
+
     private final MemberMapper memberMapper;
+
+    @Value("${redis.topic}")
+    private String redisTopic;
 
     private static final String PRESENCE_KEY_PREFIX = "chat:presence:";
 
@@ -83,6 +90,6 @@ public class WebSocketServiceImpl implements WebSocketService {
 
         String jsonMessage = objectMapper.writeValueAsString(rtMessage);
         log.info("JSON Message to Redis: {}", jsonMessage);
-        redisTemplate.convertAndSend("realtime", jsonMessage);
+        redisTemplate.convertAndSend(redisTopic, jsonMessage);
     }
 }

@@ -8,6 +8,7 @@ import com.sqld_board.sqld.mapper.NotificationStompMapper;
 import com.sqld_board.sqld.model.notification.Notification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,9 @@ public class NotificationStompServiceImpl implements NotificationStompService {
 
     private final ObjectMapper objectMapper;
 
+    @Value("${redis.topic}")
+    private String redisTopic;
+
     /**
      * 알림 발송
      * @param message
@@ -37,7 +41,7 @@ public class NotificationStompServiceImpl implements NotificationStompService {
             // 2. Redis 발행(실시간 전송 트리거) notiId가 포함된 상태
             // RealTimeMessage 객체를 JSON 문자열로 변환하여 'realtime' 토픽으로 전송
             String jsonMessage = objectMapper.writeValueAsString(message);
-            redisTemplate.convertAndSend("realtime", jsonMessage);
+            redisTemplate.convertAndSend(redisTopic, jsonMessage);
 
             log.info("Notification sent: {}", jsonMessage);
         } catch (Exception e) {

@@ -32,6 +32,7 @@ spring:
   data:
     redis:
       host: 175.197.69.42
+      topic: realtime-prod
       port: 6379
       password: ENC(ZhRX6PJ3OvL7uZtdb4L1FOD1pe6aq/lB)
 #      password: ${SPRING_DATA_REDIS_PASSWORD:}

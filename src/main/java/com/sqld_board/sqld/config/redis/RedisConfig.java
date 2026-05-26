@@ -1,6 +1,7 @@
 package com.sqld_board.sqld.config.redis;
 
 import com.sqld_board.sqld.service.redisConfig.RedisSubscriber;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -17,6 +18,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
+    @Value("${redis.topic}")
+    private String redisTopic;
+
     @Bean
     public RedisMessageListenerContainer redisContainer(RedisConnectionFactory connectionFactory
                                                        ,MessageListenerAdapter listenerAdapter) {
@@ -26,7 +30,7 @@ public class RedisConfig {
 
         // "realtime" 이라는 이름의 토픽을 구독하도록 설정
         // 필요에 따라 여러 토픽을 등록할 수 도 있다.
-        container.addMessageListener(listenerAdapter, new ChannelTopic("realtime"));
+        container.addMessageListener(listenerAdapter, new ChannelTopic(redisTopic));
         return container;
     }
 

@@ -32,6 +32,7 @@ spring:
   data:
     redis:
       host: 175.197.69.42
+      topic: realtime-dev
       port: 6379
       password: ENC(jfKmL6HUHaTFPEodEhMW2/oBZkqiJBpU)
 # ORACLE

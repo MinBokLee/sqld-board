@@ -6,6 +6,7 @@ import com.sqld_board.sqld.service.notificationStomp.NotificationStompService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 실시간 전송 전문 (웹소켓을 통해 실시간으로 날아오는 알림 메시지 처리를 담당한다.
+ * 실시간 전송 전문 (웹소켓을 통해 실시간으로 날아오는 알림 메시지 처리를 담당한다.)
  */
 @Controller
 @Slf4j
@@ -27,6 +28,8 @@ public class NotificationStompController {
 
     private final ObjectMapper objectMapper; // [JSON 변환기  - 객체-> String ]
 
+    @Value("${redis.topic}")
+    private String redisTopic;
 
     @Operation(summary = "알림 저장")
     @MessageMapping("/notification")
@@ -44,7 +47,7 @@ public class NotificationStompController {
         log.info("JSON Message: {}", jsonMessage);
 
         //3. [전송] Redis 로 발행 (실시간 알림 쓰기)
-        redisTemplate.convertAndSend("realtime", jsonMessage);
+        redisTemplate.convertAndSend(redisTopic, jsonMessage);
 
     }
 }

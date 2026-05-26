@@ -9,6 +9,7 @@ import com.sqld_board.sqld.mapper.MemberMapper;
 import com.sqld_board.sqld.service.webSocket.WebSocketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -30,7 +31,11 @@ public class WebSocketEventListener {
     private final ObjectMapper objectMapper;
 
     private final WebSocketService webSocketService;
+
     private final SimpMessagingTemplate messagingTemplate;
+
+    @Value("${redis.topic}")
+    private String redisTopic;
 
     // 1. 입장(구독) 감지
     @EventListener
@@ -97,7 +102,7 @@ public class WebSocketEventListener {
                             .build();
 
                     String josonMessage = objectMapper.writeValueAsString(leaveMessage);
-                    redisTemplate.convertAndSend("realtime", josonMessage);
+                    redisTemplate.convertAndSend(redisTopic, josonMessage);
                 } catch (Exception e) {
                     log.error("퇴장 메시지 전송 실패: {}", e.getMessage());
                 }
