@@ -132,7 +132,8 @@
     <!-- updateBoardMaster 게시판 설정 수정-->
     <update id="updateBoardMaster">
         UPDATE BOARD_MASTER /* BoardMasterMapper.updateBoardMaster (게시판 설정 수정) */
-           SET USE_YN = #{useYn}
+           SET BOARD_NAME = #{boardName}
+             , USE_YN = #{useYn}
              , FILE_YN = #{fileYn}
              , REPLY_YN = #{replyYn}
              , TAG_YN = #{tagYn}

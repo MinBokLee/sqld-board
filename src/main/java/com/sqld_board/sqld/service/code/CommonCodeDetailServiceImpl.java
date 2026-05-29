@@ -73,9 +73,9 @@ public class CommonCodeDetailServiceImpl implements CommonCodeDetailService{
         // 1. 그룹코드 상세 조회 & 유효성 검사
         List<CommonCodeDetail> codeDetailData = commonCodeDetailMapper.readDetailCommonDetailCode(groupCode);
 
-        if(codeDetailData.isEmpty()){
-            throw new NotFoundGroupDetailCodeException();
-        }
+//        if(codeDetailData.isEmpty()){
+//            throw new NotFoundGroupDetailCodeException();
+//        }
 
         // 2. Model Response DTO List 로 변환
         return codeDetailData.stream()
