@@ -648,7 +648,7 @@ public class BoardServiceImpl implements BoardService {
         Map<String, Object> result = new HashMap<>();
         result.put("list", list);
         result.put("totalCount", totalCount);
-        result.put("totalPage", (int) Math.ceil((double) totalCount / size));
+        result.put("totalPages", (int) Math.ceil((double) totalCount / size));
         result.put("currentPage", page);
         return result;
     }
@@ -705,7 +705,7 @@ public class BoardServiceImpl implements BoardService {
         Map<String, Object> result = new HashMap<>();
         result.put("list", list);
         result.put("totalCount", totalCount);
-        result.put("totalPage",(int)  Math.ceil((double) totalCount/ size));
+        result.put("totalPages",(int)  Math.ceil((double) totalCount/ size));
         result.put("currentPage", page);
 
         // 특정 사용자의 글 목록 조회 시, 댓글 수도 함께 포함(통계용)
