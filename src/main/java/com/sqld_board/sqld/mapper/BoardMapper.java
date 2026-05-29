@@ -20,7 +20,8 @@ import java.util.Optional;
 public interface BoardMapper {
 
 
-    int updateBoardDeleteYNByAdmin(@Param(("boardIds"))List<Long> boardIds);
+    int updateBoardDeleteYNByAdmin(@Param("boardIds")List<Long> boardIds
+                                  ,@Param("deleteYn") String deleteYn);
 
     /**
      * 게시판별 카테고리 유효성 검증

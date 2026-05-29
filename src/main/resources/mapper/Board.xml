@@ -291,11 +291,11 @@
 
     <update id="updateBoardDeleteYNByAdmin">
         UPDATE BOARD
-           SET DELETE_YN = 'N'
+           SET DELETE_YN = #{deleteYn}
              , UPDATE_AT = NOW()
          WHERE BOARD_ID IN
-         <foreach item="boardIds" collection="boardIds" open="(" separator="," close=")">
-             #{boardIds}
+         <foreach item="id" collection="boardIds" open="(" separator="," close=")">
+             #{id}
          </foreach>
     </update>
 

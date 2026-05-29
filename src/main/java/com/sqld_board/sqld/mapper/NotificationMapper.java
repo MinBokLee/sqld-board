@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface NotificationMapper {
 
+    void updateAllNotiRead(@Param("receiverId") String receiverId);
+
     //3 30일 지난 알림 삭제
     int deleteOldNotifications();
 

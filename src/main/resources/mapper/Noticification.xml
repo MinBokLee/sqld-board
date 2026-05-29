@@ -21,6 +21,7 @@
              , TARGET_URL
         FROM NOTIFICATION
         WHERE RECEIVER_ID = #{receiverId}
+          AND IS_READ = 'N' <!-- 읽지 않은 알림만 노출 -->
     </select>
 
     <!-- insert -->
@@ -32,6 +33,14 @@
     <!-- update -->
     <!-- update -->
 
+    <!-- 틀정 사용자의 모든 알림을 처리 -->
+    <update id="updateAllNotiRead">
+        UPDATE NOTIFICATION
+           SET IS_READ = 'Y'
+         WHERE RECEIVER_ID = #{receiverId}
+          AND IS_READ = 'N'
+    </update>
+    
     <!-- 알림 읽음 처리 선택 -->
     <update id="updateNotiRead">
         UPDATE NOTIFICATION

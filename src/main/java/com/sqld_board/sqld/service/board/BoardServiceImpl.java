@@ -648,7 +648,7 @@ public class BoardServiceImpl implements BoardService {
         Map<String, Object> result = new HashMap<>();
         result.put("list", list);
         result.put("totalCount", totalCount);
-        result.put("totalPage", Math.ceil((double) totalCount / size));
+        result.put("totalPage", (int) Math.ceil((double) totalCount / size));
         result.put("currentPage", page);
         return result;
     }
@@ -749,7 +749,7 @@ public class BoardServiceImpl implements BoardService {
 
         if(isAdmin){
             // 관리자 & 슈퍼 관리자는 본인 여부 상관없이 단건 및 일괄 삭제 가능
-            updatedContent = boardMapper.updateBoardDeleteYNByAdmin(boardIds);
+            updatedContent = boardMapper.updateBoardDeleteYNByAdmin(boardIds, "Y");
         } else {
             // 게시판 소프트 삭제 (Delete_YN = 'Y) 일반사용자
              updatedContent = boardMapper.updateBoardDeleteYN(boardIds, memberId);

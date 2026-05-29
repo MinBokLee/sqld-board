@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface NotificationService {
 
+    void updateAllNotiRead(String receiverId);
+
     /**
      * 읽음 확인
      * @param notiId

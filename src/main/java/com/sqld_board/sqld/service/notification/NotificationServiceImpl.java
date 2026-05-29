@@ -21,6 +21,12 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Transactional
+    public void updateAllNotiRead(String receiverId) {
+        notificationMapper.updateAllNotiRead(receiverId);
+    }
+
+    @Override
+    @Transactional
     public void updateNotiRead(Long notiId) {
         notificationMapper.updateNotiRead(notiId);
     }

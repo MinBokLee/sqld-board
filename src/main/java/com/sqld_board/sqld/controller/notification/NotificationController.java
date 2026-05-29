@@ -7,6 +7,7 @@ import com.sqld_board.sqld.handler.ResponseHandler;
 import com.sqld_board.sqld.service.notification.NotificationService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.signature.qual.BinaryNameOrPrimitiveType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,13 @@ public class NotificationController {
     private final NotificationService notificationService;
     private final ResponseHandler responseHandler;
 
+    @Operation(summary = "모든 알림 읽음 확인")
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/readAll/{receiverId}")
+    public Response updateAllNotiRead(@PathVariable String receiverId){
+        notificationService.updateAllNotiRead(receiverId);
+        return responseHandler.getSuccessResponse(MessageType.NOTIC_CONTENTS_CHECK_OK);
+    }
 
     @Operation(summary = "공지 읽음 확인")
     @ResponseStatus(HttpStatus.OK)
