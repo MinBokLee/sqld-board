@@ -133,6 +133,7 @@
     <update id="updateBoardMaster">
         UPDATE BOARD_MASTER /* BoardMasterMapper.updateBoardMaster (게시판 설정 수정) */
            SET BOARD_NAME = #{boardName}
+             , GROUP_CODE = #{groupCode}
              , USE_YN = #{useYn}
              , FILE_YN = #{fileYn}
              , REPLY_YN = #{replyYn}

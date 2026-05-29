@@ -49,6 +49,7 @@ public class BoardMasterServiceImpl implements BoardMasterService{
        BoardMaster boardMasterData =  BoardMaster.builder()
                                                   .boardCode(boardCode)
                                                   .boardName(request.getBoardName())
+                                                  .groupCode(request.getGroupCode())
                                                   .useYn(request.getUseYn())
                                                   .fileYn(request.getFileYn())
                                                   .replyYn(request.getReplyYn())
