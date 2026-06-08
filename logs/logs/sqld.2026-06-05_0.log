@@ -1,0 +1,842 @@
+[2026-06-05 13:43:48.521] [INFO ] [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+[2026-06-05 13:43:48.553] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Starting SqldApplication using Java 17.0.11 with PID 50435 (/Users/minboklee/Downloads/sqld/build/classes/java/main started by minboklee in /Users/minboklee/Downloads/sqld)
+[2026-06-05 13:43:48.553] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - The following 1 profile is active: "dev"
+[2026-06-05 13:43:48.585] [INFO ] [restartedMain] o.s.b.d.restart.ChangeableUrls - The Class-Path manifest attribute in /Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/Users/minboklee/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/23.7.0.25.01/665f52abef9122ce003b5cfc1d9d44f7302e2cfe/oraclepki.jar
+[2026-06-05 13:43:48.586] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2026-06-05 13:43:48.586] [INFO ] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2026-06-05 13:43:49.660] [INFO ] [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+[2026-06-05 13:43:49.663] [INFO ] [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[2026-06-05 13:43:49.691] [INFO ] [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+[2026-06-05 13:43:49.988] [INFO ] [restartedMain] c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2026-06-05 13:43:49.989] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-06-05 13:43:49.989] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-06-05 13:43:49.989] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-06-05 13:43:49.990] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource applicationInfo [org.springframework.boot.ApplicationInfoPropertySource] to EncryptableMapPropertySourceWrapper
+[2026-06-05 13:43:50.009] [INFO ] [restartedMain] c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2026-06-05 13:43:50.021] [INFO ] [restartedMain] c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2026-06-05 13:43:50.025] [INFO ] [restartedMain] c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2026-06-05 13:43:50.532] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2026-06-05 13:43:50.544] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2026-06-05 13:43:50.545] [INFO ] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2026-06-05 13:43:50.545] [INFO ] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+[2026-06-05 13:43:50.572] [INFO ] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2026-06-05 13:43:50.573] [INFO ] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1987 ms
+[2026-06-05 13:43:50.606] [INFO ] [restartedMain] c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+[2026-06-05 13:43:50.612] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+[2026-06-05 13:43:50.612] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+[2026-06-05 13:43:50.613] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+[2026-06-05 13:43:50.613] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+[2026-06-05 13:43:50.613] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+[2026-06-05 13:43:50.614] [INFO ] [restartedMain] c.u.j.c.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+[2026-06-05 13:43:51.645] [INFO ] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+[2026-06-05 13:43:51.697] [INFO ] [restartedMain] c.s.s.c.s.CustomSecurityConfig - ********* Security Config Loading: WebSocket Support Added
+[2026-06-05 13:43:51.783] [WARN ] [restartedMain] o.s.s.c.a.w.b.WebSecurity$IgnoredRequestConfigurer - One of the patterns in [/demo-ui.html, /swagger-ui/**, /api/swagger-ui/**, /api-docs/**, /api/api-docs/**, /swagger-resources/**, /webjars/**, ws-stomp, /ws-stomp/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/demo-ui.html'], Ant [pattern='/demo-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api/swagger-ui/**'], Ant [pattern='/api/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api-docs/**'], Ant [pattern='/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/api/api-docs/**'], Ant [pattern='/api/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='ws-stomp'], Ant [pattern='ws-stomp']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:51.790] [WARN ] [restartedMain] o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws-stomp/**'], Ant [pattern='/ws-stomp/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2026-06-05 13:43:52.227] [WARN ] [restartedMain] com.zaxxer.hikari.HikariConfig - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+[2026-06-05 13:43:52.227] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2026-06-05 13:43:52.735] [INFO ] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6fbfbdd9
+[2026-06-05 13:43:52.736] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2026-06-05 13:43:52.743] [INFO ] [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://175.197.69.42:3306/sqld_database?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8'
+[2026-06-05 13:43:52.839] [INFO ] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2026-06-05 13:43:52.865] [INFO ] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+[2026-06-05 13:43:52.865] [INFO ] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1772ab2f]]
+[2026-06-05 13:43:52.866] [INFO ] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+[2026-06-05 13:43:52.867] [INFO ] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[2026-06-05 13:43:52.885] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.yml]' via location 'optional:classpath:/' refreshed
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source applicationInfo refreshed
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[2026-06-05 13:43:52.886] [INFO ] [restartedMain] c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[2026-06-05 13:43:53.352] [INFO ] [restartedMain] com.sqld_board.sqld.SqldApplication - Started SqldApplication in 5.215 seconds (process running for 5.746)
+[2026-06-05 13:43:54.425] [INFO ] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2026-06-05 13:43:54.429] [INFO ] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2026-06-05 13:43:54.437] [INFO ] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+[2026-06-05 13:43:54.668] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT  /* BoardMasterMapper.getBoardConfig 특정 게시판의 설정(이름, 카테고리 그룹, 기능 여부) 전체 리스트 조회 */
+               BM.BOARD_CODE
+             , BM.BOARD_NAME
+             , BM.GROUP_CODE
+             , BM.USE_YN
+             , BM.FILE_YN
+             , BM.REPLY_YN
+             , BM.TAG_YN
+             , CCG.SORT_ORDER
+             , BM.CREATE_AT
+             , BM.UPDATE_AT
+          FROM BOARD_MASTER BM
+          JOIN COMMON_CODE_GROUP CCG ON BM.GROUP_CODE = CCG.GROUP_CODE
+         ORDER BY CCG.SORT_ORDER ASC, BM.BOARD_CODE ASC /* 그룹 순서대로 정렬 */
+ {executed in 57 msec}
+[2026-06-05 13:43:54.686] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                WHERE CM.BOARD_ID = B.BOARD_ID
+                  AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+        FROM
+            BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.DELETE_YN = 'N'
+        ORDER BY
+            B.CREATE_AT DESC
+ {executed in 75 msec}
+[2026-06-05 13:43:54.711] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_NOTICE_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 17 msec}
+[2026-06-05 13:43:54.740] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_SQLD_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 25 msec}
+[2026-06-05 13:43:54.857] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_GREETING_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 115 msec}
+[2026-06-05 13:43:54.957] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_G_Q&A_002'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 99 msec}
+[2026-06-05 13:43:56.332] [INFO ] [http-nio-8080-exec-1] c.s.sqld.exception.ExceptionAdvice - error
+org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to write: java.io.IOException: Broken pipe
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.handleIOException(StandardServletAsyncWebRequest.java:346)
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleServletOutputStream.write(StandardServletAsyncWebRequest.java:404)
+	at org.springframework.util.StreamUtils$NonClosingOutputStream.write(StreamUtils.java:284)
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator._flushBuffer(UTF8JsonGenerator.java:2261)
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator._writeStringSegment2(UTF8JsonGenerator.java:1530)
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator._writeStringSegment(UTF8JsonGenerator.java:1467)
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator._writeStringSegments(UTF8JsonGenerator.java:1350)
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator.writeString(UTF8JsonGenerator.java:522)
+	at com.fasterxml.jackson.databind.ser.std.StringSerializer.serialize(StringSerializer.java:40)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:760)
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:183)
+	at com.fasterxml.jackson.databind.ser.impl.IndexedListSerializer.serializeContents(IndexedListSerializer.java:119)
+	at com.fasterxml.jackson.databind.ser.impl.IndexedListSerializer.serialize(IndexedListSerializer.java:79)
+	at com.fasterxml.jackson.databind.ser.impl.IndexedListSerializer.serialize(IndexedListSerializer.java:18)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:760)
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:183)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:760)
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:183)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:503)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:342)
+	at com.fasterxml.jackson.databind.ObjectWriter$Prefetch.serialize(ObjectWriter.java:1587)
+	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:1061)
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:485)
+	at org.springframework.http.converter.AbstractGenericHttpMessageConverter.write(AbstractGenericHttpMessageConverter.java:126)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:345)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.handleReturnValue(RequestResponseBodyMethodProcessor.java:208)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.sqld_board.sqld.config.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.
+		at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.obtainLockOrRaiseException(StandardServletAsyncWebRequest.java:338)
+		at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleServletOutputStream.write(StandardServletAsyncWebRequest.java:399)
+		at org.springframework.util.StreamUtils$NonClosingOutputStream.write(StreamUtils.java:284)
+		at com.fasterxml.jackson.core.json.UTF8JsonGenerator._flushBuffer(UTF8JsonGenerator.java:2261)
+		at com.fasterxml.jackson.core.json.UTF8JsonGenerator.close(UTF8JsonGenerator.java:1232)
+		at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:454)
+		... 107 common frames omitted
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:342)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:777)
+	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:674)
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:377)
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:355)
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:102)
+	at org.springframework.security.web.util.OnCommittedResponseWrapper$SaveContextServletOutputStream.write(OnCommittedResponseWrapper.java:639)
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleServletOutputStream.write(StandardServletAsyncWebRequest.java:401)
+	... 131 common frames omitted
+Caused by: java.io.IOException: Broken pipe
+	at java.base/sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:62)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:132)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:97)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:53)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:532)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:125)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:732)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:572)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:520)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:548)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:111)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:193)
+	at org.apache.coyote.Response.doWrite(Response.java:628)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:330)
+	... 138 common frames omitted
+[2026-06-05 13:44:05.637] [INFO ] [http-nio-8080-exec-4] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                WHERE CM.BOARD_ID = B.BOARD_ID
+                  AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+        FROM
+            BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.DELETE_YN = 'N'
+        ORDER BY
+            B.CREATE_AT DESC
+ {executed in 84 msec}
+[2026-06-05 13:44:05.637] [INFO ] [http-nio-8080-exec-3] jdbc.sqltiming - SELECT  /* BoardMasterMapper.getBoardConfig 특정 게시판의 설정(이름, 카테고리 그룹, 기능 여부) 전체 리스트 조회 */
+               BM.BOARD_CODE
+             , BM.BOARD_NAME
+             , BM.GROUP_CODE
+             , BM.USE_YN
+             , BM.FILE_YN
+             , BM.REPLY_YN
+             , BM.TAG_YN
+             , CCG.SORT_ORDER
+             , BM.CREATE_AT
+             , BM.UPDATE_AT
+          FROM BOARD_MASTER BM
+          JOIN COMMON_CODE_GROUP CCG ON BM.GROUP_CODE = CCG.GROUP_CODE
+         ORDER BY CCG.SORT_ORDER ASC, BM.BOARD_CODE ASC /* 그룹 순서대로 정렬 */
+ {executed in 68 msec}
+[2026-06-05 13:44:05.655] [INFO ] [http-nio-8080-exec-3] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_NOTICE_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 13 msec}
+[2026-06-05 13:44:05.668] [INFO ] [http-nio-8080-exec-3] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_SQLD_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 11 msec}
+[2026-06-05 13:44:05.710] [INFO ] [http-nio-8080-exec-3] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_GREETING_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 41 msec}
+[2026-06-05 13:44:05.727] [INFO ] [http-nio-8080-exec-3] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_G_Q&A_002'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 16 msec}
+[2026-06-05 13:44:28.352] [INFO ] [http-nio-8080-exec-8] c.s.s.service.board.BoardServiceImpl - 인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)
+[2026-06-05 13:44:28.366] [INFO ] [http-nio-8080-exec-8] jdbc.sqltiming - SELECT /* BoardMapper.getPopularBoards (최근 15일 인기 게시글 조회) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , B.CREATE_AT
+             , M.USER_NAME
+             , M.PROFILE_IMAGE
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 15 DAY)
+          AND B.DELETE_YN = 'N'
+        ORDER BY B.LIKE_COUNT DESC, B.VIEW_COUNT DESC
+        LIMIT 5
+ {executed in 11 msec}
+[2026-06-05 13:44:28.382] [INFO ] [http-nio-8080-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.existBoardContent */
+               COUNT(1)
+          FROM BOARD
+         WHERE BOARD_ID = 26
+           AND DELETE_YN = 'N'
+ {executed in 17 msec}
+[2026-06-05 13:44:28.406] [INFO ] [http-nio-8080-exec-6] jdbc.sqltiming - SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
+               CM.COMMENT_ID
+             , CM.BOARD_ID
+             , CM.MEMBER_ID
+             , CM.USER_ID
+             , M.USER_NAME
+             , CM.CONTENT
+             , CM.PARENT_COMMENT_ID
+             , CM.LIKE_COUNT
+             , CM.CREATE_AT
+             , CM.UPDATE_AT
+             , CM.DELETE_YN
+        FROM COMMENT_MANAGEMENT CM
+                 LEFT JOIN MEMBER_INFO M ON CM.MEMBER_ID = M.MEMBER_ID
+        WHERE CM.BOARD_ID = 26
+          AND CM.DELETE_YN = 'N'
+        ORDER BY CM.CREATE_AT ASC
+ {executed in 30 msec}
+[2026-06-05 13:44:28.465] [INFO ] [http-nio-8080-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+             , BS.SCRAP_ID /* 스크랩 고유 ID */
+          FROM BOARD B
+          LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+          LEFT JOIN BOARD_SCRAP BS ON B.BOARD_ID = BS.BOARD_ID AND BS.MEMBER_ID = NULL
+         WHERE B.BOARD_ID = 26
+           AND B.DELETE_YN = 'N'
+ {executed in 57 msec}
+[2026-06-05 13:44:28.470] [INFO ] [http-nio-8080-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getBoardListWithPaging (페이징 처리된 게시판 목록 조회 (지연 조인 최적화 적용)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                 WHERE CM.BOARD_ID = B.BOARD_ID
+                   AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE DELETE_YN = 'N' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 20 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 84 msec}
+[2026-06-05 13:44:28.494] [INFO ] [http-nio-8080-exec-7] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
+               FILE_ID
+             , BOARD_ID
+             , ORIGIN_NAME
+             , SAVE_NAME
+             , FILE_PATH
+             , FILE_SIZE
+             , CREATE_AT
+          FROM BOARD_FILE
+         WHERE BOARD_ID = 26
+ {executed in 9 msec}
+[2026-06-05 13:44:28.921] [INFO ] [http-nio-8080-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
+               COUNT(*)
+          FROM BOARD
+         WHERE DELETE_YN = 'N'
+ {executed in 10 msec}
+[2026-06-05 13:44:52.879] [INFO ] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 5, active threads = 1, queued tasks = 4, completed tasks = 0]
+[2026-06-05 13:45:00.084] [INFO ] [MessageBroker-2] c.s.s.c.s.BoardViewCountScheduler - >>> Redis 조회수 DB 동기화 시작
+[2026-06-05 13:45:00.116] [INFO ] [MessageBroker-2] c.s.s.c.s.BoardViewCountScheduler - >>> 동기화할 조회수 데이터가 없습니다.
+[2026-06-05 13:50:00.259] [INFO ] [MessageBroker-4] c.s.s.c.s.BoardViewCountScheduler - >>> Redis 조회수 DB 동기화 시작
+[2026-06-05 13:50:00.357] [INFO ] [MessageBroker-4] c.s.s.c.s.BoardViewCountScheduler - >>> 동기화할 조회수 데이터가 없습니다.
+[2026-06-05 13:55:00.085] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> Redis 조회수 DB 동기화 시작
+[2026-06-05 13:55:00.118] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> 동기화할 조회수 데이터가 없습니다.
+[2026-06-05 13:58:04.263] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT  /* BoardMasterMapper.getBoardConfig 특정 게시판의 설정(이름, 카테고리 그룹, 기능 여부) 전체 리스트 조회 */
+               BM.BOARD_CODE
+             , BM.BOARD_NAME
+             , BM.GROUP_CODE
+             , BM.USE_YN
+             , BM.FILE_YN
+             , BM.REPLY_YN
+             , BM.TAG_YN
+             , CCG.SORT_ORDER
+             , BM.CREATE_AT
+             , BM.UPDATE_AT
+          FROM BOARD_MASTER BM
+          JOIN COMMON_CODE_GROUP CCG ON BM.GROUP_CODE = CCG.GROUP_CODE
+         ORDER BY CCG.SORT_ORDER ASC, BM.BOARD_CODE ASC /* 그룹 순서대로 정렬 */
+ {executed in 16 msec}
+[2026-06-05 13:58:04.320] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_NOTICE_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 52 msec}
+[2026-06-05 13:58:04.381] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_SQLD_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 57 msec}
+[2026-06-05 13:58:04.441] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_GREETING_01'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 56 msec}
+[2026-06-05 13:58:04.455] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                WHERE CM.BOARD_ID = B.BOARD_ID
+                  AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+        FROM
+            BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.DELETE_YN = 'N'
+        ORDER BY
+            B.CREATE_AT DESC
+ {executed in 215 msec}
+[2026-06-05 13:58:04.475] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /*  boardMapper.getCategoryListByBoardCode 특정 게시판(boardCode)에 소속된 카테고리 목록 조회 */
+               CCD.CODE_ID AS categoryId
+             , CCD.CODE_NAME AS categoryName
+          FROM BOARD_MASTER BM
+    INNER JOIN COMMON_CODE_DETAIL CCD
+            ON BM.GROUP_CODE = CCD.GROUP_CODE
+         WHERE BM.BOARD_CODE = 'B_G_Q&A_002'
+           AND BM.USE_YN = 'Y'
+      ORDER BY CCD.SORT_ORDER ASC
+ {executed in 31 msec}
+[2026-06-05 13:58:14.041] [INFO ] [http-nio-8080-exec-5] c.s.s.service.board.BoardServiceImpl - 인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)
+[2026-06-05 13:58:14.062] [INFO ] [http-nio-8080-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.existBoardContent */
+               COUNT(1)
+          FROM BOARD
+         WHERE BOARD_ID = 23
+           AND DELETE_YN = 'N'
+ {executed in 14 msec}
+[2026-06-05 13:58:14.062] [INFO ] [http-nio-8080-exec-5] jdbc.sqltiming - SELECT /* BoardMapper.getPopularBoards (최근 15일 인기 게시글 조회) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , B.CREATE_AT
+             , M.USER_NAME
+             , M.PROFILE_IMAGE
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 15 DAY)
+          AND B.DELETE_YN = 'N'
+        ORDER BY B.LIKE_COUNT DESC, B.VIEW_COUNT DESC
+        LIMIT 5
+ {executed in 15 msec}
+[2026-06-05 13:58:14.081] [INFO ] [http-nio-8080-exec-8] jdbc.sqltiming - SELECT /* commentMapper.getChildCommentCount (자식 대댓글 유무 확인)*/
+               CM.COMMENT_ID
+             , CM.BOARD_ID
+             , CM.MEMBER_ID
+             , CM.USER_ID
+             , M.USER_NAME
+             , CM.CONTENT
+             , CM.PARENT_COMMENT_ID
+             , CM.LIKE_COUNT
+             , CM.CREATE_AT
+             , CM.UPDATE_AT
+             , CM.DELETE_YN
+        FROM COMMENT_MANAGEMENT CM
+                 LEFT JOIN MEMBER_INFO M ON CM.MEMBER_ID = M.MEMBER_ID
+        WHERE CM.BOARD_ID = 23
+          AND CM.DELETE_YN = 'N'
+        ORDER BY CM.CREATE_AT ASC
+ {executed in 26 msec}
+[2026-06-05 13:58:14.155] [INFO ] [http-nio-8080-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getSearchBoard (게시판 글 단건조회 (사용자 정보 JOIN)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+             , BS.SCRAP_ID /* 스크랩 고유 ID */
+          FROM BOARD B
+          LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+          LEFT JOIN BOARD_SCRAP BS ON B.BOARD_ID = BS.BOARD_ID AND BS.MEMBER_ID = NULL
+         WHERE B.BOARD_ID = 23
+           AND B.DELETE_YN = 'N'
+ {executed in 72 msec}
+[2026-06-05 13:58:14.251] [INFO ] [http-nio-8080-exec-4] jdbc.sqltiming - SELECT /* BoardMapper.getBoardFileList (게시글에 첨부된 파일 리스트 조회) */
+               FILE_ID
+             , BOARD_ID
+             , ORIGIN_NAME
+             , SAVE_NAME
+             , FILE_PATH
+             , FILE_SIZE
+             , CREATE_AT
+          FROM BOARD_FILE
+         WHERE BOARD_ID = 23
+ {executed in 79 msec}
+[2026-06-05 13:58:14.251] [INFO ] [http-nio-8080-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getBoardListWithPaging (페이징 처리된 게시판 목록 조회 (지연 조인 최적화 적용)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                 WHERE CM.BOARD_ID = B.BOARD_ID
+                   AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE DELETE_YN = 'N' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 20 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 202 msec}
+[2026-06-05 13:58:15.385] [INFO ] [http-nio-8080-exec-6] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
+               COUNT(*)
+          FROM BOARD
+         WHERE DELETE_YN = 'N'
+ {executed in 55 msec}
+[2026-06-05 13:59:31.164] [INFO ] [http-nio-8080-exec-9] c.s.s.service.board.BoardServiceImpl - 인기 게시물 조회를 위해 DB에 접근한다. (캐시 미적용 시에만 출력)
+[2026-06-05 13:59:31.273] [INFO ] [http-nio-8080-exec-9] jdbc.sqltiming - SELECT /* BoardMapper.getPopularBoards (최근 15일 인기 게시글 조회) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             , B.CREATE_AT
+             , M.USER_NAME
+             , M.PROFILE_IMAGE
+        FROM BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.CREATE_AT >= DATE_SUB(NOW(), INTERVAL 15 DAY)
+          AND B.DELETE_YN = 'N'
+        ORDER BY B.LIKE_COUNT DESC, B.VIEW_COUNT DESC
+        LIMIT 5
+ {executed in 107 msec}
+[2026-06-05 13:59:31.357] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getBoardListWithPaging (페이징 처리된 게시판 목록 조회 (지연 조인 최적화 적용)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                 WHERE CM.BOARD_ID = B.BOARD_ID
+                   AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE DELETE_YN = 'N' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 30 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 191 msec}
+[2026-06-05 13:59:31.461] [INFO ] [http-nio-8080-exec-10] jdbc.sqltiming - SELECT /* BoardMapper.getBoardListWithPaging (페이징 처리된 게시판 목록 조회 (지연 조인 최적화 적용)) */
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                 WHERE CM.BOARD_ID = B.BOARD_ID
+                   AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+          FROM BOARD B
+    INNER JOIN ( /* 인덱스만 사용하여 필요한 ID들만 빠르게 추출 */
+                SELECT BOARD_ID
+                  FROM BOARD
+             WHERE DELETE_YN = 'N'
+
+                    AND BOARD_CODE = 'B_SQLD_01' 
+            ORDER BY CREATE_AT DESC
+            LIMIT 10 OFFSET 0
+        ) AS temp ON B.BOARD_ID = temp.BOARD_ID
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        ORDER BY B.CREATE_AT DESC
+ {executed in 44 msec}
+[2026-06-05 13:59:31.705] [INFO ] [http-nio-8080-exec-10] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
+               COUNT(*)
+          FROM BOARD
+         WHERE DELETE_YN = 'N'
+
+                AND BOARD_CODE = 'B_SQLD_01'
+ {executed in 11 msec}
+[2026-06-05 13:59:32.146] [INFO ] [http-nio-8080-exec-1] jdbc.sqltiming - SELECT /* BoardMapper.getgetBoardTotalCount (게시글 총 개수 조회) */
+               COUNT(*)
+          FROM BOARD
+         WHERE DELETE_YN = 'N'
+ {executed in 14 msec}
+[2026-06-05 13:59:54.625] [INFO ] [http-nio-8080-exec-2] jdbc.sqltiming - SELECT  /* BoardMapper.getBoardList (게시판 목록 전체를 조회하는 쿼리 (사용자 정보 JOIN))*/
+               B.BOARD_ID
+             , B.TITLE
+             , B.CONTENT
+             , M.USER_ID
+             , M.USER_NAME
+             , B.MEMBER_ID
+             , B.BOARD_CODE
+             , B.CATEGORY_ID
+             , B.VIEW_COUNT
+             , B.LIKE_COUNT
+             ,(SELECT COUNT(*)
+                 FROM COMMENT_MANAGEMENT CM
+                WHERE CM.BOARD_ID = B.BOARD_ID
+                  AND CM.DELETE_YN = 'N') AS commentCount /* 댓글 작성 수 */
+             , M.PROFILE_IMAGE
+             , B.CREATE_AT
+             , B.UPDATE_AT
+             , B.TAG_NAME
+        FROM
+            BOARD B
+        LEFT JOIN MEMBER_INFO M ON B.MEMBER_ID = M.MEMBER_ID
+        WHERE B.DELETE_YN = 'N'
+        ORDER BY
+            B.CREATE_AT DESC
+ {executed in 86 msec}
+[2026-06-05 13:59:59.944] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> Redis 조회수 DB 동기화 시작
+[2026-06-05 13:59:59.989] [INFO ] [MessageBroker-1] jdbc.sqltiming - UPDATE BOARD
+           SET VIEW_COUNT = VIEW_COUNT + 1
+         WHERE BOARD_ID = 23
+ {executed in 19 msec}
+[2026-06-05 14:00:00.380] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> Redias 조회수 DB 동기화 완료 (처리 건수: 1)
+[2026-06-05 14:05:00.282] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> Redis 조회수 DB 동기화 시작
+[2026-06-05 14:05:00.310] [INFO ] [MessageBroker-1] c.s.s.c.s.BoardViewCountScheduler - >>> 동기화할 조회수 데이터가 없습니다.
+[2026-06-05 14:06:07.990] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-06-05 14:06:08.002] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-06-05 14:06:08.041] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+[2026-06-05 14:06:08.043] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1772ab2f]]
+[2026-06-05 14:06:08.043] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+[2026-06-05 14:06:08.121] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-06-05 14:06:08.133] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
