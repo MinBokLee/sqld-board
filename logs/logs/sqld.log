@@ -551,3 +551,10 @@
 [2026-06-08 19:07:21.064] [INFO ] [http-nio-8080-exec-8] c.s.s.s.w.WebSocketServiceImpl - [Presence] User 관리자 left room OPEN_CHAT
 [2026-06-08 19:07:21.150] [INFO ] [http-nio-8080-exec-8] c.s.s.c.w.WebSocketEventListener - [Presence] Room OPEN_CHAT  updated. Count: 0
 [2026-06-08 19:07:21.158] [INFO ] [redisContainer-2] c.s.s.s.redisConfig.RedisSubscriber - Redis Subscribe - Message Received: {"notiId":null,"senderName":"관리자","type":"QUIT","roomId":"OPEN_CHAT","senderId":"MEMBER_20260427_001","targetId":null,"content":"관리자님이 퇴장하셨습니다.","timestamp":"2026-06-08 19:07:21","targetUrl":null}
+[2026-06-08 19:08:04.383] [INFO ] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2026-06-08 19:08:04.387] [INFO ] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2026-06-08 19:08:04.392] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+[2026-06-08 19:08:04.392] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@191a6782]]
+[2026-06-08 19:08:04.392] [INFO ] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+[2026-06-08 19:08:04.413] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2026-06-08 19:08:04.420] [INFO ] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
