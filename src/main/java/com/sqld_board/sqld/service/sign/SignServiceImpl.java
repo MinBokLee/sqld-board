@@ -1,5 +1,6 @@
 package com.sqld_board.sqld.service.sign;
 
+import com.sqld_board.sqld.common.util.DateTimeUtils;
 import com.sqld_board.sqld.dto.request.sign.SignInMemberReq;
 import com.sqld_board.sqld.dto.request.sign.SignUpMemberReq;
 import com.sqld_board.sqld.dto.response.member.MemberSimpleInfoRes;
@@ -29,6 +30,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.unit.DataUnit;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -331,9 +333,15 @@ public class SignServiceImpl implements SignService {
         // 보안 강화 (중복 로그인 막을 때 실행)
         //refreshTokenService.deleteByUserId(req.getUserId());
 
-        //2. [추가] 최종 접속 시간 기록(AdminService 호출)
+        // 2.현재 가지고있는 최근 접속 시간을 저장.
+        LocalDateTime lastLoginTimeBeforeUpdate = foundMember.getLastLogAt();
+
+        // 3. [추가] 최종 접속 시간 기록(AdminService 호출)
         // 최근 접속시간 저장 (memberId 기반)
         memberMapper.updateLastLogin(foundMember.getMemberId());
+
+        // 4. [추가] 객체에도 시간 정보 동기화
+        foundMember.updateLastLogAt(lastLoginTimeBeforeUpdate);
 
         // JWT의 subject에는 고유 식별자인 memberId를 사용
         Map<String, Object> claims = new HashMap<>();
@@ -379,6 +387,7 @@ public class SignServiceImpl implements SignService {
                 .userName(memberInfo.getUserName())
                 .userRole(memberInfo.getUserRole())
                 .profileImage(memberInfo.getProfileImage())
+                .lastLogAt(DateTimeUtils.format(memberInfo.getLastLogAt()))
                 .accessToken(newAccessToken)
                 .build();
     }
@@ -448,7 +457,7 @@ public class SignServiceImpl implements SignService {
                     .userPass(passwordEncoder.encode(req.getUserPass()))
                     .userName(req.getUserName())
                     .userEmail(req.getUserEmail())
-                    .emailVerified(req.getEmailVerified())
+                    .emailVerified(v.getIsVerified())
                     .userRole(Role.USER.name())
                     .userStatus("Y")
                     .build();

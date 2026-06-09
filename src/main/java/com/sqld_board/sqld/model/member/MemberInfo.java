@@ -61,4 +61,8 @@ public class MemberInfo {
     // 작성한 댓글의 수 (가상)
     private int commentCount;
 
+    public void updateLastLogAt(LocalDateTime now) {
+        this.lastLogAt = now;
+    }
+
 }
